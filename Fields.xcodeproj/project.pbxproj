@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		833E59DA1A1CEE4400CB03EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E59D91A1CEE4400CB03EE /* main.m */; };
 		833E59DD1A1CEE4400CB03EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E59DC1A1CEE4400CB03EE /* AppDelegate.m */; };
-		833E59E01A1CEE4400CB03EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E59DF1A1CEE4400CB03EE /* ViewController.m */; };
 		833E59E31A1CEE4400CB03EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E11A1CEE4400CB03EE /* Main.storyboard */; };
 		833E59E51A1CEE4400CB03EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E41A1CEE4400CB03EE /* Images.xcassets */; };
 		833E59E81A1CEE4400CB03EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E61A1CEE4400CB03EE /* LaunchScreen.xib */; };
 		833E59F41A1CEE4400CB03EE /* FieldsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E59F31A1CEE4400CB03EE /* FieldsTests.m */; };
+		833E5A011A1D072300CB03EE /* MBCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */; };
+		833E5A061A1D096300CB03EE /* ProjectMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A051A1D096300CB03EE /* ProjectMock.m */; };
+		833E5A091A1D097800CB03EE /* FormMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A081A1D097800CB03EE /* FormMock.m */; };
+		833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0B1A1D0C6A00CB03EE /* ReportMock.m */; };
+		833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */; };
+		833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A111A1D1D1400CB03EE /* ProjectCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +37,24 @@
 		833E59D91A1CEE4400CB03EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		833E59DB1A1CEE4400CB03EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		833E59DC1A1CEE4400CB03EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		833E59DE1A1CEE4400CB03EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		833E59DF1A1CEE4400CB03EE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		833E59E21A1CEE4400CB03EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		833E59E41A1CEE4400CB03EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		833E59E71A1CEE4400CB03EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		833E59ED1A1CEE4400CB03EE /* FieldsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FieldsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		833E59F21A1CEE4400CB03EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		833E59F31A1CEE4400CB03EE /* FieldsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FieldsTests.m; sourceTree = "<group>"; };
+		833E59FF1A1D072300CB03EE /* MBCProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCProjectsViewController.h; sourceTree = "<group>"; };
+		833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCProjectsViewController.m; sourceTree = "<group>"; };
+		833E5A041A1D096300CB03EE /* ProjectMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectMock.h; sourceTree = "<group>"; };
+		833E5A051A1D096300CB03EE /* ProjectMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectMock.m; sourceTree = "<group>"; };
+		833E5A071A1D097800CB03EE /* FormMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormMock.h; sourceTree = "<group>"; };
+		833E5A081A1D097800CB03EE /* FormMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormMock.m; sourceTree = "<group>"; };
+		833E5A0A1A1D0C6A00CB03EE /* ReportMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportMock.h; sourceTree = "<group>"; };
+		833E5A0B1A1D0C6A00CB03EE /* ReportMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportMock.m; sourceTree = "<group>"; };
+		833E5A0D1A1D0E5B00CB03EE /* MocksProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MocksProvider.h; sourceTree = "<group>"; };
+		833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MocksProvider.m; sourceTree = "<group>"; };
+		833E5A101A1D1D1400CB03EE /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
+		833E5A111A1D1D1400CB03EE /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +98,11 @@
 			children = (
 				833E59DB1A1CEE4400CB03EE /* AppDelegate.h */,
 				833E59DC1A1CEE4400CB03EE /* AppDelegate.m */,
-				833E59DE1A1CEE4400CB03EE /* ViewController.h */,
-				833E59DF1A1CEE4400CB03EE /* ViewController.m */,
-				833E59E11A1CEE4400CB03EE /* Main.storyboard */,
+				833E5A031A1D091E00CB03EE /* Mocks */,
+				833E5A021A1D075200CB03EE /* ViewControllers */,
+				833E59FD1A1CEE9300CB03EE /* Views */,
 				833E59E41A1CEE4400CB03EE /* Images.xcassets */,
-				833E59E61A1CEE4400CB03EE /* LaunchScreen.xib */,
+				833E59FE1A1CEEA800CB03EE /* Resources */,
 				833E59D71A1CEE4400CB03EE /* Supporting Files */,
 			);
 			path = Fields;
@@ -117,6 +132,48 @@
 				833E59F21A1CEE4400CB03EE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		833E59FD1A1CEE9300CB03EE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				833E5A101A1D1D1400CB03EE /* ProjectCell.h */,
+				833E5A111A1D1D1400CB03EE /* ProjectCell.m */,
+				833E59E11A1CEE4400CB03EE /* Main.storyboard */,
+				833E59E61A1CEE4400CB03EE /* LaunchScreen.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		833E59FE1A1CEEA800CB03EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		833E5A021A1D075200CB03EE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				833E59FF1A1D072300CB03EE /* MBCProjectsViewController.h */,
+				833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		833E5A031A1D091E00CB03EE /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				833E5A0D1A1D0E5B00CB03EE /* MocksProvider.h */,
+				833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */,
+				833E5A041A1D096300CB03EE /* ProjectMock.h */,
+				833E5A051A1D096300CB03EE /* ProjectMock.m */,
+				833E5A071A1D097800CB03EE /* FormMock.h */,
+				833E5A081A1D097800CB03EE /* FormMock.m */,
+				833E5A0A1A1D0C6A00CB03EE /* ReportMock.h */,
+				833E5A0B1A1D0C6A00CB03EE /* ReportMock.m */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +276,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833E59E01A1CEE4400CB03EE /* ViewController.m in Sources */,
 				833E59DD1A1CEE4400CB03EE /* AppDelegate.m in Sources */,
+				833E5A061A1D096300CB03EE /* ProjectMock.m in Sources */,
+				833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */,
+				833E5A091A1D097800CB03EE /* FormMock.m in Sources */,
+				833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */,
+				833E5A011A1D072300CB03EE /* MBCProjectsViewController.m in Sources */,
 				833E59DA1A1CEE4400CB03EE /* main.m in Sources */,
+				833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

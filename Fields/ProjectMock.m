@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  ProjectMock.m
 //  Fields
 //
 //  Created by Maria Bernis on 19/11/14.
 //  Copyright (c) 2014 mariabernis. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ProjectMock.h"
 
-@interface ViewController : UIViewController
-
+@implementation ProjectMock
 
 @end
-
