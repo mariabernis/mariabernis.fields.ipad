@@ -1,6 +1,7 @@
 
 #import "MBCoreDataStack.h"
 
+
 @interface MBCoreDataStack ()
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 //@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
@@ -10,21 +11,37 @@
 
 @implementation MBCoreDataStack
 
-@synthesize managedObjectContext = _managedObjectContext; // We need the synthesize because the prop is readonly and we override the getter.
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+//@synthesize managedObjectContext = _managedObjectContext; // We need the synthesize because the prop is readonly and we override the getter.
+//@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
-+ (instancetype)sharedCDStack
++ (void) mb_setupCoreDataStackWithInMemoryStore
 {
-    static dispatch_once_t once;
-    static id sharedInstance;
-    dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
+    [MagicalRecord setupCoreDataStackWithInMemoryStore];
 }
 
-/* Designated initializer */
++ (void) mb_setupCoreDataStackWithStoreNamed:(NSString *)storeName
+{
+    [MagicalRecord setupCoreDataStackWithStoreNamed:storeName];
+}
+
++ (void) mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:(NSString *)storeName
+{
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:storeName];
+    
+}
+
+//+ (instancetype)sharedCDStack
+//{
+//    static dispatch_once_t once;
+//    static id sharedInstance;
+//    dispatch_once(&once, ^{
+//        sharedInstance = [[self alloc] init];
+//    });
+//    return sharedInstance;
+//}
+
+/* Designated initializer
 - (instancetype)initWithPersistenStoreFileName:(NSString *)storeFileName
                                   andStoreType:(NSString *)storeType
 {
@@ -114,5 +131,6 @@
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+*/
 
 @end

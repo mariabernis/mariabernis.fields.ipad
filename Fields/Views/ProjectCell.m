@@ -9,12 +9,14 @@
 #import "ProjectCell.h"
 #import "ProjectMock.h"
 #import "FormMock.h"
+#import "Project.h"
+
 
 @implementation ProjectCell
 
 - (void)updateCellContentsWithItem:(id)item
 {
-    if ([item isKindOfClass:[ProjectMock class]]) {
+    if ([item isKindOfClass:[ProjectMock class]] || [item isKindOfClass:[Project class]]) {
         ProjectMock *project = (ProjectMock *)item;
         self.mainTitleLabel.text = project.projectTitle;
         self.descriptionLabel.text = project.projectDescription;
