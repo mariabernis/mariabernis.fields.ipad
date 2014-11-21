@@ -10,7 +10,8 @@
 #import "Project.h"
 #import "MBCoreDataStack.h"
 
-@interface ProjectAddNewViewController () // This one does not need to conform to the transitioning delegate
+// This one does not need to conform to the transitioning delegate
+@interface ProjectAddNewViewController () 
 
 @property (weak, nonatomic) IBOutlet UITextField *inputTitle;
 @property (weak, nonatomic) IBOutlet UITextView *inputDescription;
@@ -23,10 +24,21 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    [self.inputTitle becomeFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.inputTitle becomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Actions
 - (IBAction)saveButtonPressed:(id)sender {
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
@@ -34,17 +46,28 @@
         Project *newProj = [Project MR_createInContext:localContext];
         newProj.projectTitle = self.inputTitle.text;
         newProj.projectDescription = self.inputDescription.text;
+        
     } completion:^(BOOL success, NSError *error) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        [self closeKeyBoardAndDismiss];
     }];
     
 }
 
 - (IBAction)closeButtonPressed:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        //
-    }];
+    [self closeKeyBoardAndDismiss];
 }
+
+- (void)closeKeyBoardAndDismiss {
+    if ([self.inputTitle isFirstResponder]) {
+        [self.inputTitle resignFirstResponder];
+    }
+    if ([self.inputDescription isFirstResponder]) {
+        [self.inputDescription resignFirstResponder];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

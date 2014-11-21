@@ -9,7 +9,7 @@
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return self.isPresenting ? 0.8f : 1.0f;
+    return self.isPresenting ? 0.75f : 1.0f;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -25,9 +25,12 @@
         [transitionContext.containerView addSubview:toVC.view];
         
         fromVC.view.userInteractionEnabled = NO;
+        
+        CGFloat xOffset = 300;
+        CGFloat yOffset = 80;
         toVC.view.frame = CGRectMake(0, 0, 600, 400);
-        toVC.view.center = CGPointMake(CGRectGetWidth(fromVC.view.frame) + 300,
-                                       CGRectGetHeight(fromVC.view.frame)/2);
+        toVC.view.center = CGPointMake(CGRectGetWidth(fromVC.view.frame) + xOffset,
+                                       CGRectGetHeight(fromVC.view.frame)/2 - yOffset);
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
                               delay:0
@@ -41,7 +44,9 @@
                              [transitionContext completeTransition:YES];
                          }];
         
-        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:toVC.view snapToPoint:fromVC.view.center];
+        CGPoint snapPoint = CGPointMake(fromVC.view.center.x, fromVC.view.center.y - yOffset);
+        UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:toVC.view
+                                                        snapToPoint:snapPoint];
         snap.damping = 0.5;
         [self.dynamics addBehavior:snap];
         

@@ -51,24 +51,10 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - Actions
 - (void)openAddNewProjectView:(id)sender {
     
-//    [self performSegueWithIdentifier:@"SegueModalAddProject" sender:sender];
-    
     UIViewController *addProjectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"addProjectIdentifier"];
     addProjectVC.transitioningDelegate = self;
-    addProjectVC.modalTransitionStyle = UIModalPresentationCustom;
+    addProjectVC.modalPresentationStyle = UIModalPresentationCustom; // OJO, PRESENTATION STYLE, no TRANSITION STYLE. FFFFF
     [self presentViewController:addProjectVC animated:YES completion:nil];
-    
-}
-
-
-#pragma mark - Navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"SegueModalAddProject"]) {
-        UIViewController *detailViewController = segue.destinationViewController;
-        detailViewController.transitioningDelegate = self;
-        detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-    }
     
 }
 
