@@ -1,6 +1,6 @@
 
 #import "MBCoreDataStack.h"
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+
 
 @interface MBCoreDataStack ()
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;

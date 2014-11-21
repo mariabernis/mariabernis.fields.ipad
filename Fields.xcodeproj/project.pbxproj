@@ -33,6 +33,8 @@
 		833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0B1A1D0C6A00CB03EE /* ReportMock.m */; };
 		833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */; };
 		833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A111A1D1D1400CB03EE /* ProjectCell.m */; };
+		8352AB721A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352AB711A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m */; };
+		8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */; };
 		8378CF531A1E2A4700EB47F8 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF521A1E2A4700EB47F8 /* ProjectTests.m */; };
 		8378CF581A1E3CA300EB47F8 /* MBCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF571A1E3CA300EB47F8 /* MBCoreDataStack.m */; };
 		8378CF5D1A1E470700EB47F8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF5B1A1E470700EB47F8 /* Model.xcdatamodeld */; };
@@ -74,6 +76,10 @@
 		833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MocksProvider.m; sourceTree = "<group>"; };
 		833E5A101A1D1D1400CB03EE /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		833E5A111A1D1D1400CB03EE /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
+		8352AB701A1E9E7300284687 /* MBCoreDataFetchControllerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataFetchControllerHelper.h; sourceTree = "<group>"; };
+		8352AB711A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataFetchControllerHelper.m; sourceTree = "<group>"; };
+		8352AB741A1EA92400284687 /* MBCoreDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataCollectionViewController.h; sourceTree = "<group>"; };
+		8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataCollectionViewController.m; sourceTree = "<group>"; };
 		8378CF521A1E2A4700EB47F8 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
 		8378CF561A1E3CA300EB47F8 /* MBCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataStack.h; sourceTree = "<group>"; };
 		8378CF571A1E3CA300EB47F8 /* MBCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataStack.m; sourceTree = "<group>"; };
@@ -139,11 +145,11 @@
 				833E59DB1A1CEE4400CB03EE /* AppDelegate.h */,
 				833E59DC1A1CEE4400CB03EE /* AppDelegate.m */,
 				8378CF551A1E3C4D00EB47F8 /* Services */,
+				8352AB6F1A1E9E7300284687 /* Providers */,
 				8378CF541A1E3C4D00EB47F8 /* Models */,
 				833E5A031A1D091E00CB03EE /* Mocks */,
 				833E5A021A1D075200CB03EE /* ViewControllers */,
 				833E59FD1A1CEE9300CB03EE /* Views */,
-				8378CF591A1E45B400EB47F8 /* Utils */,
 				833E59E41A1CEE4400CB03EE /* Images.xcassets */,
 				833E59FE1A1CEEA800CB03EE /* Resources */,
 				833E59D71A1CEE4400CB03EE /* Supporting Files */,
@@ -198,6 +204,7 @@
 		833E5A021A1D075200CB03EE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8352AB731A1EA92400284687 /* Base */,
 				833E59FF1A1D072300CB03EE /* MBCProjectsViewController.h */,
 				833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */,
 			);
@@ -219,6 +226,24 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		8352AB6F1A1E9E7300284687 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				8352AB701A1E9E7300284687 /* MBCoreDataFetchControllerHelper.h */,
+				8352AB711A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		8352AB731A1EA92400284687 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8352AB741A1EA92400284687 /* MBCoreDataCollectionViewController.h */,
+				8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		8378CF541A1E3C4D00EB47F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,13 +263,6 @@
 				8378CF571A1E3CA300EB47F8 /* MBCoreDataStack.m */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		8378CF591A1E45B400EB47F8 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		BCFB5F062CBC1C36F791DF5B /* Pods */ = {
@@ -415,9 +433,11 @@
 				8378CF581A1E3CA300EB47F8 /* MBCoreDataStack.m in Sources */,
 				833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */,
 				833E5A091A1D097800CB03EE /* FormMock.m in Sources */,
+				8352AB721A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */,
 				833E5A011A1D072300CB03EE /* MBCProjectsViewController.m in Sources */,
 				8378CF5D1A1E470700EB47F8 /* Model.xcdatamodeld in Sources */,
+				8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */,
 				833E59DA1A1CEE4400CB03EE /* main.m in Sources */,
 				833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */,
 			);
@@ -646,6 +666,7 @@
 				8378CF611A1E486100EB47F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -10,6 +10,8 @@
 #import "MocksProvider.h"
 #import "ProjectCell.h"
 #import "ProjectMock.h"
+#import "Project.h"
+#import "MBCoreDataStack.h"
 
 @interface MBCProjectsViewController ()
 
@@ -24,6 +26,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.fetchRequest = [Project MR_requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES inContext:[NSManagedObjectContext MR_defaultContext]];
+    self.managedObjectContext = [NSManagedObjectContext MR_defaultContext];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,7 +58,24 @@ static NSString * const reuseIdentifier = @"Cell";
 */
 
 #pragma mark <UICollectionViewDataSource>
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    [super configureCell:cell atIndexPath:indexPath];
+    
+    ProjectCell *projCell = (ProjectCell *)cell;
+    
+    //    ProjectMock *p = [self.collection objectAtIndex:indexPath.row];
+    //    UILabel *mainTitle = (UILabel *)[cell viewWithTag:100];
+    //    mainTitle.text = p.projectTitle;
+    
+    [projCell updateCellContentsWithItem:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    projCell.backgroundColor = [UIColor whiteColor];
+    UIView * selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
+    selectedBGView.backgroundColor = [UIColor lightGrayColor];
+    projCell.selectedBackgroundView = selectedBGView;
+}
 
+/*
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -78,7 +100,7 @@ static NSString * const reuseIdentifier = @"Cell";
     cell.selectedBackgroundView = selectedBGView;
     return cell;
 }
-
+*/
 #pragma mark <UICollectionViewDelegate>
 
 /*
