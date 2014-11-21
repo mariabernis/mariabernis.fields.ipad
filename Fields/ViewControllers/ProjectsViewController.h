@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBCoreDataCollectionViewController.h"
 
-@interface MBCProjectsViewController : MBCoreDataCollectionViewController
+@interface ProjectsViewController : MBCoreDataCollectionViewController
 @property (nonatomic, strong) NSArray *collection;
 @property (nonatomic, strong) NSString *projectTitle;
 @end

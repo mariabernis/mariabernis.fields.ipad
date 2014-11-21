@@ -57,9 +57,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+
+    return [self mb_countItemsInSection:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -77,6 +76,17 @@
 {
     
 }
+
+- (NSInteger)mb_countItemsInFirstSection {
+    return [self mb_countItemsInSection:0];
+}
+
+- (NSInteger)mb_countItemsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
 
 #pragma mark <UICollectionViewDelegate>
 /*

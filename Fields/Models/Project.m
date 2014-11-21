@@ -2,12 +2,9 @@
 
 @interface Project ()
 
-// Private interface goes here.
-
 @end
 
-@implementation Project
 
-// Custom logic goes here.
+@implementation Project
 
 @end

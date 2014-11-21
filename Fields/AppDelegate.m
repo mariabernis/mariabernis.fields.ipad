@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [MBCoreDataStack mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"MBCFields.sqlite"];
+    [MBCoreDataStack mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"FieldsModel"];
     
     return YES;
 }

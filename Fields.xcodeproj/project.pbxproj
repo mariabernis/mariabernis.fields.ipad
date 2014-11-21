@@ -27,7 +27,7 @@
 		833E59E31A1CEE4400CB03EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E11A1CEE4400CB03EE /* Main.storyboard */; };
 		833E59E51A1CEE4400CB03EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E41A1CEE4400CB03EE /* Images.xcassets */; };
 		833E59E81A1CEE4400CB03EE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E61A1CEE4400CB03EE /* LaunchScreen.xib */; };
-		833E5A011A1D072300CB03EE /* MBCProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */; };
+		833E5A011A1D072300CB03EE /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A001A1D072300CB03EE /* ProjectsViewController.m */; };
 		833E5A061A1D096300CB03EE /* ProjectMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A051A1D096300CB03EE /* ProjectMock.m */; };
 		833E5A091A1D097800CB03EE /* FormMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A081A1D097800CB03EE /* FormMock.m */; };
 		833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0B1A1D0C6A00CB03EE /* ReportMock.m */; };
@@ -37,9 +37,11 @@
 		8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */; };
 		8378CF531A1E2A4700EB47F8 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF521A1E2A4700EB47F8 /* ProjectTests.m */; };
 		8378CF581A1E3CA300EB47F8 /* MBCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF571A1E3CA300EB47F8 /* MBCoreDataStack.m */; };
-		8378CF5D1A1E470700EB47F8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF5B1A1E470700EB47F8 /* Model.xcdatamodeld */; };
 		8378CF671A1E4A8F00EB47F8 /* _Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF641A1E4A8F00EB47F8 /* _Project.m */; };
 		8378CF681A1E4A8F00EB47F8 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF661A1E4A8F00EB47F8 /* Project.m */; };
+		837CE1961A1F8D460093AF4C /* FieldsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 837CE1941A1F8D460093AF4C /* FieldsModel.xcdatamodeld */; };
+		837CE1991A1FA0610093AF4C /* MBCModalVCAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */; };
+		837CE19C1A1FA0DE0093AF4C /* ProjectAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +66,8 @@
 		833E59E71A1CEE4400CB03EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		833E59ED1A1CEE4400CB03EE /* FieldsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FieldsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		833E59F21A1CEE4400CB03EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		833E59FF1A1D072300CB03EE /* MBCProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCProjectsViewController.h; sourceTree = "<group>"; };
-		833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCProjectsViewController.m; sourceTree = "<group>"; };
+		833E59FF1A1D072300CB03EE /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
+		833E5A001A1D072300CB03EE /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		833E5A041A1D096300CB03EE /* ProjectMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectMock.h; sourceTree = "<group>"; };
 		833E5A051A1D096300CB03EE /* ProjectMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectMock.m; sourceTree = "<group>"; };
 		833E5A071A1D097800CB03EE /* FormMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormMock.h; sourceTree = "<group>"; };
@@ -83,11 +85,15 @@
 		8378CF521A1E2A4700EB47F8 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
 		8378CF561A1E3CA300EB47F8 /* MBCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataStack.h; sourceTree = "<group>"; };
 		8378CF571A1E3CA300EB47F8 /* MBCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataStack.m; sourceTree = "<group>"; };
-		8378CF5C1A1E470700EB47F8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8378CF631A1E4A8F00EB47F8 /* _Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Project.h; sourceTree = "<group>"; };
 		8378CF641A1E4A8F00EB47F8 /* _Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Project.m; sourceTree = "<group>"; };
 		8378CF651A1E4A8F00EB47F8 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
 		8378CF661A1E4A8F00EB47F8 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		837CE1951A1F8D460093AF4C /* FieldsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FieldsModel.xcdatamodel; sourceTree = "<group>"; };
+		837CE1971A1FA0610093AF4C /* MBCModalVCAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCModalVCAnimator.h; sourceTree = "<group>"; };
+		837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCModalVCAnimator.m; sourceTree = "<group>"; };
+		837CE19A1A1FA0DE0093AF4C /* ProjectAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAddNewViewController.h; sourceTree = "<group>"; };
+		837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAddNewViewController.m; sourceTree = "<group>"; };
 		D9CF3F0677FE125DE4199750 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E2AAA0B18F5246EB9D8B4D3C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -205,8 +211,10 @@
 			isa = PBXGroup;
 			children = (
 				8352AB731A1EA92400284687 /* Base */,
-				833E59FF1A1D072300CB03EE /* MBCProjectsViewController.h */,
-				833E5A001A1D072300CB03EE /* MBCProjectsViewController.m */,
+				833E59FF1A1D072300CB03EE /* ProjectsViewController.h */,
+				833E5A001A1D072300CB03EE /* ProjectsViewController.m */,
+				837CE19A1A1FA0DE0093AF4C /* ProjectAddNewViewController.h */,
+				837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -238,6 +246,8 @@
 		8352AB731A1EA92400284687 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				837CE1971A1FA0610093AF4C /* MBCModalVCAnimator.h */,
+				837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */,
 				8352AB741A1EA92400284687 /* MBCoreDataCollectionViewController.h */,
 				8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */,
 			);
@@ -251,7 +261,7 @@
 				8378CF641A1E4A8F00EB47F8 /* _Project.m */,
 				8378CF651A1E4A8F00EB47F8 /* Project.h */,
 				8378CF661A1E4A8F00EB47F8 /* Project.m */,
-				8378CF5B1A1E470700EB47F8 /* Model.xcdatamodeld */,
+				837CE1941A1F8D460093AF4C /* FieldsModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,7 +427,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/usr/local/bin/mogenerator --v2 -O Fields/Models/  --model Fields/Models/Model.xcdatamodeld/\n\necho 👍";
+			shellScript = "/usr/local/bin/mogenerator --v2 -O Fields/Models/  --model Fields/Models/FieldsModel.xcdatamodeld/\n\necho 🐼";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -427,16 +437,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				833E59DD1A1CEE4400CB03EE /* AppDelegate.m in Sources */,
+				837CE19C1A1FA0DE0093AF4C /* ProjectAddNewViewController.m in Sources */,
 				833E5A061A1D096300CB03EE /* ProjectMock.m in Sources */,
 				8378CF671A1E4A8F00EB47F8 /* _Project.m in Sources */,
 				8378CF681A1E4A8F00EB47F8 /* Project.m in Sources */,
 				8378CF581A1E3CA300EB47F8 /* MBCoreDataStack.m in Sources */,
 				833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */,
 				833E5A091A1D097800CB03EE /* FormMock.m in Sources */,
+				837CE1961A1F8D460093AF4C /* FieldsModel.xcdatamodeld in Sources */,
 				8352AB721A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */,
-				833E5A011A1D072300CB03EE /* MBCProjectsViewController.m in Sources */,
-				8378CF5D1A1E470700EB47F8 /* Model.xcdatamodeld in Sources */,
+				833E5A011A1D072300CB03EE /* ProjectsViewController.m in Sources */,
+				837CE1991A1FA0610093AF4C /* MBCModalVCAnimator.m in Sources */,
 				8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */,
 				833E59DA1A1CEE4400CB03EE /* main.m in Sources */,
 				833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */,
@@ -515,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -551,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -671,13 +683,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8378CF5B1A1E470700EB47F8 /* Model.xcdatamodeld */ = {
+		837CE1941A1F8D460093AF4C /* FieldsModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8378CF5C1A1E470700EB47F8 /* Model.xcdatamodel */,
+				837CE1951A1F8D460093AF4C /* FieldsModel.xcdatamodel */,
 			);
-			currentVersion = 8378CF5C1A1E470700EB47F8 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = 837CE1951A1F8D460093AF4C /* FieldsModel.xcdatamodel */;
+			path = FieldsModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

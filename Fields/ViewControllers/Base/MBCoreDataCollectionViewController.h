@@ -11,5 +11,7 @@
 @property (nonatomic, strong) NSString *cellReusableIdentifier;
 
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)mb_countItemsInFirstSection;
+- (NSInteger)mb_countItemsInSection:(NSInteger)section;
 
 @end
