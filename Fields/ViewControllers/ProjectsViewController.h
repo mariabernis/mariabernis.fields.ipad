@@ -10,6 +10,5 @@
 #import "MBCoreDataCollectionViewController.h"
 
 @interface ProjectsViewController : MBCoreDataCollectionViewController
-@property (nonatomic, strong) NSArray *collection;
-@property (nonatomic, strong) NSString *projectTitle;
+
 @end

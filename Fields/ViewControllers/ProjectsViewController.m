@@ -14,6 +14,7 @@
 #import "MBCoreDataStack.h"
 #import "ProjectAddNewViewController.h"
 #import "MBCModalVCAnimator.h"
+#import "FormsViewController.h"
 
 @interface ProjectsViewController () <UIViewControllerTransitioningDelegate>
 
@@ -29,19 +30,14 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.fetchRequest = [Project MR_requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES inContext:[NSManagedObjectContext MR_defaultContext]];
-    self.managedObjectContext = [NSManagedObjectContext MR_defaultContext];
-    self.cellReusableIdentifier = @"Cell";
-
+    if (!self.fetchRequest) {
+        self.fetchRequest = [Project MR_requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES inContext:[NSManagedObjectContext MR_defaultContext]];
+        self.managedObjectContext = [NSManagedObjectContext MR_defaultContext];
+        self.cellReusableIdentifier = reuseIdentifier;
+    }
     
     self.collectionView.alwaysBounceVertical = YES;
-    if (!self.collection) {
-//        self.collection = [MocksProvider allProjects];
-        self.navigationItem.title = @"My Projects";
-    }
-    if (self.projectTitle) {
-        self.navigationItem.title = self.projectTitle;
-    }
+    self.navigationItem.title = @"My Projects";
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openAddNewProjectView:)];
     
@@ -66,7 +62,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     ProjectCell *projCell = (ProjectCell *)cell;
     
-    [projCell updateCellContentsWithItem:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
     projCell.backgroundColor = [UIColor whiteColor];
     UIView * selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
     selectedBGView.backgroundColor = [UIColor lightGrayColor];
@@ -77,12 +73,12 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = [self.collection objectAtIndex:indexPath.row];
-    if ([item isKindOfClass:[ProjectMock class]] || [item isKindOfClass:[Project class]]) {
+//    id item = [self.collection objectAtIndex:indexPath.row];
+    if ([[self objectAtIndexPath:indexPath] isKindOfClass:[Project class]]) {
         // Push to forms view
-        ProjectMock *p = (ProjectMock *)item;
-        ProjectsViewController *formsController = [self.storyboard instantiateViewControllerWithIdentifier:@"collectionLayout"]; // collectionLayout
-        formsController.collection = [MocksProvider allFormsWithProjectId:p.projectIdentifier];
+        Project *p = (Project *)[self objectAtIndexPath:indexPath];
+        FormsViewController *formsController = [[FormsViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]]; // collectionLayout
+        formsController.collection = [MocksProvider allFormsWithProjectId:@"someIdentifier"];
         formsController.projectTitle = p.projectTitle;
         [self.navigationController pushViewController:formsController animated:YES];
     }

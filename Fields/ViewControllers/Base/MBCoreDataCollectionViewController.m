@@ -3,6 +3,7 @@
 #import "MBCoreDataFetchControllerHelper.h"
 
 @interface MBCoreDataCollectionViewController ()
+@property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) MBCoreDataFetchControllerHelper *fetchControllerHelper;
 @end
 
@@ -40,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.fetchControllerHelper = [[MBCoreDataFetchControllerHelper alloc] initWithCollectionView:self.collectionView];
 }
 
@@ -58,7 +59,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
 
-    return [self mb_countItemsInSection:section];
+    return [self countItemsInSection:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -77,14 +78,22 @@
     
 }
 
-- (NSInteger)mb_countItemsInFirstSection {
-    return [self mb_countItemsInSection:0];
+- (NSInteger)countItemsInFirstSection {
+    return [self countItemsInSection:0];
 }
 
-- (NSInteger)mb_countItemsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+- (NSInteger)countItemsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSectionIndex:section];
     return [sectionInfo numberOfObjects];
+}
+
+- (id<NSFetchedResultsSectionInfo>)sectionInfoForSectionIndex:(NSInteger)section {
+    return [self.fetchedResultsController sections][section];
+}
+
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 

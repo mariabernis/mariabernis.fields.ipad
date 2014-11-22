@@ -42,6 +42,8 @@
 		837CE1961A1F8D460093AF4C /* FieldsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 837CE1941A1F8D460093AF4C /* FieldsModel.xcdatamodeld */; };
 		837CE1991A1FA0610093AF4C /* MBCModalVCAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */; };
 		837CE19C1A1FA0DE0093AF4C /* ProjectAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */; };
+		83AC7E701A20ADCA00FD291E /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */; };
+		83AC7E721A20BA4C00FD291E /* FormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AC7E711A20BA4C00FD291E /* FormCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,9 @@
 		837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCModalVCAnimator.m; sourceTree = "<group>"; };
 		837CE19A1A1FA0DE0093AF4C /* ProjectAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAddNewViewController.h; sourceTree = "<group>"; };
 		837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAddNewViewController.m; sourceTree = "<group>"; };
+		83AC7E6E1A20ADCA00FD291E /* FormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormsViewController.h; sourceTree = "<group>"; };
+		83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormsViewController.m; sourceTree = "<group>"; };
+		83AC7E711A20BA4C00FD291E /* FormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormCell.xib; sourceTree = "<group>"; };
 		D9CF3F0677FE125DE4199750 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E2AAA0B18F5246EB9D8B4D3C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -195,6 +200,7 @@
 				833E5A101A1D1D1400CB03EE /* ProjectCell.h */,
 				833E5A111A1D1D1400CB03EE /* ProjectCell.m */,
 				833E59E11A1CEE4400CB03EE /* Main.storyboard */,
+				83AC7E711A20BA4C00FD291E /* FormCell.xib */,
 				833E59E61A1CEE4400CB03EE /* LaunchScreen.xib */,
 			);
 			path = Views;
@@ -213,6 +219,8 @@
 				8352AB731A1EA92400284687 /* Base */,
 				833E59FF1A1D072300CB03EE /* ProjectsViewController.h */,
 				833E5A001A1D072300CB03EE /* ProjectsViewController.m */,
+				83AC7E6E1A20ADCA00FD291E /* FormsViewController.h */,
+				83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */,
 				837CE19A1A1FA0DE0093AF4C /* ProjectAddNewViewController.h */,
 				837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */,
 			);
@@ -371,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				833E59E31A1CEE4400CB03EE /* Main.storyboard in Resources */,
+				83AC7E721A20BA4C00FD291E /* FormCell.xib in Resources */,
 				833E59E81A1CEE4400CB03EE /* LaunchScreen.xib in Resources */,
 				833E59E51A1CEE4400CB03EE /* Images.xcassets in Resources */,
 			);
@@ -447,6 +456,7 @@
 				837CE1961A1F8D460093AF4C /* FieldsModel.xcdatamodeld in Sources */,
 				8352AB721A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */,
+				83AC7E701A20ADCA00FD291E /* FormsViewController.m in Sources */,
 				833E5A011A1D072300CB03EE /* ProjectsViewController.m in Sources */,
 				837CE1991A1FA0610093AF4C /* MBCModalVCAnimator.m in Sources */,
 				8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */,
