@@ -2,6 +2,6 @@
 #import <UIKit/UIKit.h>
 #endif
 
-#import "Pods-environment.h"
+#import "Pods-Fields-environment.h"
 #import <CoreData/CoreData.h>
 #import "CoreData+MagicalRecord.h"
