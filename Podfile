@@ -1,9 +1,15 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, "7.0"
+platform :ios, '7.0'
 
-pod 'MagicalRecord'
-pod 'PQFCustomLoaders'
+target 'Fields' do
+   pod 'MagicalRecord'
+   pod 'PQFCustomLoaders'
+end
+
+target :FieldsTests, :exclusive => true do
+   pod 'MagicalRecord'
+end
 
 # target :<#TargetName#>Tests, :exclusive => true do
-  # pod 'Kiwi'
+#    pod 'Kiwi'
 # end

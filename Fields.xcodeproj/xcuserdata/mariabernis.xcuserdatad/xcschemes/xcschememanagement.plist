@@ -9,25 +9,15 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Mogenerator.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>833E59D31A1CEE4400CB03EE</key>
+		<key>8343273D1A2138370051F525</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>833E59EC1A1CEE4400CB03EE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8378CF5E1A1E486100EB47F8</key>
+		<key>834327561A2138370051F525</key>
 		<dict>
 			<key>primary</key>
 			<true/>

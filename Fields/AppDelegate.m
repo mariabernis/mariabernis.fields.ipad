@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Fields
 //
-//  Created by Maria Bernis on 19/11/14.
+//  Created by Maria Bernis on 22/11/14.
 //  Copyright (c) 2014 mariabernis. All rights reserved.
 //
 
@@ -17,9 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     [MBCoreDataStack mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"FieldsModel"];
-    
     return YES;
 }
 

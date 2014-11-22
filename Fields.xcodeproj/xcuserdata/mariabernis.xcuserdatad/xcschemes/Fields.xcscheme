@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "833E59D31A1CEE4400CB03EE"
+               BlueprintIdentifier = "8343273D1A2138370051F525"
                BuildableName = "Fields.app"
                BlueprintName = "Fields"
                ReferencedContainer = "container:Fields.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "833E59EC1A1CEE4400CB03EE"
+               BlueprintIdentifier = "834327561A2138370051F525"
                BuildableName = "FieldsTests.xctest"
                BlueprintName = "FieldsTests"
                ReferencedContainer = "container:Fields.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "833E59EC1A1CEE4400CB03EE"
+               BlueprintIdentifier = "834327561A2138370051F525"
                BuildableName = "FieldsTests.xctest"
                BlueprintName = "FieldsTests"
                ReferencedContainer = "container:Fields.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "833E59D31A1CEE4400CB03EE"
+            BlueprintIdentifier = "8343273D1A2138370051F525"
             BuildableName = "Fields.app"
             BlueprintName = "Fields"
             ReferencedContainer = "container:Fields.xcodeproj">
@@ -75,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "833E59D31A1CEE4400CB03EE"
+            BlueprintIdentifier = "8343273D1A2138370051F525"
             BuildableName = "Fields.app"
             BlueprintName = "Fields"
             ReferencedContainer = "container:Fields.xcodeproj">
@@ -93,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "833E59D31A1CEE4400CB03EE"
+            BlueprintIdentifier = "8343273D1A2138370051F525"
             BuildableName = "Fields.app"
             BlueprintName = "Fields"
             ReferencedContainer = "container:Fields.xcodeproj">

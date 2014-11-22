@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  FormDesignerViewController.h
 //  Fields
 //
 //  Created by Maria Bernis on 22/11/14.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface FormDesignerViewController : UIViewController
 
 @end
-
