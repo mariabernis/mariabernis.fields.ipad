@@ -69,6 +69,100 @@
             </objects>
             <point key="canvasLocation" x="1087" y="672"/>
         </scene>
+        <!--Form Designer View Controller-->
+        <scene sceneID="UJl-Jg-xpw">
+            <objects>
+                <viewController storyboardIdentifier="formDesignerID" id="8PX-6O-j31" customClass="FormDesignerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Ps-rK-og4">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="JuZ-Np-oom" userLabel="Left Pane">
+                                <rect key="frame" x="0.0" y="65" width="251" height="703"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="Nam-S1-bVO" userLabel="Leftpane content">
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="703"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.80086096939999996" green="0.80086096939999996" blue="0.80086096939999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view alpha="0.34999999999999964" contentMode="scaleToFill" id="K4S-08-oAW" userLabel="Leftpane tab">
+                                        <rect key="frame" x="176" y="621" width="75" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="AdV-39-PNI">
+                                                <rect key="frame" x="35" y="21" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="enF-nF-r5P" appends="YES" id="JSE-2r-qW2"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="kJo-rW-b5x" userLabel="Right Pane">
+                                <rect key="frame" x="773" y="65" width="251" height="703"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="TSP-XO-b3b" userLabel="Rightpane content">
+                                        <rect key="frame" x="21" y="0.0" width="230" height="703"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.80086096939999996" green="0.80086096939999996" blue="0.80086096939999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view alpha="0.34999999403953552" contentMode="scaleToFill" id="FOY-fm-0O0" userLabel="Rightpane tab">
+                                        <rect key="frame" x="0.0" y="621" width="75" height="82"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="P3i-ue-O0L">
+                                                <rect key="frame" x="0.0" y="21" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="wnO-VR-nfr" appends="YES" id="GLo-Oe-08e"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0p0-Xh-pOy">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="XSQ-LE-bDj">
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="8PX-6O-j31" id="7PE-vG-gVW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="leftPaneView" destination="JuZ-Np-oom" id="W3p-SB-StG"/>
+                        <outlet property="rightPaneView" destination="kJo-rW-b5x" id="BBg-JL-cE9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ftd-lI-StV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="enF-nF-r5P">
+                    <connections>
+                        <action selector="leftPaneTabDragged:" destination="8PX-6O-j31" id="nar-kO-NSj"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="wnO-VR-nfr">
+                    <connections>
+                        <action selector="rightPaneTabDragged:" destination="8PX-6O-j31" id="CGT-UN-z3q"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2404" y="672"/>
+        </scene>
         <!--Project Add New View Controller-->
         <scene sceneID="5iL-iM-NaS">
             <objects>
@@ -81,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="dEd-58-iMS">
+                                    <navigationItem title="New Project" id="dEd-58-iMS">
                                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="lr7-0P-AfD">
                                             <connections>
                                                 <action selector="closeButtonPressed:" destination="rGS-hi-ul0" id="ekQ-8e-ZS0"/>
@@ -231,6 +325,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THr-Ee-kzA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-42" y="672"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ih7-5s-rWW">
+            <objects>
+                <navigationController storyboardIdentifier="formDesignerNavID" automaticallyAdjustsScrollViewInsets="NO" id="yHq-Dm-68m" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VFo-6E-8iu">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8PX-6O-j31" kind="relationship" relationship="rootViewController" id="Oik-e2-ooE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z8X-e8-JyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2404" y="-248"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

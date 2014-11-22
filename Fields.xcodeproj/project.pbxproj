@@ -44,6 +44,7 @@
 		837CE19C1A1FA0DE0093AF4C /* ProjectAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */; };
 		83AC7E701A20ADCA00FD291E /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */; };
 		83AC7E721A20BA4C00FD291E /* FormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AC7E711A20BA4C00FD291E /* FormCell.xib */; };
+		83AC7E751A20D10400FD291E /* FormDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E741A20D10400FD291E /* FormDesignerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		83AC7E6E1A20ADCA00FD291E /* FormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormsViewController.h; sourceTree = "<group>"; };
 		83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormsViewController.m; sourceTree = "<group>"; };
 		83AC7E711A20BA4C00FD291E /* FormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormCell.xib; sourceTree = "<group>"; };
+		83AC7E731A20D10400FD291E /* FormDesignerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormDesignerViewController.h; sourceTree = "<group>"; };
+		83AC7E741A20D10400FD291E /* FormDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormDesignerViewController.m; sourceTree = "<group>"; };
 		D9CF3F0677FE125DE4199750 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E2AAA0B18F5246EB9D8B4D3C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -219,10 +222,12 @@
 				8352AB731A1EA92400284687 /* Base */,
 				833E59FF1A1D072300CB03EE /* ProjectsViewController.h */,
 				833E5A001A1D072300CB03EE /* ProjectsViewController.m */,
-				83AC7E6E1A20ADCA00FD291E /* FormsViewController.h */,
-				83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */,
 				837CE19A1A1FA0DE0093AF4C /* ProjectAddNewViewController.h */,
 				837CE19B1A1FA0DE0093AF4C /* ProjectAddNewViewController.m */,
+				83AC7E6E1A20ADCA00FD291E /* FormsViewController.h */,
+				83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */,
+				83AC7E731A20D10400FD291E /* FormDesignerViewController.h */,
+				83AC7E741A20D10400FD291E /* FormDesignerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				833E5A061A1D096300CB03EE /* ProjectMock.m in Sources */,
 				8378CF671A1E4A8F00EB47F8 /* _Project.m in Sources */,
 				8378CF681A1E4A8F00EB47F8 /* Project.m in Sources */,
+				83AC7E751A20D10400FD291E /* FormDesignerViewController.m in Sources */,
 				8378CF581A1E3CA300EB47F8 /* MBCoreDataStack.m in Sources */,
 				833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */,
 				833E5A091A1D097800CB03EE /* FormMock.m in Sources */,
