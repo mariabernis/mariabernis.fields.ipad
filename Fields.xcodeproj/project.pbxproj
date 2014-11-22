@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		2838BBFAAB594B0B71638185 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AAA0B18F5246EB9D8B4D3C /* libPods.a */; };
+		6FBEFEE30DCB5AECB0C466EB /* libPods-Fields.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E359FA3003483A2A92C5D2 /* libPods-Fields.a */; };
 		833E59DA1A1CEE4400CB03EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E59D91A1CEE4400CB03EE /* main.m */; };
 		833E59DD1A1CEE4400CB03EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E59DC1A1CEE4400CB03EE /* AppDelegate.m */; };
 		833E59E31A1CEE4400CB03EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 833E59E11A1CEE4400CB03EE /* Main.storyboard */; };
@@ -33,7 +34,6 @@
 		833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0B1A1D0C6A00CB03EE /* ReportMock.m */; };
 		833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */; };
 		833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833E5A111A1D1D1400CB03EE /* ProjectCell.m */; };
-		8352AB721A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352AB711A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m */; };
 		8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */; };
 		8378CF531A1E2A4700EB47F8 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF521A1E2A4700EB47F8 /* ProjectTests.m */; };
 		8378CF581A1E3CA300EB47F8 /* MBCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 8378CF571A1E3CA300EB47F8 /* MBCoreDataStack.m */; };
@@ -45,6 +45,9 @@
 		83AC7E701A20ADCA00FD291E /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E6F1A20ADCA00FD291E /* FormsViewController.m */; };
 		83AC7E721A20BA4C00FD291E /* FormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AC7E711A20BA4C00FD291E /* FormCell.xib */; };
 		83AC7E751A20D10400FD291E /* FormDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E741A20D10400FD291E /* FormDesignerViewController.m */; };
+		83AC7E781A211CAA00FD291E /* MBCoreDataFetchControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E771A211CAA00FD291E /* MBCoreDataFetchControllerHelper.m */; };
+		83AC7E7B1A21216000FD291E /* ProjectInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AC7E7A1A21216000FD291E /* ProjectInteractor.m */; };
+		E437C5A4FA3BB1A7A8A44297 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AAA0B18F5246EB9D8B4D3C /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +84,6 @@
 		833E5A0E1A1D0E5B00CB03EE /* MocksProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MocksProvider.m; sourceTree = "<group>"; };
 		833E5A101A1D1D1400CB03EE /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
 		833E5A111A1D1D1400CB03EE /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
-		8352AB701A1E9E7300284687 /* MBCoreDataFetchControllerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataFetchControllerHelper.h; sourceTree = "<group>"; };
-		8352AB711A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataFetchControllerHelper.m; sourceTree = "<group>"; };
 		8352AB741A1EA92400284687 /* MBCoreDataCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataCollectionViewController.h; sourceTree = "<group>"; };
 		8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataCollectionViewController.m; sourceTree = "<group>"; };
 		8378CF521A1E2A4700EB47F8 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
@@ -102,6 +103,11 @@
 		83AC7E711A20BA4C00FD291E /* FormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormCell.xib; sourceTree = "<group>"; };
 		83AC7E731A20D10400FD291E /* FormDesignerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormDesignerViewController.h; sourceTree = "<group>"; };
 		83AC7E741A20D10400FD291E /* FormDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormDesignerViewController.m; sourceTree = "<group>"; };
+		83AC7E761A211CAA00FD291E /* MBCoreDataFetchControllerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataFetchControllerHelper.h; sourceTree = "<group>"; };
+		83AC7E771A211CAA00FD291E /* MBCoreDataFetchControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataFetchControllerHelper.m; sourceTree = "<group>"; };
+		83AC7E791A21216000FD291E /* ProjectInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectInteractor.h; path = Fields/Interactors/ProjectInteractor.h; sourceTree = SOURCE_ROOT; };
+		83AC7E7A1A21216000FD291E /* ProjectInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectInteractor.m; path = Fields/Interactors/ProjectInteractor.m; sourceTree = SOURCE_ROOT; };
+		C6E359FA3003483A2A92C5D2 /* libPods-Fields.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fields.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9CF3F0677FE125DE4199750 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E2AAA0B18F5246EB9D8B4D3C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2838BBFAAB594B0B71638185 /* libPods.a in Frameworks */,
+				6FBEFEE30DCB5AECB0C466EB /* libPods-Fields.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E437C5A4FA3BB1A7A8A44297 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E2AAA0B18F5246EB9D8B4D3C /* libPods.a */,
+				C6E359FA3003483A2A92C5D2 /* libPods-Fields.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,7 +168,7 @@
 				833E59DB1A1CEE4400CB03EE /* AppDelegate.h */,
 				833E59DC1A1CEE4400CB03EE /* AppDelegate.m */,
 				8378CF551A1E3C4D00EB47F8 /* Services */,
-				8352AB6F1A1E9E7300284687 /* Providers */,
+				8352AB6F1A1E9E7300284687 /* Interactors */,
 				8378CF541A1E3C4D00EB47F8 /* Models */,
 				833E5A031A1D091E00CB03EE /* Mocks */,
 				833E5A021A1D075200CB03EE /* ViewControllers */,
@@ -247,22 +256,25 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		8352AB6F1A1E9E7300284687 /* Providers */ = {
+		8352AB6F1A1E9E7300284687 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
-				8352AB701A1E9E7300284687 /* MBCoreDataFetchControllerHelper.h */,
-				8352AB711A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m */,
+				83AC7E791A21216000FD291E /* ProjectInteractor.h */,
+				83AC7E7A1A21216000FD291E /* ProjectInteractor.m */,
 			);
+			name = Interactors;
 			path = Providers;
 			sourceTree = "<group>";
 		};
 		8352AB731A1EA92400284687 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				837CE1971A1FA0610093AF4C /* MBCModalVCAnimator.h */,
-				837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */,
+				83AC7E761A211CAA00FD291E /* MBCoreDataFetchControllerHelper.h */,
+				83AC7E771A211CAA00FD291E /* MBCoreDataFetchControllerHelper.m */,
 				8352AB741A1EA92400284687 /* MBCoreDataCollectionViewController.h */,
 				8352AB751A1EA92400284687 /* MBCoreDataCollectionViewController.m */,
+				837CE1971A1FA0610093AF4C /* MBCModalVCAnimator.h */,
+				837CE1981A1FA0610093AF4C /* MBCModalVCAnimator.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -323,9 +335,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 833E59FA1A1CEE4400CB03EE /* Build configuration list for PBXNativeTarget "FieldsTests" */;
 			buildPhases = (
+				2ECDDEADF03AD635C9D3830D /* Check Pods Manifest.lock */,
 				833E59E91A1CEE4400CB03EE /* Sources */,
 				833E59EA1A1CEE4400CB03EE /* Frameworks */,
 				833E59EB1A1CEE4400CB03EE /* Resources */,
+				769769FF3CA30A74E34931F6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -415,6 +429,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2ECDDEADF03AD635C9D3830D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		5131222DCF08D4E5E96D0035 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +459,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		769769FF3CA30A74E34931F6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8378CF621A1E486600EB47F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,7 +485,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "/usr/local/bin/mogenerator --v2 -O Fields/Models/  --model Fields/Models/FieldsModel.xcdatamodeld/\n\necho 🐼";
+			shellScript = "/usr/local/bin/mogenerator --v2 -O Fields/Models/  --model Fields/Models/FieldsModel.xcdatamodeld/\n\necho ";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -460,7 +504,7 @@
 				833E5A0F1A1D0E5B00CB03EE /* MocksProvider.m in Sources */,
 				833E5A091A1D097800CB03EE /* FormMock.m in Sources */,
 				837CE1961A1F8D460093AF4C /* FieldsModel.xcdatamodeld in Sources */,
-				8352AB721A1E9E7300284687 /* MBCoreDataFetchControllerHelper.m in Sources */,
+				83AC7E781A211CAA00FD291E /* MBCoreDataFetchControllerHelper.m in Sources */,
 				833E5A0C1A1D0C6A00CB03EE /* ReportMock.m in Sources */,
 				83AC7E701A20ADCA00FD291E /* FormsViewController.m in Sources */,
 				833E5A011A1D072300CB03EE /* ProjectsViewController.m in Sources */,
@@ -468,6 +512,7 @@
 				8352AB761A1EA92400284687 /* MBCoreDataCollectionViewController.m in Sources */,
 				833E59DA1A1CEE4400CB03EE /* main.m in Sources */,
 				833E5A121A1D1D1400CB03EE /* ProjectCell.m in Sources */,
+				83AC7E7B1A21216000FD291E /* ProjectInteractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +657,7 @@
 		};
 		833E59FB1A1CEE4400CB03EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9CF3F0677FE125DE4199750 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -631,6 +677,7 @@
 		};
 		833E59FC1A1CEE4400CB03EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81FE7BF3637D1196F5729A26 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

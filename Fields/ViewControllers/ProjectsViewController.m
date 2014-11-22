@@ -55,7 +55,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark Overrides
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     [super configureCell:cell atIndexPath:indexPath];
@@ -63,10 +63,10 @@ static NSString * const reuseIdentifier = @"Cell";
     ProjectCell *projCell = (ProjectCell *)cell;
     
     [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
-    projCell.backgroundColor = [UIColor whiteColor];
-    UIView * selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
-    selectedBGView.backgroundColor = [UIColor lightGrayColor];
-    projCell.selectedBackgroundView = selectedBGView;
+//    projCell.backgroundColor = [UIColor whiteColor];
+//    UIView * selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
+//    selectedBGView.backgroundColor = [UIColor lightGrayColor];
+//    projCell.selectedBackgroundView = selectedBGView;
 }
 
 

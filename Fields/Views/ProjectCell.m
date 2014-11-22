@@ -14,6 +14,32 @@
 
 @implementation ProjectCell
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.backgroundColor = [UIColor whiteColor];
+    UIView * selectedBGView = [[UIView alloc] initWithFrame:self.bounds];
+    selectedBGView.backgroundColor = [UIColor lightGrayColor];
+    self.selectedBackgroundView = selectedBGView;
+
+}
+
 - (void)updateCellContentsWithItem:(id)item
 {
     if ([item isKindOfClass:[ProjectMock class]] || [item isKindOfClass:[Project class]]) {
