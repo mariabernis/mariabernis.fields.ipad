@@ -8,7 +8,7 @@
 
 #import "FormDesignerViewController.h"
 
-#define TAB_MARGIN 50.0
+#define TAB_MARGIN 30.0
 
 typedef enum {
     LateralPaneLEFT,
@@ -28,6 +28,7 @@ typedef enum {
 // Outlets
 @property (weak, nonatomic) IBOutlet UIView *leftPaneView;
 @property (weak, nonatomic) IBOutlet UIView *rightPaneView;
+@property (weak, nonatomic) IBOutlet UIView *canvasView;
 
 @end
 
@@ -148,7 +149,6 @@ typedef enum {
     BOOL isOpen = false;
     NSInteger offsetMultiplier = 0;
     CGFloat initialXCenter = 0;
-    
     switch (side) {
         case LateralPaneLEFT:
             view = self.leftPaneView;
@@ -172,8 +172,28 @@ typedef enum {
         return;
     }
     
-    [self lateralPane:side setAnimating:YES];
+    // Maths
     CGFloat offsetX = initialXCenter + offsetMultiplier * (CGRectGetWidth(view.frame) - TAB_MARGIN);
+    CGFloat canvasNewX = 0;
+    switch (side) {
+        case LateralPaneLEFT: {
+            if (isOpen) {
+                canvasNewX = offsetX + view.center.x;
+            } else {
+                canvasNewX = CGRectGetWidth(view.frame);
+            }
+
+            break;
+        }
+        case LateralPaneRIGHT:
+            canvasNewX = self.canvasView.frame.origin.x;
+            break;
+    }
+
+    
+    
+    [self lateralPane:side setAnimating:YES];
+    
     if (isOpen) {
         // Close it
         [UIView animateWithDuration:0.3
@@ -181,6 +201,11 @@ typedef enum {
                              
                              view.center = CGPointMake(offsetX,
                                                        view.center.y);
+                             self.canvasView.frame = CGRectMake(canvasNewX,
+                                                                CGRectGetMinY(self.canvasView.frame),
+                                                                CGRectGetWidth(self.canvasView.frame) + (CGRectGetWidth(view.frame) - TAB_MARGIN),
+                                                                CGRectGetHeight(self.canvasView.frame));
+                             
                          } completion:^(BOOL finished) {
                              [self lateralPaneDidFinishedHiding:side];
                          }];
@@ -191,6 +216,11 @@ typedef enum {
                          animations:^{
                              view.center = CGPointMake(initialXCenter,
                                                        view.center.y);
+                             self.canvasView.frame = CGRectMake(canvasNewX,
+                                                                CGRectGetMinY(self.canvasView.frame),
+                                                                CGRectGetWidth(self.canvasView.frame) - (CGRectGetWidth(view.frame) - TAB_MARGIN),
+                                                                CGRectGetHeight(self.canvasView.frame));
+                             
                          } completion:^(BOOL finished) {
                              [self lateralPaneDidFinishedShowing:side];
                          }];
