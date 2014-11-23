@@ -80,8 +80,6 @@
     }];
 }
 
-
-
 - (void)testCreatingNewProjectHasFalseForTheTemplateBoolean {
     
     BOOL hasMethod = [self.pip respondsToSelector:@selector(_createNewProjectInContext:withTitle:andDescription:)];
@@ -94,5 +92,12 @@
     }
 }
 
+- (void)testDeletingTemplatesProjectReturnsError {
+    
+    [self.pip deleteProject:^(BOOL success, NSError *error) {
+        XCTAssertNotNil(error);
+    }];
+    
+}
 
 @end

@@ -26,7 +26,7 @@
 		834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */; };
 		8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327871A2138930051F525 /* FormDesignerViewController.m */; };
 		8343279B1A2138930051F525 /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327891A2138930051F525 /* FormsViewController.m */; };
-		8343279C1A2138930051F525 /* ProjectAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278B1A2138930051F525 /* ProjectAddNewViewController.m */; };
+		8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278B1A2138930051F525 /* ProjectDetailViewController.m */; };
 		8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278D1A2138930051F525 /* ProjectsViewController.m */; };
 		834327A71A2138C50051F525 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8343279E1A2138C50051F525 /* Images.xcassets */; };
 		834327A81A2138C50051F525 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834327A01A2138C50051F525 /* LaunchScreen.xib */; };
@@ -92,8 +92,8 @@
 		834327871A2138930051F525 /* FormDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormDesignerViewController.m; sourceTree = "<group>"; };
 		834327881A2138930051F525 /* FormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormsViewController.h; sourceTree = "<group>"; };
 		834327891A2138930051F525 /* FormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormsViewController.m; sourceTree = "<group>"; };
-		8343278A1A2138930051F525 /* ProjectAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAddNewViewController.h; sourceTree = "<group>"; };
-		8343278B1A2138930051F525 /* ProjectAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAddNewViewController.m; sourceTree = "<group>"; };
+		8343278A1A2138930051F525 /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
+		8343278B1A2138930051F525 /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
 		8343278C1A2138930051F525 /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		8343278D1A2138930051F525 /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		8343279E1A2138C50051F525 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -254,14 +254,14 @@
 			isa = PBXGroup;
 			children = (
 				8343277F1A2138930051F525 /* Base */,
-				834327861A2138930051F525 /* FormDesignerViewController.h */,
-				834327871A2138930051F525 /* FormDesignerViewController.m */,
-				834327881A2138930051F525 /* FormsViewController.h */,
-				834327891A2138930051F525 /* FormsViewController.m */,
-				8343278A1A2138930051F525 /* ProjectAddNewViewController.h */,
-				8343278B1A2138930051F525 /* ProjectAddNewViewController.m */,
 				8343278C1A2138930051F525 /* ProjectsViewController.h */,
 				8343278D1A2138930051F525 /* ProjectsViewController.m */,
+				8343278A1A2138930051F525 /* ProjectDetailViewController.h */,
+				8343278B1A2138930051F525 /* ProjectDetailViewController.m */,
+				834327881A2138930051F525 /* FormsViewController.h */,
+				834327891A2138930051F525 /* FormsViewController.m */,
+				834327861A2138930051F525 /* FormDesignerViewController.h */,
+				834327871A2138930051F525 /* FormDesignerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -271,10 +271,10 @@
 			children = (
 				834327801A2138930051F525 /* MBCModalVCAnimator.h */,
 				834327811A2138930051F525 /* MBCModalVCAnimator.m */,
-				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
-				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 				834327841A2138930051F525 /* MBCoreDataFetchControllerHelper.h */,
 				834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */,
+				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
+				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -513,7 +513,7 @@
 				834327B01A21394F0051F525 /* main.m in Sources */,
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
-				8343279C1A2138930051F525 /* ProjectAddNewViewController.m in Sources */,
+				8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */,
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
 				834327951A2138930051F525 /* Project.m in Sources */,
 				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,

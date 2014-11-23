@@ -9,8 +9,10 @@
 #import "FormsViewController.h"
 #import "ProjectCell.h"
 #import "UIColor+FlatColors.h"
+#import "ProjectDetailViewController.h"
+#import "Project.h"
 
-@interface FormsViewController ()
+@interface FormsViewController ()<ProjectDetailVCDelegate>
 
 @end
 
@@ -38,12 +40,16 @@ static NSString * const reuseIdentifier = @"Cell";
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     self.collectionView.alwaysBounceVertical = YES;
+    
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
+    
+    self.navigationItem.rightBarButtonItems = @[settingsButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.projectTitle) {
-        self.navigationItem.title = self.projectTitle;
+    if (self.parentProject) {
+        self.navigationItem.title = self.parentProject.projectTitle;
     }
 }
 
@@ -51,9 +57,36 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Actions
+- (void)projectSettingsPressed:(id)sender {
+    
+    ProjectDetailViewController *editProjVC = (ProjectDetailViewController *)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"detailProjectIdentifier"];
+    editProjVC.project = self.parentProject;
+    editProjVC.delegate = self;
+    editProjVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:editProjVC animated:YES completion:nil];
+}
+
+#pragma mark - Helpers
+- (UIStoryboard *)mainStoryboard {
+    UIStoryboard *mainStory = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] storyboard];
+    if (!mainStory) {
+        mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    }
+    return mainStory;
+}
+
+
+#pragma mark - ProjectDetailVCDelegate
+- (void)projectDetailVCDidUpdateTitle:(NSString *)newTitle {
+    self.navigationItem.title = newTitle;
+}
+
+- (void)projectDetailVCDidDeleteProject {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark <UICollectionViewDataSource>
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -76,12 +109,7 @@ static NSString * const reuseIdentifier = @"Cell";
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // TEMP. Open form designer.
-    UIStoryboard *mainStory = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] storyboard];
-    if (!mainStory) {
-        mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    }
-    
-    UINavigationController *navVC = [mainStory instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
+    UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
     navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 //    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:navVC animated:YES completion:^{

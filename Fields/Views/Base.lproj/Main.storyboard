@@ -181,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="2404" y="672"/>
         </scene>
-        <!--Project Add New View Controller-->
+        <!--Project Detail View Controller-->
         <scene sceneID="5iL-iM-NaS">
             <objects>
-                <viewController storyboardIdentifier="addProjectIdentifier" id="rGS-hi-ul0" customClass="ProjectAddNewViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailProjectIdentifier" id="rGS-hi-ul0" customClass="ProjectDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y0x-8h-jHk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,6 +235,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Qx-z7-NfI">
+                                <rect key="frame" x="16" y="331" width="568" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.84908348321914673" green="0.37349089980125427" blue="0.28719702363014221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Delete project">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="rGS-hi-ul0" eventType="touchUpInside" id="2sX-pm-iIj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.91514992713928223" green="0.91530013084411621" blue="0.91511797904968262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -243,8 +255,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="400"/>
                     <connections>
+                        <outlet property="deleteButton" destination="4Qx-z7-NfI" id="vi0-gU-b1r"/>
                         <outlet property="inputDescription" destination="zEX-em-dSJ" id="lLx-Ou-QmJ"/>
                         <outlet property="inputTitle" destination="qE9-6f-NRs" id="bZm-a7-clY"/>
+                        <outlet property="navBar" destination="OE1-6h-VPH" id="rDH-rw-0U1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfY-gZ-bQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>

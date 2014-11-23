@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class Project;
 @interface FormsViewController : UICollectionViewController
 @property (nonatomic, strong) NSArray *collection;
-@property (nonatomic, strong) NSString *projectTitle;
+//@property (nonatomic, strong) NSString *projectTitle;
+@property (nonatomic, strong) Project *parentProject;
 @end

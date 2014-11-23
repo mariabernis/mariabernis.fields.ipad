@@ -12,7 +12,7 @@
 #import "ProjectMock.h"
 #import "Project.h"
 #import "MBCoreDataStack.h"
-#import "ProjectAddNewViewController.h"
+#import "ProjectDetailViewController.h"
 #import "MBCModalVCAnimator.h"
 #import "FormsViewController.h"
 
@@ -47,7 +47,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - Actions
 - (void)openAddNewProjectView:(id)sender {
     
-    UIViewController *addProjectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"addProjectIdentifier"];
+    UIViewController *addProjectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailProjectIdentifier"];
     addProjectVC.transitioningDelegate = self;
     addProjectVC.modalPresentationStyle = UIModalPresentationCustom; // OJO, PRESENTATION STYLE, no TRANSITION STYLE. FFFFF
     [self presentViewController:addProjectVC animated:YES completion:nil];
@@ -79,7 +79,7 @@ static NSString * const reuseIdentifier = @"Cell";
         Project *p = (Project *)[self objectAtIndexPath:indexPath];
         FormsViewController *formsController = [[FormsViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]]; // collectionLayout
         formsController.collection = [MocksProvider allFormsWithProjectId:@"someIdentifier"];
-        formsController.projectTitle = p.projectTitle;
+        formsController.parentProject = p;
         [self.navigationController pushViewController:formsController animated:YES];
     }
 }

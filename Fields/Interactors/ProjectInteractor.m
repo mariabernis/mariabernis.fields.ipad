@@ -65,6 +65,23 @@
 
 - (void)deleteProject:(void(^)(BOOL success, NSError *error))completionBlock {
     NSAssert(self.project != nil, @"Project is nil!");
+    
+    if (![self canDeleteProject]) {
+        NSError *appError = nil;
+        if ([self.project isTemplateContainer]) {
+            appError = [[self class] createFLDError:FLDErrorTemplatesProjectCannotBeDeleted];
+        } else {
+            appError = [[self class] createFLDError:FLDErrorProjectCannotBeDeleted];
+        }
+        completionBlock(NO, appError);
+        return;
+    }
+    
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        Project *localProj = [self.project MR_inContext:localContext];
+        [localProj MR_deleteEntity];
+        
+    } completion:completionBlock];
 }
 
 - (BOOL)canDeleteProject {
@@ -144,6 +161,14 @@
             
         case FLDErrorTemplatesProjCannotBeEdited:
             displayTitle = [NSString stringWithFormat:@"\"%@\" cannot be edited", TEMPLATES_PROJ_TITLE];
+            break;
+            
+        case FLDErrorTemplatesProjectCannotBeDeleted:
+            displayTitle = [NSString stringWithFormat:@"\"%@\" cannot be deleted", TEMPLATES_PROJ_TITLE];;
+            break;
+            
+        case FLDErrorProjectCannotBeDeleted:
+            displayTitle = @"This project cannot be deleted";
             break;
             
         default:
