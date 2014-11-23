@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBCoreDataCollectionViewController.h"
 
 @class Project;
-@interface FormsViewController : UICollectionViewController
+@interface FormsViewController : MBCoreDataCollectionViewController
 @property (nonatomic, strong) NSArray *collection;
 //@property (nonatomic, strong) NSString *projectTitle;
 @property (nonatomic, strong) Project *parentProject;

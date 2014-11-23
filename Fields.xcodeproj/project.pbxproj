@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		83623B741A22593700857720 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83623B751A22593700857720 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				83623B781A22593F00857720 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1E6E8370812B060507D988A3 /* libPods-Fields.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C2EA33E876B61FAF8E784E /* libPods-Fields.a */; };
 		5C27147B38418195524E992E /* libPods-FieldsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */; };
@@ -37,6 +51,7 @@
 		834327B01A21394F0051F525 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327AE1A21394F0051F525 /* main.m */; };
 		834327B21A21398A0051F525 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327B11A21398A0051F525 /* ProjectTests.m */; };
 		835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */; };
+		83623B731A22588500857720 /* ListFormsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B721A22588500857720 /* ListFormsInteractor.m */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
@@ -106,6 +121,8 @@
 		834327AE1A21394F0051F525 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		834327B11A21398A0051F525 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
 		835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInteractorTests.m; sourceTree = "<group>"; };
+		83623B711A22588500857720 /* ListFormsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListFormsInteractor.h; sourceTree = "<group>"; };
+		83623B721A22588500857720 /* ListFormsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListFormsInteractor.m; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
@@ -203,6 +220,8 @@
 				834327691A2138930051F525 /* ProjectInteractor.m */,
 				830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */,
 				830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */,
+				83623B711A22588500857720 /* ListFormsInteractor.h */,
+				83623B721A22588500857720 /* ListFormsInteractor.m */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -389,6 +408,9 @@
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 8343273D1A2138370051F525;
 					};
+					83623B741A22593700857720 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 				};
 			};
 			buildConfigurationList = 834327391A2138370051F525 /* Build configuration list for PBXProject "Fields" */;
@@ -406,6 +428,7 @@
 			targets = (
 				8343273D1A2138370051F525 /* Fields */,
 				834327561A2138370051F525 /* FieldsTests */,
+				83623B741A22593700857720 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -463,6 +486,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fields/Pods-Fields-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		83623B781A22593F00857720 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/local/bin/mogenerator --v2 -O Fields/Models/  --model Fields/Models/FieldsModel.xcdatamodeld/\n\necho 🐼";
+		};
 		ECEBF1B5E7CE014DCFB2B995 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +542,7 @@
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
+				83623B731A22588500857720 /* ListFormsInteractor.m in Sources */,
 				834327971A2138930051F525 /* MBCModalVCAnimator.m in Sources */,
 				8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */,
 				8343279B1A2138930051F525 /* FormsViewController.m in Sources */,
@@ -705,6 +742,20 @@
 			};
 			name = Release;
 		};
+		83623B761A22593700857720 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		83623B771A22593700857720 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -734,6 +785,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		83623B751A22593700857720 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83623B761A22593700857720 /* Debug */,
+				83623B771A22593700857720 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

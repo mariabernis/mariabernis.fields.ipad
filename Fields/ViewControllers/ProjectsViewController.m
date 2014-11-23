@@ -82,8 +82,8 @@ static NSString * const reuseIdentifier = @"Cell";
         // Push to forms view
         Project *p = (Project *)[self objectAtIndexPath:indexPath];
         FormsViewController *formsController = [[FormsViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]]; // collectionLayout
-        formsController.collection = [MocksProvider allFormsWithProjectId:@"someIdentifier"];
-        formsController.parentProject = p;
+//        formsController.collection = [MocksProvider allFormsWithProjectId:@"someIdentifier"];
+//        formsController.parentProject = p;
         [self.navigationController pushViewController:formsController animated:YES];
     }
 }
