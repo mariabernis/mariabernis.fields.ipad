@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  Fields
 //
-//  Created by Maria Bernis on 19/11/14.
+//  Created by Maria Bernis on 22/11/14.
 //  Copyright (c) 2014 mariabernis. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "MBCoreDataStack.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [MBCoreDataStack mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"FieldsModel"];
     return YES;
 }
 
