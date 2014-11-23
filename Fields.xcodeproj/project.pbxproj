@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E6E8370812B060507D988A3 /* libPods-Fields.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C2EA33E876B61FAF8E784E /* libPods-Fields.a */; };
 		5C27147B38418195524E992E /* libPods-FieldsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */; };
+		830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */; };
+		830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */; };
 		834327471A2138370051F525 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327461A2138370051F525 /* AppDelegate.m */; };
 		8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327691A2138930051F525 /* ProjectInteractor.m */; };
 		8343278F1A2138930051F525 /* FormMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343276C1A2138930051F525 /* FormMock.m */; };
@@ -55,6 +57,9 @@
 		1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FieldsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		582B384B7E96EE42CC322516 /* Pods-Fields.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.release.xcconfig"; sourceTree = "<group>"; };
 		735451AE4814D256E83FC1BF /* Pods-FieldsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsInteractor.h; sourceTree = "<group>"; };
+		830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsInteractor.m; sourceTree = "<group>"; };
+		830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsTests.m; sourceTree = "<group>"; };
 		8343273E1A2138370051F525 /* Fields.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fields.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834327451A2138370051F525 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		834327461A2138370051F525 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -175,6 +180,7 @@
 			children = (
 				834327B11A21398A0051F525 /* ProjectTests.m */,
 				835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */,
+				830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */,
 				8343275B1A2138370051F525 /* Supporting Files */,
 			);
 			path = FieldsTests;
@@ -195,6 +201,8 @@
 				83C742231A21470D00F189F2 /* BaseInteractor.m */,
 				834327681A2138930051F525 /* ProjectInteractor.h */,
 				834327691A2138930051F525 /* ProjectInteractor.m */,
+				830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */,
+				830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -494,6 +502,7 @@
 			files = (
 				834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				834327981A2138930051F525 /* MBCoreDataCollectionViewController.m in Sources */,
+				830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */,
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
@@ -523,6 +532,7 @@
 			files = (
 				835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */,
 				834327B21A21398A0051F525 /* ProjectTests.m in Sources */,
+				830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

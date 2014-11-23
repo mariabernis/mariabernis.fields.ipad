@@ -7,14 +7,7 @@
 //
 
 #import "ProjectInteractor.h"
-#import "MBCoreDataStack.h"
 #import "MBCheck.h"
-
-#define PROJECT_DEFAULT_TITLE      @"Fields Project"
-#define TEMPLATES_PROJ_TITLE       @"Forms designs"
-#define TEMPLATES_PROJ_DESCRIPTION @"Use this project to save forms you want to reuse in several projects. "
-
-
 
 @interface ProjectInteractor ()
 @property (nonatomic, strong) Project *project;
@@ -48,8 +41,13 @@
                     completion:(void(^)(BOOL success, NSError *error))completionBlock {
     NSAssert(self.project != nil, @"Project is nil!");
     
-    // If titleText is nil or empty string is not valid, so return an error.
-    if ([titleTxt mb_isEmpty]) {
+    if (![self canEditProject]) {
+        NSError *appError = [[self class] createFLDError:FLDErrorTemplatesProjCannotBeEdited];
+        completionBlock(NO, appError);
+        return;
+    }
+    
+    if ([titleTxt mb_isEmpty]) { // If titleText is nil or empty string is not valid, so return an error.
         NSError *appError = [[self class] createFLDError:FLDErrorProjectTitleNil];
         
         completionBlock(NO, appError);
@@ -81,6 +79,18 @@
     return YES;
 }
 
+- (BOOL)canEditProject {
+    if (!self.project) {
+        return NO;
+    }
+    
+    if ([self.project isTemplateContainer]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark - New
 - (void)saveNewProjectWithDefaultTitleAndDescription:(NSString *)descriptionText
                      completion:(void(^)(BOOL success, NSError *error))completionBlock {
@@ -92,8 +102,7 @@
                 andDescription:(NSString *)descriptionText
                     completion:(void(^)(BOOL success, NSError *error))completionBlock {
     
-    // If titleText is nil or empty string is not valid, so return an error.
-    if ([titleText mb_isEmpty]) {
+    if ([titleText mb_isEmpty]) { // If titleText is nil or empty string is not valid, so return an error.
         NSError *appError = [[self class] createFLDError:FLDErrorProjectTitleNil];
         
         completionBlock(NO, appError);
@@ -106,9 +115,13 @@
         [self _createNewProjectInContext:localContext withTitle:titleText andDescription:descriptionText];
 
     } completion:completionBlock];
+    
+    
+    
     // TO-DO. Convert MR error or core data error to some understandable error. 
 }
 
+#pragma PRIVATE
 - (Project *)_createNewProjectInContext:(NSManagedObjectContext *)context withTitle:(NSString *)titleText  andDescription:(NSString *)descriptionText {
     
     Project *newProj = [Project MR_createInContext:context];
@@ -117,36 +130,27 @@
     return newProj;
 }
 
-- (Project *)_createTemplatesProjectInContext:(NSManagedObjectContext *)context {
-    Project *templatesProj = [Project MR_createInContext:context];
-    templatesProj.projectTitle = TEMPLATES_PROJ_TITLE;
-    templatesProj.projectDescription = TEMPLATES_PROJ_DESCRIPTION;
-    [templatesProj setTemplatesContainerValue:YES];
-    return templatesProj;
-}
-
-#pragma mark - List
-- (NSFetchRequest *)requestAllDefault {
+#pragma mark - Error messages
++ (NSError *)createFLDError:(FLDError)errorCode {
     
-    return [self requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES];
-}
-
-- (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm
-                             ascending:(BOOL)ascending {
+    NSString *displayTitle = nil;
+    NSString *extendedTxt = nil;
     
-    NSUInteger count = [Project MR_countOfEntities];
-    if (count != NSNotFound && count == 0) {
-        // Create the templates projects
-        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    switch (errorCode) {
+        case FLDErrorProjectTitleNil:
+            displayTitle = @"Your project needs a name!";
+            extendedTxt = @"If you don't set it, some default name will be used";
+            break;
             
-            [self _createTemplatesProjectInContext:localContext];
-        }];
+        case FLDErrorTemplatesProjCannotBeEdited:
+            displayTitle = [NSString stringWithFormat:@"\"%@\" cannot be edited", TEMPLATES_PROJ_TITLE];
+            break;
+            
+        default:
+            break;
     }
     
-    
-    NSFetchRequest *request = [Project MR_requestAllSortedBy:sortTerm ascending:ascending inContext:self.defaultMOC];
-    
-    return request;
+    return [super createFLDError:errorCode withTitleDescription:displayTitle additionalSuggestion:extendedTxt];
 }
 
 @end

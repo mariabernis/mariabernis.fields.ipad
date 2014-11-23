@@ -15,7 +15,7 @@
 
 - (instancetype)initWithProject:(Project *)aProject;
 
-#pragma mark - Edit single project actions
+#pragma mark - Edit 
 - (void)updateProjectWithTitle:(NSString *)titleTxt
                 andDescription:(NSString *)descriptionText
                     completion:(void(^)(BOOL success, NSError *error))completionBlock;
@@ -26,12 +26,7 @@
 - (void)deleteProject:(void(^)(BOOL success, NSError *error))completionBlock;
 
 - (BOOL)canDeleteProject;
-
-#pragma mark - List
-- (NSFetchRequest *)requestAllDefault;
-
-- (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm
-                             ascending:(BOOL)ascending;
+- (BOOL)canEditProject;
 
 #pragma mark - New
 - (void)saveNewProjectWithTitle:(NSString *)titleTxt

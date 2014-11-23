@@ -26,20 +26,12 @@ NSString *const FLDErrorDomain = @"com.mariabernis.fields.error";
 */
 
 + (NSError *)createFLDError:(FLDError)errorCode
+       withTitleDescription:(NSString *)displayTitle
+       additionalSuggestion:(NSString *)extendedTxt
 {
-    NSString *displayTitle = nil;
-    NSString *extendedTxt = nil;
-    
-    switch (errorCode) {
-        case FLDErrorProjectTitleNil:
-            displayTitle = @"Your project needs a name!";
-            extendedTxt = @"If you don't set it, some default name will be used";
-            break;
-            
-        default:
-            break;
+    if ([displayTitle mb_isEmpty]) {
+        displayTitle = @"Action not allowed";
     }
-    
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:displayTitle forKey:NSLocalizedDescriptionKey];

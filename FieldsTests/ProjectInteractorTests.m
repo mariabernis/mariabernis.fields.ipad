@@ -10,10 +10,14 @@
 #import <XCTest/XCTest.h>
 #import "MBCoreDataStack.h"
 #import "ProjectInteractor.h"
+#import "ListProjectsInteractor.h"
 #import "MBCheck.h"
 
+#define test_Project_Title @"Inspection"
+
 @interface ProjectInteractorTests : XCTestCase
-@property (nonatomic, strong) ProjectInteractor *pi;
+@property (nonatomic, strong) ListProjectsInteractor *lpi;
+@property (nonatomic, strong) ProjectInteractor *pip;
 @end
 
 
@@ -24,7 +28,11 @@
     [super setUp];
     // This method is called before the invocation of each test method in the class.
     [MagicalRecord setupCoreDataStackWithInMemoryStore];
-    self.pi = [[ProjectInteractor alloc] init];
+    self.lpi = [[ListProjectsInteractor alloc] init];
+    
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = test_Project_Title;
+    self.pip = [[ProjectInteractor alloc] initWithProject:p];
 }
 
 - (void)tearDown {
@@ -33,25 +41,13 @@
     [super tearDown];
 }
 
-- (void)testFirstTimeRequestingProjectsOneIsCreatedForTheTemplates {
-    
-    NSUInteger initialCount = [Project MR_countOfEntities];
-    NSFetchRequest *request = [self.pi requestAllDefault];
-    NSError *error = nil;
-    NSUInteger afterCount = [self.pi.defaultMOC countForFetchRequest:request error:&error];
-    
-    XCTAssertTrue(initialCount != NSNotFound);
-    XCTAssertTrue(afterCount != NSNotFound);
-    XCTAssertEqual(initialCount, 0);
-    XCTAssertEqual(afterCount, 1);
-}
+
 
 - (void)testSaveNewProjectWithEmptyTitleReturnsError {
     
-    [self.pi requestAllDefault];
     NSUInteger preCount = [Project MR_countOfEntities];
     
-    [self.pi saveNewProjectWithTitle:@"   " andDescription:nil completion:^(BOOL success, NSError *error) {
+    [self.pip saveNewProjectWithTitle:@"   " andDescription:nil completion:^(BOOL success, NSError *error) {
         XCTAssertNotNil(error);
         NSUInteger postCount = [Project MR_countOfEntities];
         XCTAssertEqual(preCount, postCount);
@@ -60,43 +56,39 @@
 
 - (void)testUpdateProjectWithEmptyTitleReturnsError {
     
-    [self.pi requestAllDefault];
-    Project *p = [Project MR_createEntity];
-    p.projectTitle = @"Inspection";
-    [self.pi.defaultMOC save:nil];
-    NSUInteger preCount = [Project MR_countOfEntities];
-    
-    ProjectInteractor *pip = [[ProjectInteractor alloc] initWithProject:p];
-    [pip updateProjectWithTitle:@"  "
+    [self.pip updateProjectWithTitle:@"  "
                      andDescription:nil
                          completion:^(BOOL success, NSError *error) {
         XCTAssertNotNil(error);
-        NSUInteger postCount = [Project MR_countOfEntities];
-        XCTAssertEqual(preCount, postCount);
+        Project *p = (Project *)[self.pip valueForKey:@"project"];
+        XCTAssertEqualObjects(test_Project_Title, p.projectTitle);
     }];
 
 }
 
-#pragma mark - Testing private methods
-- (void)testCreatingTheTemplatesProjectHasTrueForTheBoolean {
+- (void)testEditingTemplatesProjectReturnsError {
     
-    BOOL hasMethod = [self.pi respondsToSelector:@selector(_createTemplatesProjectInContext:)];
-    XCTAssertTrue(hasMethod);
-    
-    if (hasMethod) {
-        Project *templatesProj = [self.pi performSelector:@selector(_createTemplatesProjectInContext:) withObject:self.pi.defaultMOC];
-        
-        XCTAssertEqual([templatesProj.templatesContainer boolValue], YES);
-    }
+    NSFetchRequest *request = [self.lpi requestAllDefault];
+//    NSArray *projs = [Project MR_executeFetchRequest:request inContext:self.pi
+//                      .defaultMOC];
+    NSArray *projs = [Project MR_executeFetchRequest:request];
+    Project *p = [projs lastObject];
+    ProjectInteractor *tPip = [[ProjectInteractor alloc] initWithProject:p];
+    [tPip updateProjectWithTitle:@"New Title" andDescription:@"lorem lorem" completion:^(BOOL success, NSError *error) {
+        XCTAssertNotNil(error);
+        XCTAssertNotEqualObjects(@"New Title", p.projectTitle);
+    }];
 }
+
+
 
 - (void)testCreatingNewProjectHasFalseForTheTemplateBoolean {
     
-    BOOL hasMethod = [self.pi respondsToSelector:@selector(_createNewProjectInContext:withTitle:andDescription:)];
+    BOOL hasMethod = [self.pip respondsToSelector:@selector(_createNewProjectInContext:withTitle:andDescription:)];
     XCTAssertTrue(hasMethod);
     
     if (hasMethod) {
-        Project *normalProj = [self.pi performSelector:@selector(_createNewProjectInContext:withTitle:andDescription:) withObject:self.pi.defaultMOC withObject:@"Lorem ipsum"];
+        Project *normalProj = [self.pip performSelector:@selector(_createNewProjectInContext:withTitle:andDescription:) withObject:self.pip.defaultMOC withObject:@"Lorem ipsum"];
         
         XCTAssertEqual([normalProj.templatesContainer boolValue], NO);
     }
