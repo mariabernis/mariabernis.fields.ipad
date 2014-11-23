@@ -9,15 +9,13 @@
 #import "ProjectsViewController.h"
 #import "MocksProvider.h"
 #import "ProjectCell.h"
-#import "ProjectMock.h"
-#import "Project.h"
-#import "MBCoreDataStack.h"
+#import "ListProjectsInteractor.h"
 #import "ProjectDetailViewController.h"
 #import "MBCModalVCAnimator.h"
 #import "FormsViewController.h"
 
 @interface ProjectsViewController () <UIViewControllerTransitioningDelegate>
-
+@property (nonatomic, strong) ListProjectsInteractor *lpI;
 @end
 
 
@@ -25,14 +23,20 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+- (ListProjectsInteractor *)lpI {
+    if (!_lpI) {
+        _lpI = [[ListProjectsInteractor alloc] init];
+    }
+    return _lpI;
+}
 
-
+#pragma mark - VC Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     if (!self.fetchRequest) {
-        self.fetchRequest = [Project MR_requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES inContext:[NSManagedObjectContext MR_defaultContext]];
-        self.managedObjectContext = [NSManagedObjectContext MR_defaultContext];
+        self.fetchRequest = [self.lpI requestAllDefault];
+        self.managedObjectContext = self.lpI.defaultMOC;
         self.cellReusableIdentifier = reuseIdentifier;
     }
     
