@@ -16,10 +16,11 @@
 //+ (instancetype)sharedCDStack;
 //+ (void)saveContext:(NSManagedObjectContext *)managedObjectContext;
 
++ (NSManagedObjectContext *) defaultManagedObjectContext;
 
-+ (void) mb_setupCoreDataStackWithInMemoryStore;
++ (void) setupCoreDataStackWithInMemoryStore;
 
-+ (void) mb_setupCoreDataStackWithStoreNamed:(NSString *)storeName;
-+ (void) mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:(NSString *)storeName;
++ (void) setupCoreDataStackWithStoreNamed:(NSString *)storeName;
++ (void) setupCoreDataStackWithAutoMigratingSqliteStoreNamed:(NSString *)storeName;
 
 @end

@@ -2,4 +2,6 @@
 
 @interface Project : _Project {}
 
+- (BOOL)isTemplateContainer;
+
 @end

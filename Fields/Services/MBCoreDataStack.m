@@ -14,18 +14,21 @@
 //@synthesize managedObjectContext = _managedObjectContext; // We need the synthesize because the prop is readonly and we override the getter.
 //@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
++ (NSManagedObjectContext *)defaultManagedObjectContext {
+    return [NSManagedObjectContext MR_defaultContext];
+}
 
-+ (void) mb_setupCoreDataStackWithInMemoryStore
++ (void) setupCoreDataStackWithInMemoryStore
 {
     [MagicalRecord setupCoreDataStackWithInMemoryStore];
 }
 
-+ (void) mb_setupCoreDataStackWithStoreNamed:(NSString *)storeName
++ (void) setupCoreDataStackWithStoreNamed:(NSString *)storeName
 {
     [MagicalRecord setupCoreDataStackWithStoreNamed:storeName];
 }
 
-+ (void) mb_setupCoreDataStackWithAutoMigratingSqliteStoreNamed:(NSString *)storeName
++ (void) setupCoreDataStackWithAutoMigratingSqliteStoreNamed:(NSString *)storeName
 {
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:storeName];
     
