@@ -7,4 +7,8 @@
 
 @implementation Project
 
+- (BOOL)isTemplateContainer {
+    return [self templatesContainerValue];
+}
+
 @end

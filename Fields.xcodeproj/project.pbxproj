@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1E6E8370812B060507D988A3 /* libPods-Fields.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C2EA33E876B61FAF8E784E /* libPods-Fields.a */; };
 		5C27147B38418195524E992E /* libPods-FieldsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */; };
+		830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */; };
+		830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */; };
 		834327471A2138370051F525 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327461A2138370051F525 /* AppDelegate.m */; };
 		8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327691A2138930051F525 /* ProjectInteractor.m */; };
 		8343278F1A2138930051F525 /* FormMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343276C1A2138930051F525 /* FormMock.m */; };
@@ -24,7 +26,7 @@
 		834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */; };
 		8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327871A2138930051F525 /* FormDesignerViewController.m */; };
 		8343279B1A2138930051F525 /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327891A2138930051F525 /* FormsViewController.m */; };
-		8343279C1A2138930051F525 /* ProjectAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278B1A2138930051F525 /* ProjectAddNewViewController.m */; };
+		8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278B1A2138930051F525 /* ProjectDetailViewController.m */; };
 		8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278D1A2138930051F525 /* ProjectsViewController.m */; };
 		834327A71A2138C50051F525 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8343279E1A2138C50051F525 /* Images.xcassets */; };
 		834327A81A2138C50051F525 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834327A01A2138C50051F525 /* LaunchScreen.xib */; };
@@ -34,6 +36,10 @@
 		834327AF1A21394F0051F525 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 834327AD1A21394F0051F525 /* Info.plist */; };
 		834327B01A21394F0051F525 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327AE1A21394F0051F525 /* main.m */; };
 		834327B21A21398A0051F525 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327B11A21398A0051F525 /* ProjectTests.m */; };
+		835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */; };
+		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
+		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
+		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,9 @@
 		1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FieldsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		582B384B7E96EE42CC322516 /* Pods-Fields.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.release.xcconfig"; sourceTree = "<group>"; };
 		735451AE4814D256E83FC1BF /* Pods-FieldsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsInteractor.h; sourceTree = "<group>"; };
+		830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsInteractor.m; sourceTree = "<group>"; };
+		830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsTests.m; sourceTree = "<group>"; };
 		8343273E1A2138370051F525 /* Fields.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fields.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834327451A2138370051F525 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		834327461A2138370051F525 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -83,8 +92,8 @@
 		834327871A2138930051F525 /* FormDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormDesignerViewController.m; sourceTree = "<group>"; };
 		834327881A2138930051F525 /* FormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormsViewController.h; sourceTree = "<group>"; };
 		834327891A2138930051F525 /* FormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormsViewController.m; sourceTree = "<group>"; };
-		8343278A1A2138930051F525 /* ProjectAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAddNewViewController.h; sourceTree = "<group>"; };
-		8343278B1A2138930051F525 /* ProjectAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAddNewViewController.m; sourceTree = "<group>"; };
+		8343278A1A2138930051F525 /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
+		8343278B1A2138930051F525 /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
 		8343278C1A2138930051F525 /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		8343278D1A2138930051F525 /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		8343279E1A2138C50051F525 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -96,6 +105,13 @@
 		834327AD1A21394F0051F525 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		834327AE1A21394F0051F525 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		834327B11A21398A0051F525 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
+		835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInteractorTests.m; sourceTree = "<group>"; };
+		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
+		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
+		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
+		83C742271A2160AC00F189F2 /* MBCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCheck.m; sourceTree = "<group>"; };
+		83C742291A21610C00F189F2 /* NSString+MBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MBExtensions.h"; sourceTree = "<group>"; };
+		83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MBExtensions.m"; sourceTree = "<group>"; };
 		B6D6B29054DCBEC82017844B /* Pods-Fields.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.debug.xcconfig"; sourceTree = "<group>"; };
 		C66CC624971DF55DF96F8F06 /* Pods-FieldsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +162,7 @@
 				834327451A2138370051F525 /* AppDelegate.h */,
 				834327461A2138370051F525 /* AppDelegate.m */,
 				8343279E1A2138C50051F525 /* Images.xcassets */,
+				83C742251A2160AC00F189F2 /* Utils */,
 				8343277B1A2138930051F525 /* Services */,
 				834327671A2138930051F525 /* Interactors */,
 				8343276A1A2138930051F525 /* Mocks */,
@@ -162,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				834327B11A21398A0051F525 /* ProjectTests.m */,
+				835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */,
+				830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */,
 				8343275B1A2138370051F525 /* Supporting Files */,
 			);
 			path = FieldsTests;
@@ -178,8 +197,12 @@
 		834327671A2138930051F525 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				83C742221A21470D00F189F2 /* BaseInteractor.h */,
+				83C742231A21470D00F189F2 /* BaseInteractor.m */,
 				834327681A2138930051F525 /* ProjectInteractor.h */,
 				834327691A2138930051F525 /* ProjectInteractor.m */,
+				830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */,
+				830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -231,14 +254,14 @@
 			isa = PBXGroup;
 			children = (
 				8343277F1A2138930051F525 /* Base */,
-				834327861A2138930051F525 /* FormDesignerViewController.h */,
-				834327871A2138930051F525 /* FormDesignerViewController.m */,
-				834327881A2138930051F525 /* FormsViewController.h */,
-				834327891A2138930051F525 /* FormsViewController.m */,
-				8343278A1A2138930051F525 /* ProjectAddNewViewController.h */,
-				8343278B1A2138930051F525 /* ProjectAddNewViewController.m */,
 				8343278C1A2138930051F525 /* ProjectsViewController.h */,
 				8343278D1A2138930051F525 /* ProjectsViewController.m */,
+				8343278A1A2138930051F525 /* ProjectDetailViewController.h */,
+				8343278B1A2138930051F525 /* ProjectDetailViewController.m */,
+				834327881A2138930051F525 /* FormsViewController.h */,
+				834327891A2138930051F525 /* FormsViewController.m */,
+				834327861A2138930051F525 /* FormDesignerViewController.h */,
+				834327871A2138930051F525 /* FormDesignerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -248,10 +271,10 @@
 			children = (
 				834327801A2138930051F525 /* MBCModalVCAnimator.h */,
 				834327811A2138930051F525 /* MBCModalVCAnimator.m */,
-				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
-				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 				834327841A2138930051F525 /* MBCoreDataFetchControllerHelper.h */,
 				834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */,
+				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
+				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -275,6 +298,17 @@
 				834327AE1A21394F0051F525 /* main.m */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83C742251A2160AC00F189F2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				83C742261A2160AC00F189F2 /* MBCheck.h */,
+				83C742271A2160AC00F189F2 /* MBCheck.m */,
+				83C742291A21610C00F189F2 /* NSString+MBExtensions.h */,
+				83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D77E571D587ECE85355E0F2A /* Pods */ = {
@@ -468,17 +502,21 @@
 			files = (
 				834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				834327981A2138930051F525 /* MBCoreDataCollectionViewController.m in Sources */,
+				830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */,
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
 				834327971A2138930051F525 /* MBCModalVCAnimator.m in Sources */,
 				8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */,
 				8343279B1A2138930051F525 /* FormsViewController.m in Sources */,
+				83C742281A2160AC00F189F2 /* MBCheck.m in Sources */,
 				834327B01A21394F0051F525 /* main.m in Sources */,
+				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
-				8343279C1A2138930051F525 /* ProjectAddNewViewController.m in Sources */,
+				8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */,
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
 				834327951A2138930051F525 /* Project.m in Sources */,
+				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,
 				834327AB1A2138C50051F525 /* ProjectCell.m in Sources */,
 				834327931A2138930051F525 /* _Project.m in Sources */,
 				834327941A2138930051F525 /* FieldsModel.xcdatamodeld in Sources */,
@@ -492,7 +530,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */,
 				834327B21A21398A0051F525 /* ProjectTests.m in Sources */,
+				830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
