@@ -10,10 +10,12 @@
 #import "ProjectCell.h"
 #import "UIColor+FlatColors.h"
 #import "ProjectDetailViewController.h"
+#import "ListFormsInteractor.h"
 #import "Project.h"
+#import "FormDesignerViewController.h"
 
 @interface FormsViewController ()<ProjectDetailVCDelegate>
-
+@property (nonatomic, strong) ListFormsInteractor *lfi;
 @end
 
 @implementation FormsViewController
@@ -29,21 +31,32 @@ static NSString * const reuseIdentifier = @"Cell";
     return self;
 }
 
+- (ListFormsInteractor *)lfi {
+    if (!_lfi) {
+        _lfi = [[ListFormsInteractor alloc] init];
+    }
+    return _lfi;
+}
 
 #pragma mark - VC life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.fetchRequest = [self.lfi requestAllForProject:self.parentProject];
+    self.managedObjectContext = self.lfi.defaultMOC;
+    self.cellReusableIdentifier = reuseIdentifier;
+    
+    self.collectionView.alwaysBounceVertical = YES;
     // Register cell classes
     UINib *cellNib = [UINib nibWithNibName:@"FormCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.collectionView.alwaysBounceVertical = YES;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openFormDesigner)];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
     
-    self.navigationItem.rightBarButtonItems = @[settingsButton];
+    self.navigationItem.rightBarButtonItems = @[addButton, settingsButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,6 +80,24 @@ static NSString * const reuseIdentifier = @"Cell";
     [self presentViewController:editProjVC animated:YES completion:nil];
 }
 
+- (void)openFormDesigner {
+    [self openFormDesignerWithForm:nil];
+}
+
+- (void)openFormDesignerWithForm:(Form *)form {
+    
+    UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
+    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    if (form) {
+        FormDesignerViewController *formVC = navVC.viewControllers[0];
+        formVC.form = form;
+    }
+    [self presentViewController:navVC animated:YES completion:^{
+        
+    }];
+}
+
 #pragma mark - Helpers
 - (UIStoryboard *)mainStoryboard {
     UIStoryboard *mainStory = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] storyboard];
@@ -86,22 +117,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark <UICollectionViewDataSource>
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+#pragma mark Overrides
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-    return self.collection.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ProjectCell *cell = (ProjectCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    [cell updateCellContentsWithItem:[self.collection objectAtIndex:indexPath.row]];
-    cell.backgroundColor = [UIColor whiteColor];
-    return cell;
+    [super configureCell:cell atIndexPath:indexPath];
+    
+    ProjectCell *projCell = (ProjectCell *)cell;
+    
+    [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -109,12 +132,8 @@ static NSString * const reuseIdentifier = @"Cell";
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // TEMP. Open form designer.
-    UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
-    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:navVC animated:YES completion:^{
-        
-    }];
+    Form *f = (Form *)[self objectAtIndexPath:indexPath];
+    [self openFormDesignerWithForm:f];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

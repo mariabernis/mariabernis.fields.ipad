@@ -7,42 +7,27 @@
 //
 
 #import "ListFormsInteractor.h"
-#import "Project.h"
 
+@class Project;
 @implementation ListFormsInteractor
 
 
 #pragma mark - List
-- (NSFetchRequest *)requestAllDefault {
+- (NSFetchRequest *)requestAllForProject:(Project *)project {
     
-    return [self requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES];
+    return [self requestAllForProject:project sortedBy:FormAttributes.formTitle ascending:YES];
 }
 
-- (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm
-                             ascending:(BOOL)ascending {
+- (NSFetchRequest *)requestAllForProject:(Project *)project
+                                sortedBy:(NSString *)sortTerm
+                               ascending:(BOOL)ascending {
     
-    NSUInteger count = [Project MR_countOfEntities];
-    if (count != NSNotFound && count == 0) {
-        // Create the templates projects
-        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-            
-            [self _createTemplatesProjectInContext:localContext];
-        }];
-    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", FormRelationships.project, project];
+    NSFetchRequest *request = [Form MR_requestAllSortedBy:sortTerm ascending:ascending withPredicate:predicate];
     
-    
-    NSFetchRequest *request = [Project MR_requestAllSortedBy:sortTerm ascending:ascending inContext:self.defaultMOC];
+//    NSFetchRequest *request = [Form MR_requestAllSortedBy:sortTerm ascending:ascending inContext:self.defaultMOC];
     
     return request;
-}
-
-#pragma PRIVATE
-- (Project *)_createTemplatesProjectInContext:(NSManagedObjectContext *)context {
-    Project *templatesProj = [Project MR_createInContext:context];
-    templatesProj.projectTitle = TEMPLATES_PROJ_TITLE;
-    templatesProj.projectDescription = TEMPLATES_PROJ_DESCRIPTION;
-    [templatesProj setTemplatesContainerValue:YES];
-    return templatesProj;
 }
 
 

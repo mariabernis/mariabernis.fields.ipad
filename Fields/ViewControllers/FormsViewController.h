@@ -11,7 +11,7 @@
 
 @class Project;
 @interface FormsViewController : MBCoreDataCollectionViewController
-@property (nonatomic, strong) NSArray *collection;
+//@property (nonatomic, strong) NSArray *collection;
 //@property (nonatomic, strong) NSString *projectTitle;
 @property (nonatomic, strong) Project *parentProject;
 @end

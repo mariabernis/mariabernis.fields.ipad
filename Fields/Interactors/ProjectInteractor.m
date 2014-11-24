@@ -47,11 +47,16 @@
         return;
     }
     
-    if ([titleTxt mb_isEmpty]) { // If titleText is nil or empty string is not valid, so return an error.
+    if ([MBCheck isEmpty:titleTxt]) { // If titleText is nil or empty string is not valid, so return an error.
         NSError *appError = [[self class] createFLDError:FLDErrorProjectTitleNil];
         
         completionBlock(NO, appError);
         return;
+    }
+    
+    if (![self isChangedTitle:titleTxt orDescription:descriptionText]) {
+        // Don't do anything
+        completionBlock(YES, nil);
     }
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
@@ -59,6 +64,7 @@
         Project *localProj = [self.project MR_inContext:localContext];
         localProj.projectTitle = titleTxt;
         localProj.projectDescription = descriptionText;
+        localProj.dateModified = [NSDate date];
         
     } completion:completionBlock];
 }
@@ -108,6 +114,28 @@
     return YES;
 }
 
+- (BOOL)isChangedTitle:(NSString *)title orDescription:(NSString *)description {
+    
+    BOOL titleChanged = YES;
+    BOOL descChanged = YES;
+    if ([[self.project.projectTitle mb_trimmedString] isEqualToString:[title mb_trimmedString]]) {
+        titleChanged = NO;
+    }
+    
+    if ([MBCheck isEmpty:self.project.projectDescription] && [MBCheck isEmpty:description]) {
+        descChanged = NO;
+    }
+    
+    if (![MBCheck isEmpty:self.project.projectDescription]) {
+        if ([[self.project.projectDescription mb_trimmedString] isEqualToString:[description mb_trimmedString]]) {
+            descChanged = NO;
+        }
+    }
+    
+    return (titleChanged || descChanged);
+    
+}
+
 #pragma mark - New
 - (void)saveNewProjectWithDefaultTitleAndDescription:(NSString *)descriptionText
                      completion:(void(^)(BOOL success, NSError *error))completionBlock {
@@ -119,7 +147,7 @@
                 andDescription:(NSString *)descriptionText
                     completion:(void(^)(BOOL success, NSError *error))completionBlock {
     
-    if ([titleText mb_isEmpty]) { // If titleText is nil or empty string is not valid, so return an error.
+    if ([MBCheck isEmpty:titleText]) { // If titleText is nil or empty string is not valid, so return an error.
         NSError *appError = [[self class] createFLDError:FLDErrorProjectTitleNil];
         
         completionBlock(NO, appError);

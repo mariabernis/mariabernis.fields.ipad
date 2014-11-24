@@ -7,7 +7,7 @@
 //
 
 #import "ProjectsViewController.h"
-#import "MocksProvider.h"
+#import "UIColor+FlatColors.h"
 #import "ProjectCell.h"
 #import "ListProjectsInteractor.h"
 #import "ProjectDetailViewController.h"
@@ -42,6 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.alwaysBounceVertical = YES;
     self.navigationItem.title = @"My Projects";
+    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openAddNewProjectView:)];
     
@@ -82,8 +83,8 @@ static NSString * const reuseIdentifier = @"Cell";
         // Push to forms view
         Project *p = (Project *)[self objectAtIndexPath:indexPath];
         FormsViewController *formsController = [[FormsViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]]; // collectionLayout
-//        formsController.collection = [MocksProvider allFormsWithProjectId:@"someIdentifier"];
-//        formsController.parentProject = p;
+
+        formsController.parentProject = p;
         [self.navigationController pushViewController:formsController animated:YES];
     }
 }

@@ -29,13 +29,13 @@ NSString *const FLDErrorDomain = @"com.mariabernis.fields.error";
        withTitleDescription:(NSString *)displayTitle
        additionalSuggestion:(NSString *)extendedTxt
 {
-    if ([displayTitle mb_isEmpty]) {
+    if ([MBCheck isEmpty:displayTitle]) {
         displayTitle = @"Action not allowed";
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:displayTitle forKey:NSLocalizedDescriptionKey];
-    if (![extendedTxt mb_isEmpty]) {
+    if (![MBCheck isEmpty:extendedTxt]) {
         [dict setValue:extendedTxt forKey:NSLocalizedRecoverySuggestionErrorKey];
     }
     

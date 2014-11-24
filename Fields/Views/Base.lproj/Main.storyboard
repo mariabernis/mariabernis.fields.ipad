@@ -266,6 +266,33 @@
             <point key="canvasLocation" x="875" y="1344"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="uKM-LP-4e0">
+            <objects>
+                <viewController id="obr-Sa-GUk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3ab-IZ-e7o">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="88b-AF-7Sx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="New Form" id="1jj-sf-9cJ"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="400"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4cq-zh-oDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1533" y="1344"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="hrC-Q8-wDh">
             <objects>
                 <viewController id="wZl-d4-SGN" sceneMemberID="viewController">

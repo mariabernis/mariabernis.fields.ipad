@@ -7,13 +7,15 @@
 //
 
 #import "BaseInteractor.h"
+#import "Form.h"
 
 @interface ListFormsInteractor : BaseInteractor
 
 #pragma mark - List
-- (NSFetchRequest *)requestAllDefault;
+- (NSFetchRequest *)requestAllForProject:(Project *)project;
 
-- (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm
-                             ascending:(BOOL)ascending;
+- (NSFetchRequest *)requestAllForProject:(Project *)project
+                                sortedBy:(NSString *)sortTerm
+                               ascending:(BOOL)ascending;
 
 @end

@@ -10,5 +10,5 @@
 - (BOOL)mb_isURLString;
 - (BOOL)mb_stringNoWhitesHasMinimumLenght:(NSInteger)minimumLenght;
 - (NSString *)mb_trimmedString;
-- (BOOL)mb_isEmpty;
+//- (BOOL)mb_isEmpty;
 @end

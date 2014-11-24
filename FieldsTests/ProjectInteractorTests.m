@@ -18,6 +18,7 @@
 @interface ProjectInteractorTests : XCTestCase
 @property (nonatomic, strong) ListProjectsInteractor *lpi;
 @property (nonatomic, strong) ProjectInteractor *pip;
+@property (nonatomic, strong) Project *project;
 @end
 
 
@@ -32,6 +33,7 @@
     
     Project *p = [Project MR_createEntity];
     p.projectTitle = test_Project_Title;
+    self.project = p;
     self.pip = [[ProjectInteractor alloc] initWithProject:p];
 }
 
@@ -98,6 +100,45 @@
         XCTAssertNotNil(error);
     }];
     
+}
+
+- (void)testCallingUpdateWithSameInspectionTitleSaysNoChanges {
+    
+    BOOL changed = [self.pip isChangedTitle:test_Project_Title orDescription:nil];
+    XCTAssertEqual(changed, NO);
+}
+
+- (void)testCallingUpdateWithSameInspectionTitleAndDescripSaysNoChanges {
+    
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = @"Inspection";
+    p.projectDescription = @"text";
+    ProjectInteractor *pi = [[ProjectInteractor alloc] initWithProject:p];
+    
+    BOOL changed = [pi isChangedTitle:@"  Inspection     " orDescription:@"  text "];
+    XCTAssertEqual(changed, NO);
+}
+
+- (void)testCallingUpdateWithSameTitleAndNilDescripSaysHASChanges {
+    
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = test_Project_Title;
+    p.projectDescription = @"text";
+    ProjectInteractor *pi = [[ProjectInteractor alloc] initWithProject:p];
+    
+    BOOL changed = [pi isChangedTitle:test_Project_Title orDescription:nil];
+    XCTAssertEqual(changed, YES);
+}
+
+- (void)testCallingUpdateWithNilTitleAndSameDescripSaysHASChanges {
+    
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = test_Project_Title;
+    p.projectDescription = @"text";
+    ProjectInteractor *pi = [[ProjectInteractor alloc] initWithProject:p];
+    
+    BOOL changed = [pi isChangedTitle:nil orDescription:@" text "];
+    XCTAssertEqual(changed, YES);
 }
 
 @end

@@ -49,6 +49,13 @@ typedef enum {
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if(!self.form) {
+        // Creating a new one
+    }
+}
+
 #pragma mark - Actions
 - (IBAction)closeButtonPressed:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];

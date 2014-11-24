@@ -52,6 +52,9 @@
 		834327B21A21398A0051F525 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327B11A21398A0051F525 /* ProjectTests.m */; };
 		835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */; };
 		83623B731A22588500857720 /* ListFormsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B721A22588500857720 /* ListFormsInteractor.m */; };
+		83623B7D1A225F0100857720 /* _Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7A1A225F0100857720 /* _Form.m */; };
+		83623B7E1A225F0100857720 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7C1A225F0100857720 /* Form.m */; };
+		83623B801A22771D00857720 /* FormInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7F1A22771D00857720 /* FormInteractorTests.m */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
@@ -123,6 +126,11 @@
 		835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInteractorTests.m; sourceTree = "<group>"; };
 		83623B711A22588500857720 /* ListFormsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListFormsInteractor.h; sourceTree = "<group>"; };
 		83623B721A22588500857720 /* ListFormsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListFormsInteractor.m; sourceTree = "<group>"; };
+		83623B791A225F0100857720 /* _Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Form.h; sourceTree = "<group>"; };
+		83623B7A1A225F0100857720 /* _Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Form.m; sourceTree = "<group>"; };
+		83623B7B1A225F0100857720 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
+		83623B7C1A225F0100857720 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
+		83623B7F1A22771D00857720 /* FormInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractorTests.m; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
@@ -198,6 +206,7 @@
 				834327B11A21398A0051F525 /* ProjectTests.m */,
 				835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */,
 				830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */,
+				83623B7F1A22771D00857720 /* FormInteractorTests.m */,
 				8343275B1A2138370051F525 /* Supporting Files */,
 			);
 			path = FieldsTests;
@@ -244,11 +253,15 @@
 		834327731A2138930051F525 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				834327761A2138930051F525 /* FieldsModel.xcdatamodeld */,
+				83623B791A225F0100857720 /* _Form.h */,
+				83623B7A1A225F0100857720 /* _Form.m */,
+				83623B7B1A225F0100857720 /* Form.h */,
+				83623B7C1A225F0100857720 /* Form.m */,
 				834327741A2138930051F525 /* _Project.h */,
 				834327751A2138930051F525 /* _Project.m */,
 				834327781A2138930051F525 /* Project.h */,
 				834327791A2138930051F525 /* Project.m */,
+				834327761A2138930051F525 /* FieldsModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,8 +562,10 @@
 				83C742281A2160AC00F189F2 /* MBCheck.m in Sources */,
 				834327B01A21394F0051F525 /* main.m in Sources */,
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
+				83623B7E1A225F0100857720 /* Form.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
 				8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */,
+				83623B7D1A225F0100857720 /* _Form.m in Sources */,
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
 				834327951A2138930051F525 /* Project.m in Sources */,
 				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,
@@ -569,6 +584,7 @@
 			files = (
 				835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */,
 				834327B21A21398A0051F525 /* ProjectTests.m in Sources */,
+				83623B801A22771D00857720 /* FormInteractorTests.m in Sources */,
 				830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
