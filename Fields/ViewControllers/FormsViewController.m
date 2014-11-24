@@ -11,24 +11,46 @@
 #import "UIColor+FlatColors.h"
 #import "ProjectDetailViewController.h"
 #import "ListFormsInteractor.h"
+#import "FormInteractor.h"
 #import "Project.h"
 #import "FormDesignerViewController.h"
 
 @interface FormsViewController ()<ProjectDetailVCDelegate>
 @property (nonatomic, strong) ListFormsInteractor *lfi;
+@property (nonatomic, strong) FormInteractor *fi;
 @end
 
 @implementation FormsViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
-- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
-{
-    self = [super initWithCollectionViewLayout:layout];
+/* Designated initializer */
+- (instancetype)initWithProject:(Project *)project {
+    
+    self = [super initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     if (self) {
-        self.collectionView.backgroundColor = [UIColor flatCloudsColor];
+        _parentProject = project;
+        [self commonInit];
     }
     return self;
+}
+
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
+{
+    return [self initWithProject:nil];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
 }
 
 - (ListFormsInteractor *)lfi {
@@ -36,6 +58,13 @@ static NSString * const reuseIdentifier = @"Cell";
         _lfi = [[ListFormsInteractor alloc] init];
     }
     return _lfi;
+}
+
+- (FormInteractor *)fi {
+    if (!_fi) {
+        _fi = [[FormInteractor alloc] init];
+    }
+    return _fi;
 }
 
 #pragma mark - VC life cycle
@@ -52,7 +81,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openFormDesigner)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewFormForCurrentProject)];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
     
@@ -80,19 +109,24 @@ static NSString * const reuseIdentifier = @"Cell";
     [self presentViewController:editProjVC animated:YES completion:nil];
 }
 
-- (void)openFormDesigner {
-    [self openFormDesignerWithForm:nil];
+- (void)createNewFormForCurrentProject {
+    // Create form and pass it to the form builder.
+    Form *form = [self.fi createNewFormInContext:self.fi.defaultMOC withTitle:nil description:nil project:self.parentProject];
+    [self openFormDesignerWithForm:form isNewForm:YES];
 }
 
 - (void)openFormDesignerWithForm:(Form *)form {
+    [self openFormDesignerWithForm:form isNewForm:NO];
+}
+
+- (void)openFormDesignerWithForm:(Form *)form isNewForm:(BOOL)isNew {
     
     UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
     navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     //    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    if (form) {
-        FormDesignerViewController *formVC = navVC.viewControllers[0];
-        formVC.form = form;
-    }
+    FormDesignerViewController *formVC = navVC.viewControllers[0];
+    formVC.form = form;
+    formVC.isNewForm = isNew;
     [self presentViewController:navVC animated:YES completion:^{
         
     }];

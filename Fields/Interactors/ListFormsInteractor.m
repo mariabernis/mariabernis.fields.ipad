@@ -23,7 +23,7 @@
                                ascending:(BOOL)ascending {
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@", FormRelationships.project, project];
-    NSFetchRequest *request = [Form MR_requestAllSortedBy:sortTerm ascending:ascending withPredicate:predicate];
+    NSFetchRequest *request = [Form MR_requestAllSortedBy:sortTerm ascending:ascending withPredicate:predicate inContext:self.defaultMOC];
     
 //    NSFetchRequest *request = [Form MR_requestAllSortedBy:sortTerm ascending:ascending inContext:self.defaultMOC];
     

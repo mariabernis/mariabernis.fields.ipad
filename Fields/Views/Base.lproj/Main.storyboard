@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="1087" y="672"/>
         </scene>
-        <!--Form Designer View Controller-->
+        <!--Form designer-->
         <scene sceneID="UJl-Jg-xpw">
             <objects>
                 <viewController storyboardIdentifier="formDesignerID" id="8PX-6O-j31" customClass="FormDesignerViewController" sceneMemberID="viewController">
@@ -78,17 +78,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="UUC-ak-KlF" userLabel="Canvas">
-                                <rect key="frame" x="251" y="65" width="522" height="703"/>
+                                <rect key="frame" x="229" y="65" width="565" height="703"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="pMk-17-hcH">
+                                        <rect key="frame" x="515" y="8" width="42" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                     <view contentMode="scaleToFill" id="K02-BD-VOq">
                                         <rect key="frame" x="8" y="8" width="42" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" id="pMk-17-hcH">
-                                        <rect key="frame" x="472" y="8" width="42" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
@@ -101,14 +101,14 @@
                                     <view contentMode="scaleToFill" id="Nam-S1-bVO" userLabel="Leftpane content">
                                         <rect key="frame" x="0.0" y="0.0" width="230" height="703"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="0.80086096939999996" green="0.80086096939999996" blue="0.80086096939999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.91514992713928223" green="0.91530013084411621" blue="0.91511797904968262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view alpha="0.34999999999999964" contentMode="scaleToFill" id="K4S-08-oAW" userLabel="Leftpane tab">
                                         <rect key="frame" x="176" y="621" width="75" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="AdV-39-PNI">
-                                                <rect key="frame" x="35" y="21" width="40" height="40"/>
+                                                <rect key="frame" x="45" y="26" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
@@ -120,7 +120,7 @@
                                         </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="kJo-rW-b5x" userLabel="Right Pane">
                                 <rect key="frame" x="773" y="65" width="251" height="703"/>
@@ -129,14 +129,30 @@
                                     <view contentMode="scaleToFill" id="TSP-XO-b3b" userLabel="Rightpane content">
                                         <rect key="frame" x="21" y="0.0" width="230" height="703"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="0.80086096939999996" green="0.80086096939999996" blue="0.80086096939999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="nU5-Ei-hTB">
+                                                <rect key="frame" x="14" y="8" width="208" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Field"/>
+                                                    <segment title="Form"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </segmentedControl>
+                                            <view contentMode="scaleToFill" id="txt-gt-q2H" userLabel="FormProps tab" customClass="FormPropsTabView">
+                                                <rect key="frame" x="8" y="44" width="222" height="659"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.90172380208969116" green="0.28548961877822876" blue="0.21031257510185242" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.91514992713928223" green="0.91530013084411621" blue="0.91511797904968262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view alpha="0.34999999403953552" contentMode="scaleToFill" id="FOY-fm-0O0" userLabel="Rightpane tab">
                                         <rect key="frame" x="0.0" y="621" width="75" height="82"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="P3i-ue-O0L">
-                                                <rect key="frame" x="0.0" y="21" width="40" height="40"/>
+                                                <rect key="frame" x="0.0" y="26" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.39200335741043091" green="0.76116800308227539" blue="0.44163668155670166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
@@ -148,22 +164,30 @@
                                         </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0p0-Xh-pOy">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="XSQ-LE-bDj">
+                    <navigationItem key="navigationItem" title="Form designer" id="0p0-Xh-pOy">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="XSQ-LE-bDj">
                             <connections>
-                                <action selector="closeButtonPressed:" destination="8PX-6O-j31" id="7PE-vG-gVW"/>
+                                <action selector="discardButtonPressed:" destination="8PX-6O-j31" id="GPF-Ms-Lgk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="8g6-ew-FQJ">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="8PX-6O-j31" id="TBM-Da-aXw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="canvasView" destination="UUC-ak-KlF" id="s8h-z8-jqg"/>
+                        <outlet property="formPropsTabView" destination="txt-gt-q2H" id="c2P-Wi-UPQ"/>
+                        <outlet property="leftPaneContent" destination="Nam-S1-bVO" id="c2c-Nb-7gB"/>
                         <outlet property="leftPaneView" destination="JuZ-Np-oom" id="W3p-SB-StG"/>
+                        <outlet property="rightPaneContent" destination="TSP-XO-b3b" id="6es-GU-Exz"/>
                         <outlet property="rightPaneView" destination="kJo-rW-b5x" id="BBg-JL-cE9"/>
                     </connections>
                 </viewController>
@@ -178,6 +202,9 @@
                         <action selector="rightPaneTabDragged:" destination="8PX-6O-j31" id="CGT-UN-z3q"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="a6G-iH-JE9"/>
+                <tapGestureRecognizer id="0C8-uJ-RLU"/>
+                <tapGestureRecognizer id="evC-E6-85I"/>
             </objects>
             <point key="canvasLocation" x="2404" y="672"/>
         </scene>

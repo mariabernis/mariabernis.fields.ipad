@@ -55,6 +55,9 @@
 		83623B7D1A225F0100857720 /* _Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7A1A225F0100857720 /* _Form.m */; };
 		83623B7E1A225F0100857720 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7C1A225F0100857720 /* Form.m */; };
 		83623B801A22771D00857720 /* FormInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7F1A22771D00857720 /* FormInteractorTests.m */; };
+		837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */; };
+		837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */; };
+		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
@@ -131,6 +134,11 @@
 		83623B7B1A225F0100857720 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
 		83623B7C1A225F0100857720 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
 		83623B7F1A22771D00857720 /* FormInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractorTests.m; sourceTree = "<group>"; };
+		837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPropsTabView.xib; sourceTree = "<group>"; };
+		837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPropsTabView.h; sourceTree = "<group>"; };
+		837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPropsTabView.m; sourceTree = "<group>"; };
+		837FDE911A237B5800D2EE0B /* FormInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInteractor.h; sourceTree = "<group>"; };
+		837FDE921A237B5800D2EE0B /* FormInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractor.m; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
@@ -231,6 +239,8 @@
 				830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */,
 				83623B711A22588500857720 /* ListFormsInteractor.h */,
 				83623B721A22588500857720 /* ListFormsInteractor.m */,
+				837FDE911A237B5800D2EE0B /* FormInteractor.h */,
+				837FDE921A237B5800D2EE0B /* FormInteractor.m */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -314,9 +324,12 @@
 		8343279F1A2138C50051F525 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				834327A01A2138C50051F525 /* LaunchScreen.xib */,
 				834327A21A2138C50051F525 /* Main.storyboard */,
+				837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */,
+				834327A01A2138C50051F525 /* LaunchScreen.xib */,
 				834327A41A2138C50051F525 /* FormCell.xib */,
+				837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */,
+				837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */,
 				834327A51A2138C50051F525 /* ProjectCell.h */,
 				834327A61A2138C50051F525 /* ProjectCell.m */,
 			);
@@ -456,6 +469,7 @@
 				834327A81A2138C50051F525 /* LaunchScreen.xib in Resources */,
 				834327AF1A21394F0051F525 /* Info.plist in Resources */,
 				834327A71A2138C50051F525 /* Images.xcassets in Resources */,
+				837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +574,7 @@
 				8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */,
 				8343279B1A2138930051F525 /* FormsViewController.m in Sources */,
 				83C742281A2160AC00F189F2 /* MBCheck.m in Sources */,
+				837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */,
 				834327B01A21394F0051F525 /* main.m in Sources */,
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				83623B7E1A225F0100857720 /* Form.m in Sources */,
@@ -570,6 +585,7 @@
 				834327951A2138930051F525 /* Project.m in Sources */,
 				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,
 				834327AB1A2138C50051F525 /* ProjectCell.m in Sources */,
+				837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */,
 				834327931A2138930051F525 /* _Project.m in Sources */,
 				834327941A2138930051F525 /* FieldsModel.xcdatamodeld in Sources */,
 				834327471A2138370051F525 /* AppDelegate.m in Sources */,
@@ -703,6 +719,7 @@
 			baseConfigurationReference = B6D6B29054DCBEC82017844B /* Pods-Fields.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Fields/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -714,7 +731,7 @@
 			baseConfigurationReference = 582B384B7E96EE42CC322516 /* Pods-Fields.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Maria Bernis (393JTM9U95)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Maria Bernis (393JTM9U95)";
 				INFOPLIST_FILE = "Fields/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -809,6 +826,7 @@
 				83623B771A22593700857720 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -17,7 +17,8 @@ typedef enum {
     FLDErrorProjectTitleNil = 1,
     FLDErrorTemplatesProjCannotBeEdited = 2,
     FLDErrorTemplatesProjectCannotBeDeleted = 3,
-    FLDErrorProjectCannotBeDeleted = 4
+    FLDErrorProjectCannotBeDeleted = 4,
+    FLDErrorFormDesignCannotBeModified = 5,
 }FLDError;
 
 @interface BaseInteractor : NSObject

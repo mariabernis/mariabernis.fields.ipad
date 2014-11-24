@@ -54,10 +54,12 @@
         return;
     }
     
-    if (![self isChangedTitle:titleTxt orDescription:descriptionText]) {
-        // Don't do anything
-        completionBlock(YES, nil);
-    }
+    // SAVE NO MATTER WHAT. THIS IS FOR PERSISTING DATA
+//    if (![self isChangedTitle:titleTxt orDescription:descriptionText]) {
+//        // Don't do anything
+//        completionBlock(YES, nil);
+//        return;
+//    }
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         
