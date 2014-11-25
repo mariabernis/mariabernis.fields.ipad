@@ -9,7 +9,8 @@
 #import "FormDesignerViewController.h"
 #import "FormPropsTabView.h"
 #import "FormInteractor.h"
-#import "ProjectInteractor.h"
+#import "ListProjectsInteractor.h"
+#import "MBCBaseOptionsChooser.h"
 
 #define TAB_MARGIN 30.0
 
@@ -18,11 +19,15 @@ typedef enum {
     LateralPaneRIGHT
 } LateralPane;
 
-@interface FormDesignerViewController ()
+@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate>
 
 // Properties
 @property (nonatomic, strong) FormInteractor *fi;
 @property (nonatomic, strong) Project *selectedProject;
+@property (nonatomic, strong) ListProjectsInteractor *lpi;
+@property (nonatomic, strong) NSArray *listProjects;
+@property (nonatomic, strong) MBCBaseOptionsChooser *projectChooserVC;
+@property (nonatomic, strong) UIPopoverController *projectChooserPopover;
 
 @property (nonatomic, getter=isLPaneOpened) BOOL lPaneOpened;
 @property (nonatomic, getter=isLPaneAnimating) BOOL lPaneAnimating;
@@ -39,7 +44,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UIView *canvasView;
 @property (weak, nonatomic) IBOutlet FormPropsTabView *formPropsTabView;
 
-
 @end
 
 @implementation FormDesignerViewController
@@ -49,6 +53,20 @@ typedef enum {
         _fi = [[FormInteractor alloc] initWithForm:self.form];
     }
     return _fi;
+}
+
+- (ListProjectsInteractor *)lpi {
+    if (!_lpi) {
+        _lpi = [[ListProjectsInteractor alloc] init];
+    }
+    return _lpi;
+}
+
+- (NSArray *)listProjects {
+    if (!_listProjects) {
+        _listProjects = [self.lpi allProjectsDefaultSort];
+    }
+    return _listProjects;
 }
 
 - (void)setSelectedProject:(Project *)selectedProject {
@@ -81,6 +99,16 @@ typedef enum {
     
     [self.rightPaneContent addSubview:realFormTab];
     self.formPropsTabView = realFormTab;
+    
+    // Configure touches
+    UITapGestureRecognizer *tapChooserGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnProjectsChooser:)];
+    [self.formPropsTabView.projChooserView addGestureRecognizer:tapChooserGesture];
+    
+    UITapGestureRecognizer *tapDuplicateGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnDuplicateForm:)];
+    [self.formPropsTabView.actionDuplicateView addGestureRecognizer:tapDuplicateGesture];
+    
+    UITapGestureRecognizer *tapDeleteGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteFormAction:)];
+    [self.formPropsTabView.actionDeleteView addGestureRecognizer:tapDeleteGesture];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,6 +133,65 @@ typedef enum {
     self.formPropsTabView.inputDescription.text = self.form.formDescription ? : @"";
 }
 
+- (void)appWillResigneActiveNotification:(NSNotification *)notification {
+    [self saveChanges:nil];
+}
+
+- (void)saveChanges:(void(^)(NSError *error))completion {
+    
+    [self.fi updateFormWithTitle:self.formPropsTabView.inputTitle.text
+                     description:self.formPropsTabView.inputDescription.text
+                         project:self.selectedProject
+                      completion:^(BOOL success, NSError *error) {
+                          
+                          if (completion) {
+                              completion(error);
+                          }
+                      }];
+}
+
+#pragma mark - Form actions
+- (void)tappedOnProjectsChooser:(UITapGestureRecognizer *)gesture {
+    MBCBaseOptionsChooser *projectChooserVC = [[MBCBaseOptionsChooser alloc] initWithStyle:UITableViewStylePlain];
+    projectChooserVC.delegate = self;
+    projectChooserVC.options = self.listProjects;
+    projectChooserVC.selected = self.selectedProject;
+    
+    if (self.projectChooserPopover == nil) {
+        //The color picker popover is not showing. Show it.
+        self.projectChooserPopover = [[UIPopoverController alloc] initWithContentViewController:projectChooserVC];
+        [self.projectChooserPopover presentPopoverFromRect:self.formPropsTabView.projChooserView.bounds
+                                                    inView:self.formPropsTabView.projChooserView
+                                  permittedArrowDirections:UIPopoverArrowDirectionRight
+                                                  animated:YES];
+    } else {
+        //The popover is showing. Hide it.
+        [self.projectChooserPopover dismissPopoverAnimated:YES];
+        self.projectChooserPopover = nil;
+    }
+    
+}
+
+- (void)tappedOnDuplicateForm:(UITapGestureRecognizer *)gesture {
+}
+
+#pragma mark MBCBaseOptionsChooserDelegate
+- (void)chooserControllerConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Project *p = (Project *) [self.listProjects objectAtIndex:indexPath.row];
+    cell.textLabel.text = p.projectTitle;
+}
+
+- (void)chooserController:(MBCBaseOptionsChooser *)controller didSelectItem:(id)item {
+    
+    if ([item isMemberOfClass:[Project class]]) {
+        self.selectedProject = item;
+        self.form.project = item;
+    }
+    [self.projectChooserPopover dismissPopoverAnimated:YES];
+    self.projectChooserPopover = nil;
+}
+
+
 - (IBAction)discardButtonPressed:(id)sender {
 
     [self deleteFormAction:sender];
@@ -116,23 +203,6 @@ typedef enum {
     [self saveChanges:^(NSError *error) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }];
-}
-
-- (void)appWillResigneActiveNotification:(NSNotification *)notification {
-    [self saveChanges:nil];
-}
-
-- (void)saveChanges:(void(^)(NSError *error))completion {
-
-    [self.fi updateFormWithTitle:self.formPropsTabView.inputTitle.text
-                     description:self.formPropsTabView.inputDescription.text
-                         project:self.selectedProject
-                      completion:^(BOOL success, NSError *error) {
-                          
-                          if (completion) {
-                              completion(error);
-                          }
-                      }];
 }
 
 - (void)deleteFormAction:(id)sender {

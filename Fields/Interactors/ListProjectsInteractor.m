@@ -35,6 +35,21 @@
     return request;
 }
 
+- (NSArray *)allProjectsDefaultSort {
+    NSUInteger count = [Project MR_countOfEntities];
+    if (count != NSNotFound && count == 0) {
+        // Create the templates projects
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            
+            [self _createTemplatesProjectInContext:localContext];
+        }];
+    }
+    NSFetchRequest *request = [self requestAllDefault];
+    
+    NSArray *results = [Project MR_executeFetchRequest:request];
+    return results;
+}
+
 #pragma PRIVATE
 - (Project *)_createTemplatesProjectInContext:(NSManagedObjectContext *)context {
     Project *templatesProj = [Project MR_createInContext:context];

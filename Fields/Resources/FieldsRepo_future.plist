@@ -26,12 +26,16 @@
 						<key>uicontrol_class</key>
 						<string>UITextField</string>
 						<key>uicontrol_wide</key>
-						<integer>100</integer>
+						<integer>50</integer>
 						<key>uicontrol_attributes</key>
 						<array>
 							<dict>
-								<key>text</key>
+								<key>attribute_name</key>
+								<string>text</string>
+								<key>attribute_default_value</key>
 								<string>1</string>
+								<key>attribute_value_sets_param</key>
+								<true/>
 							</dict>
 						</array>
 					</dict>
@@ -61,7 +65,14 @@
 						<integer>100</integer>
 						<key>uicontrol_attributes</key>
 						<array>
-							<dict/>
+							<dict>
+								<key>attribute_name</key>
+								<string>text</string>
+								<key>attribute_default_value</key>
+								<string></string>
+								<key>attribute_value_sets_param</key>
+								<true/>
+							</dict>
 						</array>
 					</dict>
 				</array>
