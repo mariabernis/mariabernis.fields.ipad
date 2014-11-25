@@ -324,7 +324,7 @@
             <objects>
                 <viewController id="wZl-d4-SGN" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cBJ-tN-73X">
-                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -339,7 +339,7 @@
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="i0I-Xl-5oc" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="39z-vG-huM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -378,20 +378,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mid-ui-i4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="735" y="-1120"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="RWj-KX-XeA">
-            <objects>
-                <splitViewController id="UGv-vU-o7q" sceneMemberID="viewController">
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    <connections>
-                        <segue destination="3QA-v3-EQh" kind="relationship" relationship="masterViewController" id="vJW-zJ-hes"/>
-                        <segue destination="wZl-d4-SGN" kind="relationship" relationship="detailViewController" id="xTO-8W-EvZ"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b3F-QX-RGP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-42" y="-349"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mj4-BJ-Txv">

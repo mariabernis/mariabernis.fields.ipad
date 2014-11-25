@@ -103,12 +103,6 @@ typedef enum {
     self.navigationItem.title = self.form.formTitle;
     self.formPropsTabView.inputTitle.text = self.form.formTitle;
     self.formPropsTabView.inputDescription.text = self.form.formDescription ? : @"";
-    
-    if(self.isNewForm) {
-        // Creating new form, persist data
-        [self saveChanges:nil];
-        
-    }
 }
 
 - (IBAction)discardButtonPressed:(id)sender {
@@ -134,6 +128,7 @@ typedef enum {
                      description:self.formPropsTabView.inputDescription.text
                          project:self.selectedProject
                       completion:^(BOOL success, NSError *error) {
+                          
                           if (completion) {
                               completion(error);
                           }
@@ -144,12 +139,12 @@ typedef enum {
     
     UIAlertController *alertController;
     UIAlertAction *destroyAction;
-    UIAlertAction *otherAction;
+//    UIAlertAction *otherAction;
     
     alertController = [UIAlertController alertControllerWithTitle:nil
                                                           message:nil
                                                    preferredStyle:UIAlertControllerStyleActionSheet];
-    destroyAction = [UIAlertAction actionWithTitle:@"Remove All Data"
+    destroyAction = [UIAlertAction actionWithTitle:@"Delete form"
                                              style:UIAlertActionStyleDestructive
                                            handler:^(UIAlertAction *action) {
                                                // do destructive stuff here
@@ -160,14 +155,8 @@ typedef enum {
                                                
                                            }];
     
-    otherAction = [UIAlertAction actionWithTitle:@"Blah"
-                                           style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction *action) {
-                                             // do something here
-                                         }];
     // note: you can control the order buttons are shown, unlike UIActionSheet
     [alertController addAction:destroyAction];
-    [alertController addAction:otherAction];
     [alertController setModalPresentationStyle:UIModalPresentationPopover];
     
     UIPopoverPresentationController *popPresenter = [alertController

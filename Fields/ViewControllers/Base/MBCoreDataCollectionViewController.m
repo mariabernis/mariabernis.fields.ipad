@@ -84,7 +84,8 @@
 
 - (NSInteger)countItemsInSection:(NSInteger)section {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self sectionInfoForSectionIndex:section];
-    return [sectionInfo numberOfObjects];
+    NSInteger count = [sectionInfo numberOfObjects];
+    return count;
 }
 
 - (id<NSFetchedResultsSectionInfo>)sectionInfoForSectionIndex:(NSInteger)section {

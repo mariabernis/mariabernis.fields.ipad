@@ -81,7 +81,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createNewFormForCurrentProject)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newFormForCurrentProject)];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
     
@@ -109,10 +109,15 @@ static NSString * const reuseIdentifier = @"Cell";
     [self presentViewController:editProjVC animated:YES completion:nil];
 }
 
-- (void)createNewFormForCurrentProject {
+- (void)newFormForCurrentProject {
     // Create form and pass it to the form builder.
-    Form *form = [self.fi createNewFormInContext:self.fi.defaultMOC withTitle:nil description:nil project:self.parentProject];
-    [self openFormDesignerWithForm:form isNewForm:YES];
+    [self.fi saveNewFormWithTitle:nil
+                      description:nil
+                          project:self.parentProject
+                       completion:^(Form *newForm, NSError *error) {
+                           
+        [self openFormDesignerWithForm:newForm isNewForm:YES];
+    }];
 }
 
 - (void)openFormDesignerWithForm:(Form *)form {

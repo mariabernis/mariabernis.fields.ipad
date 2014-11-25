@@ -26,7 +26,7 @@
 - (void)saveNewFormWithTitle:(NSString *)titleText
                  description:(NSString *)descriptionText
                      project:(Project *)project
-                  completion:(void(^)(BOOL success, NSError *error))completionBlock;
+                  completion:(void(^)(Form *newForm, NSError *error))completionBlock;
 
 - (Form *)createNewFormInContext:(NSManagedObjectContext *)context
                        withTitle:(NSString *)titleText

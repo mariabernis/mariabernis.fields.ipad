@@ -39,25 +39,19 @@
                  completion:(void(^)(BOOL success, NSError *error))completionBlock {
     NSAssert(self.form != nil, @"Form is nil!");
     
-    // SAVE NO MATTER WHAT
-//    if (![self isChangedTitle:titleTxt orDescription:descriptionText] &&
-//        [self.form.project isEqual:project]) {
-//        // Don't do anything
-//        completionBlock(YES, nil);
-//        return;
-//    }
-    
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         
-        Form *local = [self.form MR_inContext:localContext];
+        Form *localForm = (Form *)[localContext objectWithID:self.form.objectID];
+        Project *localProject = (Project *)[localContext objectWithID:project.objectID];
+        
         if (![MBCheck isEmpty:titleTxt]) {
-            local.formTitle = titleTxt;
+            localForm.formTitle = titleTxt;
         }
-        local.formDescription = descriptionText;
-        if (![self.form.project isEqual:project]) {
-            [self.form customSetProject:project];
-        }
-        local.dateModified = [NSDate date];
+        localForm.formDescription = descriptionText;
+        localForm.project = localProject;
+        [localForm setIsTemplateValue:localProject.templatesContainerValue];
+        localForm.dateModified = [NSDate date];
+        localForm.dateCreated = [NSDate date];
         
     } completion:completionBlock];
 }
@@ -66,17 +60,9 @@
 - (void)deleteForm:(void(^)(BOOL success, NSError *error))completionBlock {
     NSAssert(self.form != nil, @"Form is nil!");
     
-    /* No aplica por ahora
-    if (![self canDeleteForm]) {
-        NSError *appError = appError = [[self class] createFLDError:FLDErrorTemplatesProjectCannotBeDeleted];;
-        completionBlock(NO, appError);
-        return;
-    }
-    */
-    
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        Form *local = [self.form MR_inContext:localContext];
-        [local MR_deleteEntity];
+        Form *localForm = (Form *)[localContext objectWithID:self.form.objectID];
+        [localForm MR_deleteEntity];
         
     } completion:completionBlock];
 }
@@ -85,14 +71,28 @@
 - (void)saveNewFormWithTitle:(NSString *)titleText
                  description:(NSString *)descriptionText
                      project:(Project *)project
-                  completion:(void(^)(BOOL success, NSError *error))completionBlock {
+                  completion:(void(^)(Form *newForm, NSError *error))completionBlock {
     NSAssert(project != nil, @"Project cannot be nil. Fom MUST have a project!");
     
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        
-        [self createNewFormInContext:localContext withTitle:titleText description:descriptionText project:project];
-        
-    } completion:completionBlock];
+    __block Form *newForm = [self createNewFormInContext:self.defaultMOC
+                                               withTitle:titleText
+                                             description:descriptionText
+                                                 project:project];
+    
+    [self.defaultMOC MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        if (error) {
+            [newForm MR_deleteEntity];
+            newForm = nil;
+        }
+        completionBlock(newForm, error);
+    }];
+    
+//    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+//        
+//        Project *localProj = (Project *)[localContext objectWithID:project.objectID];
+//        [self createNewFormInContext:localContext withTitle:titleText description:descriptionText project:localProj];
+//        
+//    } completion:completionBlock];
     
     
     // TO-DO. Convert MR error or core data error to some understandable error.
@@ -109,9 +109,8 @@
         newForm.formTitle = titleText;
     }
     newForm.formDescription = descriptionText;
-    if (project) {
-        [newForm customSetProject:project];
-    }
+    newForm.project = project;
+    newForm.isTemplateValue = project.templatesContainerValue;
     return newForm;
 }
 
