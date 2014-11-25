@@ -18,6 +18,7 @@
 @interface ProjectInteractorTests : XCTestCase
 @property (nonatomic, strong) ListProjectsInteractor *lpi;
 @property (nonatomic, strong) ProjectInteractor *pip;
+@property (nonatomic, strong) Project *project;
 @end
 
 
@@ -32,6 +33,7 @@
     
     Project *p = [Project MR_createEntity];
     p.projectTitle = test_Project_Title;
+    self.project = p;
     self.pip = [[ProjectInteractor alloc] initWithProject:p];
 }
 
@@ -43,42 +45,44 @@
 
 
 
-- (void)testSaveNewProjectWithEmptyTitleReturnsError {
-    
-    NSUInteger preCount = [Project MR_countOfEntities];
-    
-    [self.pip saveNewProjectWithTitle:@"   " andDescription:nil completion:^(BOOL success, NSError *error) {
-        XCTAssertNotNil(error);
-        NSUInteger postCount = [Project MR_countOfEntities];
-        XCTAssertEqual(preCount, postCount);
-    }];
-}
+//- (void)testSaveNewProjectWithEmptyTitleReturnsError {
+//    
+//    NSUInteger preCount = [Project MR_countOfEntities];
+//    
+//    [self.pip saveNewProjectWithTitle:@"   " andDescription:nil completion:^(BOOL success, NSError *error) {
+//        XCTAssertNotNil(error);
+//        NSUInteger postCount = [Project MR_countOfEntities];
+//        XCTAssertEqual(preCount, postCount);
+//    }];
+//}
 
-- (void)testUpdateProjectWithEmptyTitleReturnsError {
-    
-    [self.pip updateProjectWithTitle:@"  "
-                     andDescription:nil
-                         completion:^(BOOL success, NSError *error) {
-        XCTAssertNotNil(error);
-        Project *p = (Project *)[self.pip valueForKey:@"project"];
-        XCTAssertEqualObjects(test_Project_Title, p.projectTitle);
-    }];
+//- (void)testUpdateProjectWithEmptyTitleReturnsError {
+//    
+//    [self.pip updateProjectWithTitle:@"  "
+//                     andDescription:nil
+//                         completion:^(BOOL success, NSError *error) {
+//        XCTAssertNotNil(error);
+//        Project *p = (Project *)[self.pip valueForKey:@"project"];
+//        XCTAssertEqualObjects(test_Project_Title, p.projectTitle);
+//    }];
+//
+//}
 
-}
+//- (void)testEditingTemplatesProjectReturnsError {
 
-- (void)testEditingTemplatesProjectReturnsError {
-    
-    NSFetchRequest *request = [self.lpi requestAllDefault];
-//    NSArray *projs = [Project MR_executeFetchRequest:request inContext:self.pi
-//                      .defaultMOC];
-    NSArray *projs = [Project MR_executeFetchRequest:request];
-    Project *p = [projs lastObject];
-    ProjectInteractor *tPip = [[ProjectInteractor alloc] initWithProject:p];
-    [tPip updateProjectWithTitle:@"New Title" andDescription:@"lorem lorem" completion:^(BOOL success, NSError *error) {
-        XCTAssertNotNil(error);
-        XCTAssertNotEqualObjects(@"New Title", p.projectTitle);
-    }];
-}
+//    NSFetchRequest *request = [self.lpi requestAllDefault];
+////    NSArray *projs = [Project MR_executeFetchRequest:request inContext:self.pi
+////                      .defaultMOC];
+//    NSArray *projs = [self.lpi.defaultMOC executeFetchRequest:request error:nil];
+//    Project *p = [projs lastObject];
+//    ProjectInteractor *tPip = [[ProjectInteractor alloc] initWithProject:p];
+//    
+//    
+//    [tPip updateProjectWithTitle:@"New Title" andDescription:@"lorem lorem" completion:^(BOOL success, NSError *error) {
+//        XCTAssertNotNil(error);
+//        XCTAssertNotEqualObjects(@"New Title", p.projectTitle);
+//    }];
+//}
 
 - (void)testCreatingNewProjectHasFalseForTheTemplateBoolean {
     
@@ -92,12 +96,51 @@
     }
 }
 
-- (void)testDeletingTemplatesProjectReturnsError {
+//- (void)testDeletingTemplatesProjectReturnsError {
+//    
+//    [self.pip deleteProject:^(BOOL success, NSError *error) {
+//        XCTAssertNotNil(error);
+//    }];
+//    
+//}
+
+- (void)testCallingUpdateWithSameInspectionTitleSaysNoChanges {
     
-    [self.pip deleteProject:^(BOOL success, NSError *error) {
-        XCTAssertNotNil(error);
-    }];
+    BOOL changed = [self.pip isChangedTitle:test_Project_Title orDescription:nil];
+    XCTAssertEqual(changed, NO);
+}
+
+- (void)testCallingUpdateWithSameInspectionTitleAndDescripSaysNoChanges {
     
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = @"Inspection";
+    p.projectDescription = @"text";
+    ProjectInteractor *pi = [[ProjectInteractor alloc] initWithProject:p];
+    
+    BOOL changed = [pi isChangedTitle:@"  Inspection     " orDescription:@"  text "];
+    XCTAssertEqual(changed, NO);
+}
+
+- (void)testCallingUpdateWithSameTitleAndNilDescripSaysHASChanges {
+    
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = test_Project_Title;
+    p.projectDescription = @"text";
+    ProjectInteractor *pi = [[ProjectInteractor alloc] initWithProject:p];
+    
+    BOOL changed = [pi isChangedTitle:test_Project_Title orDescription:nil];
+    XCTAssertEqual(changed, YES);
+}
+
+- (void)testCallingUpdateWithNilTitleAndSameDescripSaysHASChanges {
+    
+    Project *p = [Project MR_createEntity];
+    p.projectTitle = test_Project_Title;
+    p.projectDescription = @"text";
+    ProjectInteractor *pi = [[ProjectInteractor alloc] initWithProject:p];
+    
+    BOOL changed = [pi isChangedTitle:nil orDescription:@" text "];
+    XCTAssertEqual(changed, YES);
 }
 
 @end

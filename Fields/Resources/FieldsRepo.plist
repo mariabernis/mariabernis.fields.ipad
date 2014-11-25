@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>type_identifier</key>
+		<string>TextField</string>
+		<key>name</key>
+		<string>Text field</string>
+		<key>thumbnail</key>
+		<string>text_field_thumb.png</string>
+		<key>short_description</key>
+		<string>Use a Text field for capturing text bla bla</string>
+		<key>drawer_classname</key>
+		<string>MBTextFieldDrawer</string>
+		<key>parameters</key>
+		<array>
+			<dict>
+				<key>param_identifier</key>
+				<string>num_lines</string>
+				<key>label</key>
+				<string>Number of lines</string>
+				<key>uicontrols</key>
+				<array>
+					<dict>
+						<key>uicontrol_class</key>
+						<string>UITextField</string>
+						<key>uicontrol_wide</key>
+						<integer>100</integer>
+						<key>uicontrol_attributes</key>
+						<array>
+							<dict>
+								<key>text</key>
+								<string>1</string>
+							</dict>
+						</array>
+					</dict>
+					<dict>
+						<key>uicontrol_class</key>
+						<string>UIStepper</string>
+						<key>uicontrol_wide</key>
+						<integer>50</integer>
+						<key>uicontrol_attributes</key>
+						<array>
+							<string></string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>param_identifier</key>
+				<string>placeholder</string>
+				<key>label</key>
+				<string>Placeholder text</string>
+				<key>uicontrols</key>
+				<array>
+					<dict>
+						<key>uicontrol_class</key>
+						<string>UITextField</string>
+						<key>uicontrol_wide</key>
+						<integer>100</integer>
+						<key>uicontrol_attributes</key>
+						<array>
+							<dict/>
+						</array>
+					</dict>
+				</array>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>

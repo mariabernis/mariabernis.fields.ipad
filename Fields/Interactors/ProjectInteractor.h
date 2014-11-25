@@ -27,6 +27,7 @@
 
 - (BOOL)canDeleteProject;
 - (BOOL)canEditProject;
+- (BOOL)isChangedTitle:(NSString *)title orDescription:(NSString *)description;
 
 #pragma mark - New
 - (void)saveNewProjectWithTitle:(NSString *)titleTxt

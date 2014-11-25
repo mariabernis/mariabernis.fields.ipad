@@ -7,9 +7,9 @@
 //
 
 #import "ProjectCell.h"
-#import "ProjectMock.h"
 #import "FormMock.h"
 #import "Project.h"
+#import "Form.h"
 
 
 @implementation ProjectCell
@@ -42,14 +42,14 @@
 
 - (void)updateCellContentsWithItem:(id)item
 {
-    if ([item isKindOfClass:[ProjectMock class]] || [item isKindOfClass:[Project class]]) {
-        ProjectMock *project = (ProjectMock *)item;
+    if ([item isKindOfClass:[Project class]]) {
+        Project *project = (Project *)item;
         self.mainTitleLabel.text = project.projectTitle;
         self.descriptionLabel.text = project.projectDescription;
-//        self.itemsInfoLabel.text = project
+        self.itemsInfoLabel.text = [NSString stringWithFormat:@"%lu forms", (unsigned long)project.forms.count];
         
-    } else if ([item isKindOfClass:[FormMock class]]) {
-        FormMock *form = (FormMock *)item;
+    } else if ([item isKindOfClass:[Form class]]) {
+        Form *form = (Form *)item;
         self.mainTitleLabel.text = form.formTitle;
         self.descriptionLabel.text = form.formDescription;
         

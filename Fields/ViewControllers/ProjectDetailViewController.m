@@ -56,7 +56,7 @@
     if (self.project) {
         self.inputTitle.text = self.project.projectTitle;
         self.inputDescription.text = self.project.projectDescription ? : @"";
-        self.navBar.topItem.title = self.project.projectTitle;
+        self.navBar.topItem.title = @"Project details";
     }
     self.deleteButton.hidden = ![self.interactor canDeleteProject];
 }

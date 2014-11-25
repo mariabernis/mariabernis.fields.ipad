@@ -4,9 +4,15 @@
 #import "_Project.h"
 
 const struct ProjectAttributes ProjectAttributes = {
+	.dateCreated = @"dateCreated",
+	.dateModified = @"dateModified",
 	.projectDescription = @"projectDescription",
 	.projectTitle = @"projectTitle",
 	.templatesContainer = @"templatesContainer",
+};
+
+const struct ProjectRelationships ProjectRelationships = {
+	.forms = @"forms",
 };
 
 @implementation ProjectID
@@ -44,6 +50,10 @@ const struct ProjectAttributes ProjectAttributes = {
 	return keyPaths;
 }
 
+@dynamic dateCreated;
+
+@dynamic dateModified;
+
 @dynamic projectDescription;
 
 @dynamic projectTitle;
@@ -66,6 +76,17 @@ const struct ProjectAttributes ProjectAttributes = {
 
 - (void)setPrimitiveTemplatesContainerValue:(BOOL)value_ {
 	[self setPrimitiveTemplatesContainer:@(value_)];
+}
+
+@dynamic forms;
+
+- (NSMutableSet*)formsSet {
+	[self willAccessValueForKey:@"forms"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"forms"];
+
+	[self didAccessValueForKey:@"forms"];
+	return result;
 }
 
 @end

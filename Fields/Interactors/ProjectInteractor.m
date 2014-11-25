@@ -47,18 +47,28 @@
         return;
     }
     
-    if ([titleTxt mb_isEmpty]) { // If titleText is nil or empty string is not valid, so return an error.
+    if ([MBCheck isEmpty:titleTxt]) { // If titleText is nil or empty string is not valid, so return an error.
         NSError *appError = [[self class] createFLDError:FLDErrorProjectTitleNil];
         
         completionBlock(NO, appError);
         return;
     }
     
+    // SAVE NO MATTER WHAT. THIS IS FOR PERSISTING DATA
+//    if (![self isChangedTitle:titleTxt orDescription:descriptionText]) {
+//        // Don't do anything
+//        completionBlock(YES, nil);
+//        return;
+//    }
+    
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         
-        Project *localProj = [self.project MR_inContext:localContext];
+//        Project *localProj = [self.project MR_inContext:localContext]; // BUG sometimes, let's be save here.
+//        https://github.com/magicalpanda/MagicalRecord/issues/184
+        Project *localProj = (Project *)[localContext objectWithID:self.project.objectID];
         localProj.projectTitle = titleTxt;
         localProj.projectDescription = descriptionText;
+        localProj.dateModified = [NSDate date];
         
     } completion:completionBlock];
 }
@@ -78,7 +88,8 @@
     }
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        Project *localProj = [self.project MR_inContext:localContext];
+//        Project *localProj = [self.project MR_inContext:localContext];
+        Project *localProj = (Project *)[localContext objectWithID:self.project.objectID];
         [localProj MR_deleteEntity];
         
     } completion:completionBlock];
@@ -108,6 +119,28 @@
     return YES;
 }
 
+- (BOOL)isChangedTitle:(NSString *)title orDescription:(NSString *)description {
+    
+    BOOL titleChanged = YES;
+    BOOL descChanged = YES;
+    if ([[self.project.projectTitle mb_trimmedString] isEqualToString:[title mb_trimmedString]]) {
+        titleChanged = NO;
+    }
+    
+    if ([MBCheck isEmpty:self.project.projectDescription] && [MBCheck isEmpty:description]) {
+        descChanged = NO;
+    }
+    
+    if (![MBCheck isEmpty:self.project.projectDescription]) {
+        if ([[self.project.projectDescription mb_trimmedString] isEqualToString:[description mb_trimmedString]]) {
+            descChanged = NO;
+        }
+    }
+    
+    return (titleChanged || descChanged);
+    
+}
+
 #pragma mark - New
 - (void)saveNewProjectWithDefaultTitleAndDescription:(NSString *)descriptionText
                      completion:(void(^)(BOOL success, NSError *error))completionBlock {
@@ -119,7 +152,7 @@
                 andDescription:(NSString *)descriptionText
                     completion:(void(^)(BOOL success, NSError *error))completionBlock {
     
-    if ([titleText mb_isEmpty]) { // If titleText is nil or empty string is not valid, so return an error.
+    if ([MBCheck isEmpty:titleText]) { // If titleText is nil or empty string is not valid, so return an error.
         NSError *appError = [[self class] createFLDError:FLDErrorProjectTitleNil];
         
         completionBlock(NO, appError);
