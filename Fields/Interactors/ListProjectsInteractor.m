@@ -14,7 +14,7 @@
 #pragma mark - List
 - (NSFetchRequest *)requestAllDefault {
     
-    return [self requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES];
+    return [self requestAllSortedBy:ProjectAttributes.dateCreated ascending:YES];
 }
 
 - (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm

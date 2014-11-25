@@ -24,11 +24,6 @@ typedef enum {
 @interface BaseInteractor : NSObject
 @property (nonatomic, strong) NSManagedObjectContext *defaultMOC;
 
-/* Implement in subclass
-- (NSFetchRequest *) requestAllSortedBy:(NSString *)sortTerm
-                              ascending:(BOOL)ascending;
-*/
-
 + (NSError *)createFLDError:(FLDError)errorCode withTitleDescription:(NSString *)displayTitle additionalSuggestion:(NSString *)extentedTxt;
 
 @end

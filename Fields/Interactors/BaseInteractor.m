@@ -18,13 +18,6 @@ NSString *const FLDErrorDomain = @"com.mariabernis.fields.error";
     return [NSManagedObjectContext MR_defaultContext];
 }
 
-/* Implement in subclass
-- (NSFetchRequest *) requestAllSortedBy:(NSString *)sortTerm
-                              ascending:(BOOL)ascending {
-    return nil;
-}
-*/
-
 + (NSError *)createFLDError:(FLDError)errorCode
        withTitleDescription:(NSString *)displayTitle
        additionalSuggestion:(NSString *)extendedTxt
