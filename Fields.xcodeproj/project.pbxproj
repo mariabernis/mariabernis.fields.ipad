@@ -55,10 +55,11 @@
 		83623B7D1A225F0100857720 /* _Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7A1A225F0100857720 /* _Form.m */; };
 		83623B7E1A225F0100857720 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7C1A225F0100857720 /* Form.m */; };
 		83623B801A22771D00857720 /* FormInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7F1A22771D00857720 /* FormInteractorTests.m */; };
+		836811F11A24A15F00341B6D /* MBCBaseOptionsChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */; };
 		837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */; };
 		837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */; };
 		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
-		837FDE951A23AC7A00D2EE0B /* FieldsRepo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE941A23AC7A00D2EE0B /* FieldsRepo.plist */; };
+		837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
@@ -135,12 +136,14 @@
 		83623B7B1A225F0100857720 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
 		83623B7C1A225F0100857720 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
 		83623B7F1A22771D00857720 /* FormInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractorTests.m; sourceTree = "<group>"; };
+		836811EF1A24A15F00341B6D /* MBCBaseOptionsChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCBaseOptionsChooser.h; sourceTree = "<group>"; };
+		836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCBaseOptionsChooser.m; sourceTree = "<group>"; };
 		837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPropsTabView.xib; sourceTree = "<group>"; };
 		837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPropsTabView.h; sourceTree = "<group>"; };
 		837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPropsTabView.m; sourceTree = "<group>"; };
 		837FDE911A237B5800D2EE0B /* FormInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInteractor.h; sourceTree = "<group>"; };
 		837FDE921A237B5800D2EE0B /* FormInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractor.m; sourceTree = "<group>"; };
-		837FDE941A23AC7A00D2EE0B /* FieldsRepo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo.plist; sourceTree = "<group>"; };
+		837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo_future.plist; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
@@ -281,7 +284,7 @@
 		8343277A1A2138930051F525 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				837FDE941A23AC7A00D2EE0B /* FieldsRepo.plist */,
+				837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -314,6 +317,8 @@
 		8343277F1A2138930051F525 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				836811EF1A24A15F00341B6D /* MBCBaseOptionsChooser.h */,
+				836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */,
 				834327801A2138930051F525 /* MBCModalVCAnimator.h */,
 				834327811A2138930051F525 /* MBCModalVCAnimator.m */,
 				834327841A2138930051F525 /* MBCoreDataFetchControllerHelper.h */,
@@ -473,7 +478,7 @@
 				834327AF1A21394F0051F525 /* Info.plist in Resources */,
 				834327A71A2138C50051F525 /* Images.xcassets in Resources */,
 				837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */,
-				837FDE951A23AC7A00D2EE0B /* FieldsRepo.plist in Resources */,
+				837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +581,7 @@
 				83623B731A22588500857720 /* ListFormsInteractor.m in Sources */,
 				834327971A2138930051F525 /* MBCModalVCAnimator.m in Sources */,
 				8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */,
+				836811F11A24A15F00341B6D /* MBCBaseOptionsChooser.m in Sources */,
 				8343279B1A2138930051F525 /* FormsViewController.m in Sources */,
 				83C742281A2160AC00F189F2 /* MBCheck.m in Sources */,
 				837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */,

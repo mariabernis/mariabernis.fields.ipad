@@ -18,4 +18,6 @@
 - (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm
                              ascending:(BOOL)ascending;
 
+- (NSArray *)allProjectsDefaultSort;
+
 @end

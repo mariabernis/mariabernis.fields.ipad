@@ -15,7 +15,7 @@
 #pragma mark - List
 - (NSFetchRequest *)requestAllForProject:(Project *)project {
     
-    return [self requestAllForProject:project sortedBy:FormAttributes.formTitle ascending:YES];
+    return [self requestAllForProject:project sortedBy:FormAttributes.dateCreated ascending:YES];
 }
 
 - (NSFetchRequest *)requestAllForProject:(Project *)project

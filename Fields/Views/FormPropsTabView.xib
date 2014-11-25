@@ -115,7 +115,7 @@
                             <gestureRecognizers/>
                         </view>
                         <view contentMode="scaleToFill" id="H0u-yv-dtG" userLabel="action delete">
-                            <rect key="frame" x="0.0" y="95" width="222.00000030870217" height="47"/>
+                            <rect key="frame" x="0.0" y="95" width="222.00000021896318" height="47"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete form" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mhn-sc-DsT">
@@ -141,9 +141,12 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="actionDeleteView" destination="H0u-yv-dtG" id="rxE-Hq-m6T"/>
+                <outlet property="actionDuplicateView" destination="HNu-43-PeU" id="OyW-Av-Kq5"/>
                 <outlet property="inputDescription" destination="vsQ-EX-yMa" id="mJG-Gw-57P"/>
                 <outlet property="inputTitle" destination="YPo-Ys-as6" id="7Xb-tV-ZQq"/>
                 <outlet property="projChooserLabel" destination="FT6-jQ-IHe" id="gz1-tb-P7D"/>
+                <outlet property="projChooserView" destination="cnd-0q-TyS" id="T9X-nM-w2V"/>
             </connections>
             <point key="canvasLocation" x="347" y="392.5"/>
         </view>

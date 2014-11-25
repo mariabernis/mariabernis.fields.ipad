@@ -14,7 +14,7 @@
 #pragma mark - List
 - (NSFetchRequest *)requestAllDefault {
     
-    return [self requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES];
+    return [self requestAllSortedBy:ProjectAttributes.dateCreated ascending:YES];
 }
 
 - (NSFetchRequest *)requestAllSortedBy:(NSString *)sortTerm
@@ -33,6 +33,21 @@
     NSFetchRequest *request = [Project MR_requestAllSortedBy:sortTerm ascending:ascending inContext:self.defaultMOC];
     
     return request;
+}
+
+- (NSArray *)allProjectsDefaultSort {
+    NSUInteger count = [Project MR_countOfEntities];
+    if (count != NSNotFound && count == 0) {
+        // Create the templates projects
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            
+            [self _createTemplatesProjectInContext:localContext];
+        }];
+    }
+    NSFetchRequest *request = [self requestAllDefault];
+    
+    NSArray *results = [Project MR_executeFetchRequest:request];
+    return results;
 }
 
 #pragma PRIVATE
