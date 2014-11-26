@@ -8,4 +8,7 @@
 @property (nonatomic, strong) NSString *typeDescription;
 @property (nonatomic, strong) UIImage *typeThumbnail;
 
+@property (nonatomic, strong) NSString *typeIdentifier;
+@property (nonatomic, strong) NSString *typeDrawer;
+
 @end

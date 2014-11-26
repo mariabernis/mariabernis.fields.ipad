@@ -16,7 +16,7 @@
 	</dict>
 	<dict>
 		<key>type_identifier</key>
-		<string>ImageFields</string>
+		<string>ImageField</string>
 		<key>name</key>
 		<string>Image</string>
 		<key>thumbnail</key>

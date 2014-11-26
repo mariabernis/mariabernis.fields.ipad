@@ -31,6 +31,10 @@
             item.typeDescription = [itemInfo objectForKey:fieldtype_description];
             NSString *imageName = [itemInfo objectForKey:fieldtype_thumbnail];
             item.typeThumbnail = [UIImage imageNamed:imageName];
+            
+            item.typeIdentifier = [itemInfo objectForKey:fieldtype_identifier];
+            item.typeDrawer = [itemInfo objectForKey:fieldtype_drawerclass];
+            
             [results addObject:item];
         }];
         

@@ -17,7 +17,7 @@
         <attribute name="indexPathSection" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="fields" inverseEntity="Form" syncable="YES"/>
     </entity>
-    <entity name="ImageField" parentEntity="FormField" syncable="YES">
+    <entity name="ImageField" representedClassName="ImageField" parentEntity="FormField" syncable="YES">
         <attribute name="capturedImage" optional="YES" attributeType="Transformable" valueTransformerName="ImageToDataTransformer" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="Project" syncable="YES">
@@ -28,7 +28,7 @@
         <attribute name="templatesContainer" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="forms" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Form" inverseName="project" inverseEntity="Form" syncable="YES"/>
     </entity>
-    <entity name="TextField" parentEntity="FormField" syncable="YES">
+    <entity name="TextField" representedClassName="TextField" parentEntity="FormField" syncable="YES">
         <attribute name="capturedText" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>

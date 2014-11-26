@@ -65,6 +65,10 @@
 		837551A61A2639EF0089CC41 /* FormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551A41A2639EF0089CC41 /* FormField.m */; };
 		837551AB1A263CEB0089CC41 /* DictionaryToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551A81A263CEB0089CC41 /* DictionaryToDataTransformer.m */; };
 		837551AC1A263CEB0089CC41 /* ImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551AA1A263CEB0089CC41 /* ImageToDataTransformer.m */; };
+		837551B51A263F3F0089CC41 /* _ImageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551AE1A263F3F0089CC41 /* _ImageField.m */; };
+		837551B61A263F3F0089CC41 /* _TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551B01A263F3F0089CC41 /* _TextField.m */; };
+		837551B71A263F3F0089CC41 /* ImageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551B21A263F3F0089CC41 /* ImageField.m */; };
+		837551B81A263F3F0089CC41 /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551B41A263F3F0089CC41 /* TextField.m */; };
 		837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */; };
 		837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */; };
 		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
@@ -166,6 +170,14 @@
 		837551A81A263CEB0089CC41 /* DictionaryToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryToDataTransformer.m; sourceTree = "<group>"; };
 		837551A91A263CEB0089CC41 /* ImageToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageToDataTransformer.h; sourceTree = "<group>"; };
 		837551AA1A263CEB0089CC41 /* ImageToDataTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageToDataTransformer.m; sourceTree = "<group>"; };
+		837551AD1A263F3F0089CC41 /* _ImageField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ImageField.h; sourceTree = "<group>"; };
+		837551AE1A263F3F0089CC41 /* _ImageField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ImageField.m; sourceTree = "<group>"; };
+		837551AF1A263F3F0089CC41 /* _TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _TextField.h; sourceTree = "<group>"; };
+		837551B01A263F3F0089CC41 /* _TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _TextField.m; sourceTree = "<group>"; };
+		837551B11A263F3F0089CC41 /* ImageField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageField.h; sourceTree = "<group>"; };
+		837551B21A263F3F0089CC41 /* ImageField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageField.m; sourceTree = "<group>"; };
+		837551B31A263F3F0089CC41 /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
+		837551B41A263F3F0089CC41 /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
 		837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPropsTabView.xib; sourceTree = "<group>"; };
 		837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPropsTabView.h; sourceTree = "<group>"; };
 		837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPropsTabView.m; sourceTree = "<group>"; };
@@ -297,6 +309,14 @@
 		834327731A2138930051F525 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				837551AD1A263F3F0089CC41 /* _ImageField.h */,
+				837551AE1A263F3F0089CC41 /* _ImageField.m */,
+				837551AF1A263F3F0089CC41 /* _TextField.h */,
+				837551B01A263F3F0089CC41 /* _TextField.m */,
+				837551B11A263F3F0089CC41 /* ImageField.h */,
+				837551B21A263F3F0089CC41 /* ImageField.m */,
+				837551B31A263F3F0089CC41 /* TextField.h */,
+				837551B41A263F3F0089CC41 /* TextField.m */,
 				837551A11A2639EF0089CC41 /* _FormField.h */,
 				837551A21A2639EF0089CC41 /* _FormField.m */,
 				837551A31A2639EF0089CC41 /* FormField.h */,
@@ -628,6 +648,7 @@
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
 				8375519D1A25F4840089CC41 /* FieldTypesListController.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
+				837551B61A263F3F0089CC41 /* _TextField.m in Sources */,
 				837551971A25EE190089CC41 /* FieldType.m in Sources */,
 				83623B731A22588500857720 /* ListFormsInteractor.m in Sources */,
 				834327971A2138930051F525 /* MBCModalVCAnimator.m in Sources */,
@@ -641,6 +662,7 @@
 				834327B01A21394F0051F525 /* main.m in Sources */,
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				83623B7E1A225F0100857720 /* Form.m in Sources */,
+				837551B71A263F3F0089CC41 /* ImageField.m in Sources */,
 				837551A01A2628A50089CC41 /* FormTableViewManager.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
 				8375519A1A25F02C0089CC41 /* FieldTypesProvider.m in Sources */,
@@ -654,7 +676,9 @@
 				837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */,
 				834327931A2138930051F525 /* _Project.m in Sources */,
 				837551A51A2639EF0089CC41 /* _FormField.m in Sources */,
+				837551B51A263F3F0089CC41 /* _ImageField.m in Sources */,
 				834327941A2138930051F525 /* FieldsModel.xcdatamodeld in Sources */,
+				837551B81A263F3F0089CC41 /* TextField.m in Sources */,
 				837551AB1A263CEB0089CC41 /* DictionaryToDataTransformer.m in Sources */,
 				834327471A2138370051F525 /* AppDelegate.m in Sources */,
 				8343278F1A2138930051F525 /* FormMock.m in Sources */,
