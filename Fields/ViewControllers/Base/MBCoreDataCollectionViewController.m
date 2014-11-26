@@ -52,7 +52,7 @@
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [[self.fetchedResultsController sections] count];;
+    return [[self.fetchedResultsController sections] count];
 }
 
 

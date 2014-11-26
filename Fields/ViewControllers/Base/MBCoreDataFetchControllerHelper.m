@@ -82,7 +82,8 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            self.blockToExecuteWhenYouNeedToUpdateYourCell(indexPath);
+            [tableV reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            self.blockToExecuteWhenYouNeedToUpdateYourCell(indexPath);
             break;
             
         case NSFetchedResultsChangeMove:

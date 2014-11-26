@@ -14,7 +14,8 @@
 #import "FieldTypesListController.h"
 #import "FieldTypesProvider.h"
 #import "FieldTypeCell.h"
-#import "FormTableViewManager.h"
+#import "FormCanvasManager.h"
+#import "FormFieldInteractor.h"
 
 #define TAB_MARGIN 30.0
 
@@ -34,7 +35,8 @@ typedef enum {
 @property (nonatomic, strong) UIPopoverController *projectChooserPopover;
 @property (nonatomic, strong) FieldTypesProvider *fieldTypesProvider;
 @property (nonatomic, strong) FieldTypesListController *fieldsTypesListController;
-@property (nonatomic, strong) FormTableViewManager *formTableManager;
+@property (nonatomic, strong) FormCanvasManager *formCanvasManager;
+@property (nonatomic, strong) FormFieldInteractor *ffi;
 
 @property (nonatomic, getter=isLPaneOpened) BOOL lPaneOpened;
 @property (nonatomic, getter=isLPaneAnimating) BOOL lPaneAnimating;
@@ -103,6 +105,13 @@ typedef enum {
     return _fieldsTypesListController;
 }
 
+- (FormFieldInteractor *)ffi {
+    if (!_ffi) {
+        _ffi = [[FormFieldInteractor alloc] init];
+    }
+    return _ffi;
+}
+
 
 #pragma mark - VC life cycle
 - (void)viewDidLoad {
@@ -121,7 +130,7 @@ typedef enum {
     self.fieldTypesTableView.dataSource = self.fieldsTypesListController;
     self.fieldTypesTableView.delegate = self.fieldsTypesListController;
     
-    self.formTableManager = [[FormTableViewManager alloc] initWithTableView:self.formCanvasTableView];
+    self.formCanvasManager = [[FormCanvasManager alloc] initWithTableView:self.formCanvasTableView andForm:self.form];
     
     // At load time both panes MUST be opened.
     self.lPaneOpened = YES;
@@ -305,8 +314,12 @@ typedef enum {
 //    // Clean
 //    UIGraphicsEndImageContext();
     
-    UIView *snapshotView = [cell snapshotViewAfterScreenUpdates:YES];
-    [self.formTableManager addItemsFromArray:@[snapshotView]];
+//    UIView *snapshotView = [cell snapshotViewAfterScreenUpdates:NO];
+//    [self.formCanvasManager addItemsFromArray:@[snapshotView]];
+    
+    [self.ffi saveNewFieldOfType:item belongingToForm:self.form completion:^(FormField *newFormField, NSError *error) {
+        
+    }];
 }
 
 

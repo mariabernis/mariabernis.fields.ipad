@@ -60,7 +60,7 @@
 		837551971A25EE190089CC41 /* FieldType.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551961A25EE190089CC41 /* FieldType.m */; };
 		8375519A1A25F02C0089CC41 /* FieldTypesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551991A25F02C0089CC41 /* FieldTypesProvider.m */; };
 		8375519D1A25F4840089CC41 /* FieldTypesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375519C1A25F4840089CC41 /* FieldTypesListController.m */; };
-		837551A01A2628A50089CC41 /* FormTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375519F1A2628A50089CC41 /* FormTableViewManager.m */; };
+		837551A01A2628A50089CC41 /* FormCanvasManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375519F1A2628A50089CC41 /* FormCanvasManager.m */; };
 		837551A51A2639EF0089CC41 /* _FormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551A21A2639EF0089CC41 /* _FormField.m */; };
 		837551A61A2639EF0089CC41 /* FormField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551A41A2639EF0089CC41 /* FormField.m */; };
 		837551AB1A263CEB0089CC41 /* DictionaryToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551A81A263CEB0089CC41 /* DictionaryToDataTransformer.m */; };
@@ -69,6 +69,8 @@
 		837551B61A263F3F0089CC41 /* _TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551B01A263F3F0089CC41 /* _TextField.m */; };
 		837551B71A263F3F0089CC41 /* ImageField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551B21A263F3F0089CC41 /* ImageField.m */; };
 		837551B81A263F3F0089CC41 /* TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551B41A263F3F0089CC41 /* TextField.m */; };
+		837551BB1A2641770089CC41 /* FormFieldInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551BA1A2641770089CC41 /* FormFieldInteractor.m */; };
+		837551BE1A264A5D0089CC41 /* FormCanvasInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551BD1A264A5D0089CC41 /* FormCanvasInteractor.m */; };
 		837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */; };
 		837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */; };
 		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
@@ -160,8 +162,8 @@
 		837551991A25F02C0089CC41 /* FieldTypesProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTypesProvider.m; sourceTree = "<group>"; };
 		8375519B1A25F4840089CC41 /* FieldTypesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTypesListController.h; sourceTree = "<group>"; };
 		8375519C1A25F4840089CC41 /* FieldTypesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTypesListController.m; sourceTree = "<group>"; };
-		8375519E1A2628A50089CC41 /* FormTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewManager.h; sourceTree = "<group>"; };
-		8375519F1A2628A50089CC41 /* FormTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewManager.m; sourceTree = "<group>"; };
+		8375519E1A2628A50089CC41 /* FormCanvasManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCanvasManager.h; sourceTree = "<group>"; };
+		8375519F1A2628A50089CC41 /* FormCanvasManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCanvasManager.m; sourceTree = "<group>"; };
 		837551A11A2639EF0089CC41 /* _FormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _FormField.h; sourceTree = "<group>"; };
 		837551A21A2639EF0089CC41 /* _FormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _FormField.m; sourceTree = "<group>"; };
 		837551A31A2639EF0089CC41 /* FormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormField.h; sourceTree = "<group>"; };
@@ -178,6 +180,10 @@
 		837551B21A263F3F0089CC41 /* ImageField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageField.m; sourceTree = "<group>"; };
 		837551B31A263F3F0089CC41 /* TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextField.h; sourceTree = "<group>"; };
 		837551B41A263F3F0089CC41 /* TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextField.m; sourceTree = "<group>"; };
+		837551B91A2641770089CC41 /* FormFieldInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormFieldInteractor.h; sourceTree = "<group>"; };
+		837551BA1A2641770089CC41 /* FormFieldInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormFieldInteractor.m; sourceTree = "<group>"; };
+		837551BC1A264A5D0089CC41 /* FormCanvasInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCanvasInteractor.h; sourceTree = "<group>"; };
+		837551BD1A264A5D0089CC41 /* FormCanvasInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCanvasInteractor.m; sourceTree = "<group>"; };
 		837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPropsTabView.xib; sourceTree = "<group>"; };
 		837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPropsTabView.h; sourceTree = "<group>"; };
 		837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPropsTabView.m; sourceTree = "<group>"; };
@@ -287,6 +293,10 @@
 				83623B721A22588500857720 /* ListFormsInteractor.m */,
 				837FDE911A237B5800D2EE0B /* FormInteractor.h */,
 				837FDE921A237B5800D2EE0B /* FormInteractor.m */,
+				837551B91A2641770089CC41 /* FormFieldInteractor.h */,
+				837551BA1A2641770089CC41 /* FormFieldInteractor.m */,
+				837551BC1A264A5D0089CC41 /* FormCanvasInteractor.h */,
+				837551BD1A264A5D0089CC41 /* FormCanvasInteractor.m */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -370,8 +380,8 @@
 				834327871A2138930051F525 /* FormDesignerViewController.m */,
 				8375519B1A25F4840089CC41 /* FieldTypesListController.h */,
 				8375519C1A25F4840089CC41 /* FieldTypesListController.m */,
-				8375519E1A2628A50089CC41 /* FormTableViewManager.h */,
-				8375519F1A2628A50089CC41 /* FormTableViewManager.m */,
+				8375519E1A2628A50089CC41 /* FormCanvasManager.h */,
+				8375519F1A2628A50089CC41 /* FormCanvasManager.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -663,7 +673,7 @@
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				83623B7E1A225F0100857720 /* Form.m in Sources */,
 				837551B71A263F3F0089CC41 /* ImageField.m in Sources */,
-				837551A01A2628A50089CC41 /* FormTableViewManager.m in Sources */,
+				837551A01A2628A50089CC41 /* FormCanvasManager.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
 				8375519A1A25F02C0089CC41 /* FieldTypesProvider.m in Sources */,
 				837551A61A2639EF0089CC41 /* FormField.m in Sources */,
@@ -677,9 +687,11 @@
 				834327931A2138930051F525 /* _Project.m in Sources */,
 				837551A51A2639EF0089CC41 /* _FormField.m in Sources */,
 				837551B51A263F3F0089CC41 /* _ImageField.m in Sources */,
+				837551BB1A2641770089CC41 /* FormFieldInteractor.m in Sources */,
 				834327941A2138930051F525 /* FieldsModel.xcdatamodeld in Sources */,
 				837551B81A263F3F0089CC41 /* TextField.m in Sources */,
 				837551AB1A263CEB0089CC41 /* DictionaryToDataTransformer.m in Sources */,
+				837551BE1A264A5D0089CC41 /* FormCanvasInteractor.m in Sources */,
 				834327471A2138370051F525 /* AppDelegate.m in Sources */,
 				8343278F1A2138930051F525 /* FormMock.m in Sources */,
 				834327911A2138930051F525 /* ProjectMock.m in Sources */,
