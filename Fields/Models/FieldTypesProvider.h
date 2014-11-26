@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface FieldTypesProvider : NSObject
-
+- (void)loadFieldTypesWithCompletion:(void(^)(NSArray *fieldTypes, NSError *error))completionBlock;
 @end

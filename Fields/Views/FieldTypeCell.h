@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class FieldType;
 @interface FieldTypeCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *typeThumbnailView;
+@property (weak, nonatomic) IBOutlet UILabel *typeNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeDescriptionLabel;
+
+- (void)setupWithFieldType:(FieldType *)type;
 
 @end

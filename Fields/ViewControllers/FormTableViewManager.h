@@ -1,13 +1,12 @@
-//
-//  FormTableViewManager.h
-//  Fields
-//
-//  Created by Maria Bernis on 26/11/14.
-//  Copyright (c) 2014 mariabernis. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface FormTableViewManager : NSObject
 
+
+
+
+@interface FormTableViewManager : NSObject <UITableViewDataSource, UITableViewDelegate>
+- (instancetype)initWithTableView:(UITableView *)aTableView;
+- (void)addItemsFromArray:(NSArray *)items;
 @end

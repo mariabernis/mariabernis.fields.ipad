@@ -11,6 +11,10 @@
 #import "FormInteractor.h"
 #import "ListProjectsInteractor.h"
 #import "MBCBaseOptionsChooser.h"
+#import "FieldTypesListController.h"
+#import "FieldTypesProvider.h"
+#import "FieldTypeCell.h"
+#import "FormTableViewManager.h"
 
 #define TAB_MARGIN 30.0
 
@@ -19,7 +23,7 @@ typedef enum {
     LateralPaneRIGHT
 } LateralPane;
 
-@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate>
+@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate, FieldTypesListControllerDelegate>
 
 // Properties
 @property (nonatomic, strong) FormInteractor *fi;
@@ -28,6 +32,9 @@ typedef enum {
 @property (nonatomic, strong) NSArray *listProjects;
 @property (nonatomic, strong) MBCBaseOptionsChooser *projectChooserVC;
 @property (nonatomic, strong) UIPopoverController *projectChooserPopover;
+@property (nonatomic, strong) FieldTypesProvider *fieldTypesProvider;
+@property (nonatomic, strong) FieldTypesListController *fieldsTypesListController;
+@property (nonatomic, strong) FormTableViewManager *formTableManager;
 
 @property (nonatomic, getter=isLPaneOpened) BOOL lPaneOpened;
 @property (nonatomic, getter=isLPaneAnimating) BOOL lPaneAnimating;
@@ -43,6 +50,11 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UIView *rightPaneContent;
 @property (weak, nonatomic) IBOutlet UIView *canvasView;
 @property (weak, nonatomic) IBOutlet FormPropsTabView *formPropsTabView;
+@property (weak, nonatomic) IBOutlet UITableView *fieldTypesTableView;
+@property (weak, nonatomic) IBOutlet UITableView *formCanvasTableView;
+@property (weak, nonatomic) IBOutlet UILabel *formCanvasTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *formCanvasProjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *formCanvasDescLabel;
 
 @end
 
@@ -76,12 +88,40 @@ typedef enum {
     }
 }
 
+- (FieldTypesProvider *)fieldTypesProvider {
+    if (!_fieldTypesProvider) {
+        _fieldTypesProvider = [[FieldTypesProvider alloc] init];
+    }
+    return _fieldTypesProvider;
+}
+
+- (FieldTypesListController *)fieldsTypesListController {
+    if (!_fieldsTypesListController) {
+        _fieldsTypesListController = [[FieldTypesListController alloc] init];
+        _fieldsTypesListController.delegate = self;
+    }
+    return _fieldsTypesListController;
+}
+
+
 #pragma mark - VC life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Backg. notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResigneActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    // Load content
+    [self.fieldTypesProvider loadFieldTypesWithCompletion:^(NSArray *fieldTypes, NSError *error) {
+        if (!error) {
+            self.fieldsTypesListController.data = fieldTypes;
+            [self.fieldTypesTableView reloadData];
+        }
+    }];
+    self.fieldTypesTableView.dataSource = self.fieldsTypesListController;
+    self.fieldTypesTableView.delegate = self.fieldsTypesListController;
+    
+    self.formTableManager = [[FormTableViewManager alloc] initWithTableView:self.formCanvasTableView];
     
     // At load time both panes MUST be opened.
     self.lPaneOpened = YES;
@@ -128,7 +168,7 @@ typedef enum {
 - (void)updateUIWithFormData {
     self.selectedProject = self.form.project;
     // Update UI to form data
-    self.navigationItem.title = self.form.formTitle;
+//    self.navigationItem.title = self.form.formTitle;
     self.formPropsTabView.inputTitle.text = self.form.formTitle;
     self.formPropsTabView.inputDescription.text = self.form.formDescription ? : @"";
 }
@@ -149,6 +189,59 @@ typedef enum {
                           }
                       }];
 }
+
+- (IBAction)discardButtonPressed:(id)sender {
+    
+    [self deleteFormAction:sender];
+    
+    //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)doneButtonPressed:(id)sender {
+    [self saveChanges:^(NSError *error) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+
+- (void)deleteFormAction:(id)sender {
+    
+    UIAlertController *alertController;
+    UIAlertAction *destroyAction;
+    //    UIAlertAction *otherAction;
+    
+    alertController = [UIAlertController alertControllerWithTitle:nil
+                                                          message:nil
+                                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    destroyAction = [UIAlertAction actionWithTitle:@"Delete form"
+                                             style:UIAlertActionStyleDestructive
+                                           handler:^(UIAlertAction *action) {
+                                               // do destructive stuff here
+                                               
+                                               [self.fi deleteForm:^(BOOL success, NSError *error) {
+                                                   [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                                               }];
+                                               
+                                           }];
+    
+    // note: you can control the order buttons are shown, unlike UIActionSheet
+    [alertController addAction:destroyAction];
+    [alertController setModalPresentationStyle:UIModalPresentationPopover];
+    
+    UIPopoverPresentationController *popPresenter = [alertController
+                                                     popoverPresentationController];
+    
+    if ([sender isKindOfClass:[UIView class]]) {
+        popPresenter.sourceView = (UIView *)sender;
+        popPresenter.sourceRect = ((UIView *)sender).bounds;
+        
+    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        popPresenter.barButtonItem = sender;
+    }
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 
 #pragma mark - Form actions
 - (void)tappedOnProjectsChooser:(UITapGestureRecognizer *)gesture {
@@ -191,59 +284,33 @@ typedef enum {
     self.projectChooserPopover = nil;
 }
 
-
-- (IBAction)discardButtonPressed:(id)sender {
-
-    [self deleteFormAction:sender];
+#pragma mark - FieldTypesListControllerDelegate
+- (void)fieldTypesList:(FieldTypesListController *)controller configureCell:(FieldTypeCell *)cell atIndexPath:(NSIndexPath *)indexPath withItem:(FieldType *)item {
     
-    //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [cell setupWithFieldType:item];
 }
 
-- (IBAction)doneButtonPressed:(id)sender {
-    [self saveChanges:^(NSError *error) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }];
+- (void)fieldTypesList:(FieldTypesListController *)controller didSelectCell:(FieldTypeCell *)cell atIndexPath:(NSIndexPath *)indexPath withItem:(FieldType *)item {
+    
+//    // Create the image context
+//    UIGraphicsBeginImageContextWithOptions(cell.bounds.size, NO, 0);
+//    
+//    // TO-DO add it to the form
+//    // Thake the snapshot
+//    [cell drawViewHierarchyInRect:self.view.frame afterScreenUpdates:NO];
+//    // Get the snapshot
+//    UIImage *snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+//    [self.formTableManager addItemsFromArray:@[snapshotImage]];
+//    
+//    // Clean
+//    UIGraphicsEndImageContext();
+    
+    UIView *snapshotView = [cell snapshotViewAfterScreenUpdates:YES];
+    [self.formTableManager addItemsFromArray:@[snapshotView]];
 }
 
-- (void)deleteFormAction:(id)sender {
-    
-    UIAlertController *alertController;
-    UIAlertAction *destroyAction;
-//    UIAlertAction *otherAction;
-    
-    alertController = [UIAlertController alertControllerWithTitle:nil
-                                                          message:nil
-                                                   preferredStyle:UIAlertControllerStyleActionSheet];
-    destroyAction = [UIAlertAction actionWithTitle:@"Delete form"
-                                             style:UIAlertActionStyleDestructive
-                                           handler:^(UIAlertAction *action) {
-                                               // do destructive stuff here
-                                               
-                                               [self.fi deleteForm:^(BOOL success, NSError *error) {
-                                                   [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-                                               }];
-                                               
-                                           }];
-    
-    // note: you can control the order buttons are shown, unlike UIActionSheet
-    [alertController addAction:destroyAction];
-    [alertController setModalPresentationStyle:UIModalPresentationPopover];
-    
-    UIPopoverPresentationController *popPresenter = [alertController
-                                                     popoverPresentationController];
-    
-    if ([sender isKindOfClass:[UIView class]]) {
-        popPresenter.sourceView = (UIView *)sender;
-        popPresenter.sourceRect = ((UIView *)sender).bounds;
-        
-    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-        popPresenter.barButtonItem = sender;
-    }
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-}
 
+#pragma mark - Panes
 
 - (IBAction)leftPaneTabDragged:(UIPanGestureRecognizer *)recognizer {
     
@@ -362,14 +429,16 @@ typedef enum {
     }
     
     // Maths
-    CGFloat offsetX = initialXCenter + offsetMultiplier * (CGRectGetWidth(view.frame) - TAB_MARGIN);
+    CGFloat paneNewCenterX = initialXCenter + offsetMultiplier * (CGRectGetWidth(view.frame) - TAB_MARGIN);
     CGFloat canvasNewX = 0;
+    UIView *paneContentView = view.subviews[0];
     switch (side) {
         case LateralPaneLEFT: {
             if (isOpen) {
-                canvasNewX = offsetX + view.center.x;
+                CGFloat paneNewOriginX = paneNewCenterX + offsetMultiplier * CGRectGetWidth(view.frame)/2;
+                canvasNewX = paneNewOriginX + CGRectGetWidth(paneContentView.frame);
             } else {
-                canvasNewX = CGRectGetWidth(view.frame);
+                canvasNewX = CGRectGetWidth(paneContentView.frame);
             }
 
             break;
@@ -388,7 +457,7 @@ typedef enum {
         [UIView animateWithDuration:0.3
                          animations:^{
                              
-                             view.center = CGPointMake(offsetX,
+                             view.center = CGPointMake(paneNewCenterX,
                                                        view.center.y);
                              self.canvasView.frame = CGRectMake(canvasNewX,
                                                                 CGRectGetMinY(self.canvasView.frame),

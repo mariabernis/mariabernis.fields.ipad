@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<array>
+	<dict>
+		<key>type_identifier</key>
+		<string>TextField</string>
+		<key>name</key>
+		<string>Text</string>
+		<key>thumbnail</key>
+		<string>field_text_text</string>
+		<key>short_description</key>
+		<string>Capture any text. </string>
+		<key>drawer_classname</key>
+		<string>FLDTextFieldDrawer</string>
+	</dict>
+	<dict>
+		<key>type_identifier</key>
+		<string>ImageFields</string>
+		<key>name</key>
+		<string>Image</string>
+		<key>thumbnail</key>
+		<string>field_image_green</string>
+		<key>short_description</key>
+		<string>Capture photos from camera or your albums.</string>
+		<key>drawer_classname</key>
+		<string>FLDImageFieldDrawer</string>
+	</dict>
+</array>
 </plist>

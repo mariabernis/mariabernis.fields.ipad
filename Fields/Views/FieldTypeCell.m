@@ -7,17 +7,16 @@
 //
 
 #import "FieldTypeCell.h"
+#import "FieldType.h"
 
 @implementation FieldTypeCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setupWithFieldType:(FieldType *)type {
+    self.typeNameLabel.text = type.typeName;
+    self.typeDescriptionLabel.text = type.typeDescription;
+    self.typeThumbnailView.image = type.typeThumbnail;
+    
+    [self.typeDescriptionLabel sizeToFit];
 }
 
 @end

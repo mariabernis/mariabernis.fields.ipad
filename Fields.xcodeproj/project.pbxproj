@@ -56,10 +56,16 @@
 		83623B7E1A225F0100857720 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7C1A225F0100857720 /* Form.m */; };
 		83623B801A22771D00857720 /* FormInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7F1A22771D00857720 /* FormInteractorTests.m */; };
 		836811F11A24A15F00341B6D /* MBCBaseOptionsChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */; };
+		837551941A25ECA10089CC41 /* FieldTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551931A25ECA10089CC41 /* FieldTypeCell.m */; };
+		837551971A25EE190089CC41 /* FieldType.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551961A25EE190089CC41 /* FieldType.m */; };
+		8375519A1A25F02C0089CC41 /* FieldTypesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 837551991A25F02C0089CC41 /* FieldTypesProvider.m */; };
+		8375519D1A25F4840089CC41 /* FieldTypesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375519C1A25F4840089CC41 /* FieldTypesListController.m */; };
+		837551A01A2628A50089CC41 /* FormTableViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8375519F1A2628A50089CC41 /* FormTableViewManager.m */; };
 		837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */; };
 		837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */; };
 		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
 		837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */; };
+		837FE4201A2561010011233E /* FieldsRepo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FE41F1A2561010011233E /* FieldsRepo.plist */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
@@ -138,12 +144,23 @@
 		83623B7F1A22771D00857720 /* FormInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractorTests.m; sourceTree = "<group>"; };
 		836811EF1A24A15F00341B6D /* MBCBaseOptionsChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCBaseOptionsChooser.h; sourceTree = "<group>"; };
 		836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCBaseOptionsChooser.m; sourceTree = "<group>"; };
+		837551921A25ECA00089CC41 /* FieldTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTypeCell.h; sourceTree = "<group>"; };
+		837551931A25ECA10089CC41 /* FieldTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTypeCell.m; sourceTree = "<group>"; };
+		837551951A25EE190089CC41 /* FieldType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldType.h; sourceTree = "<group>"; };
+		837551961A25EE190089CC41 /* FieldType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldType.m; sourceTree = "<group>"; };
+		837551981A25F02C0089CC41 /* FieldTypesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTypesProvider.h; sourceTree = "<group>"; };
+		837551991A25F02C0089CC41 /* FieldTypesProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTypesProvider.m; sourceTree = "<group>"; };
+		8375519B1A25F4840089CC41 /* FieldTypesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldTypesListController.h; sourceTree = "<group>"; };
+		8375519C1A25F4840089CC41 /* FieldTypesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldTypesListController.m; sourceTree = "<group>"; };
+		8375519E1A2628A50089CC41 /* FormTableViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormTableViewManager.h; sourceTree = "<group>"; };
+		8375519F1A2628A50089CC41 /* FormTableViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormTableViewManager.m; sourceTree = "<group>"; };
 		837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPropsTabView.xib; sourceTree = "<group>"; };
 		837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPropsTabView.h; sourceTree = "<group>"; };
 		837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPropsTabView.m; sourceTree = "<group>"; };
 		837FDE911A237B5800D2EE0B /* FormInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInteractor.h; sourceTree = "<group>"; };
 		837FDE921A237B5800D2EE0B /* FormInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractor.m; sourceTree = "<group>"; };
 		837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo_future.plist; sourceTree = "<group>"; };
+		837FE41F1A2561010011233E /* FieldsRepo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo.plist; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
@@ -277,6 +294,10 @@
 				834327781A2138930051F525 /* Project.h */,
 				834327791A2138930051F525 /* Project.m */,
 				834327761A2138930051F525 /* FieldsModel.xcdatamodeld */,
+				837551951A25EE190089CC41 /* FieldType.h */,
+				837551961A25EE190089CC41 /* FieldType.m */,
+				837551981A25F02C0089CC41 /* FieldTypesProvider.h */,
+				837551991A25F02C0089CC41 /* FieldTypesProvider.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */,
+				837FE41F1A2561010011233E /* FieldsRepo.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -310,6 +332,10 @@
 				834327891A2138930051F525 /* FormsViewController.m */,
 				834327861A2138930051F525 /* FormDesignerViewController.h */,
 				834327871A2138930051F525 /* FormDesignerViewController.m */,
+				8375519B1A25F4840089CC41 /* FieldTypesListController.h */,
+				8375519C1A25F4840089CC41 /* FieldTypesListController.m */,
+				8375519E1A2628A50089CC41 /* FormTableViewManager.h */,
+				8375519F1A2628A50089CC41 /* FormTableViewManager.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -340,6 +366,8 @@
 				837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */,
 				834327A51A2138C50051F525 /* ProjectCell.h */,
 				834327A61A2138C50051F525 /* ProjectCell.m */,
+				837551921A25ECA00089CC41 /* FieldTypeCell.h */,
+				837551931A25ECA10089CC41 /* FieldTypeCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -479,6 +507,7 @@
 				834327A71A2138C50051F525 /* Images.xcassets in Resources */,
 				837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */,
 				837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */,
+				837FE4201A2561010011233E /* FieldsRepo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,9 +606,12 @@
 				830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */,
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
+				8375519D1A25F4840089CC41 /* FieldTypesListController.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
+				837551971A25EE190089CC41 /* FieldType.m in Sources */,
 				83623B731A22588500857720 /* ListFormsInteractor.m in Sources */,
 				834327971A2138930051F525 /* MBCModalVCAnimator.m in Sources */,
+				837551941A25ECA10089CC41 /* FieldTypeCell.m in Sources */,
 				8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */,
 				836811F11A24A15F00341B6D /* MBCBaseOptionsChooser.m in Sources */,
 				8343279B1A2138930051F525 /* FormsViewController.m in Sources */,
@@ -588,7 +620,9 @@
 				834327B01A21394F0051F525 /* main.m in Sources */,
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				83623B7E1A225F0100857720 /* Form.m in Sources */,
+				837551A01A2628A50089CC41 /* FormTableViewManager.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
+				8375519A1A25F02C0089CC41 /* FieldTypesProvider.m in Sources */,
 				8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */,
 				83623B7D1A225F0100857720 /* _Form.m in Sources */,
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
