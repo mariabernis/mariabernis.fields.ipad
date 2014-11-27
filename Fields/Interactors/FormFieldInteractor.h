@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseInteractor.h"
+#import "FormField.h"
 
 @class FieldType, Form, FormField;
 @interface FormFieldInteractor : BaseInteractor

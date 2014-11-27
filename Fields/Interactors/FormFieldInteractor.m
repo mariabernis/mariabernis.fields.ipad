@@ -8,7 +8,7 @@
 
 #import "FormFieldInteractor.h"
 #import "FieldType.h"
-#import "FormField.h"
+#import "Form.h"
 
 
 @interface FormFieldInteractor ()
@@ -42,6 +42,8 @@
     FormField *field = (FormField *)[NSEntityDescription insertNewObjectForEntityForName:type.typeIdentifier inManagedObjectContext:context];
     field.form = form;
     field.fieldTitle = @"Some title";
+    NSUInteger count = form.fields.count;
+    field.indexPathRow = @(count);
     
     return field;
 }

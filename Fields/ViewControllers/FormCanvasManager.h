@@ -3,8 +3,20 @@
 #import <UIKit/UIKit.h>
 
 
-@class Form;
+@class Form, FormCanvasManager, FormField;
+
+@protocol FormCanvasManagerDelegate <NSObject>
+
+@required
+- (void)formManager:(FormCanvasManager *)formManager didActivateField:(FormField *)field;
+
+@optional
+@end
+
 @interface FormCanvasManager : NSObject <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
-- (instancetype)initWithTableView:(UITableView *)aTableView andForm:(Form *)aForm;
-- (void)addItemsFromArray:(NSArray *)items;
+@property (nonatomic, weak) id<FormCanvasManagerDelegate> delegate;
+
+
+- (instancetype)initWithTableView:(UITableView *)aTableView form:(Form *)aForm  delegate:(id<FormCanvasManagerDelegate>)delegate;
+
 @end

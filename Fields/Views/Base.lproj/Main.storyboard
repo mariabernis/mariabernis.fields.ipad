@@ -207,7 +207,7 @@
                                         </prototypes>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.88581663370132446" green="0.91545557975769043" blue="0.81058734655380249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93466836214065552" green="0.93187814950942993" blue="0.90327221155166626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="JuZ-Np-oom" userLabel="Left Pane">
                                 <rect key="frame" x="0.0" y="65" width="251" height="703"/>
@@ -270,7 +270,7 @@
                                                 </prototypes>
                                             </tableView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.93466836214065552" green="0.93187814950942993" blue="0.90327221155166626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.88581663370132446" green="0.91545557975769043" blue="0.81058734655380249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="K4S-08-oAW" userLabel="Leftpane tab">
                                         <rect key="frame" x="176" y="621" width="75" height="82"/>
@@ -304,7 +304,6 @@
                                                     <segment title="Field"/>
                                                     <segment title="Form"/>
                                                 </segments>
-                                                <color key="tintColor" red="0.57124841213226318" green="0.67889440059661865" blue="0.31615442037582397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="propsTabChanged:" destination="8PX-6O-j31" eventType="valueChanged" id="wvr-XQ-8DW"/>
                                                 </connections>
@@ -320,7 +319,7 @@
                                                 <color key="backgroundColor" red="0.73889005184173584" green="0.45102322101593018" blue="0.39640545845031738" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.93466836214065552" green="0.93187814950942993" blue="0.90327221155166626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.88581663370132446" green="0.91545557975769043" blue="0.81058734655380249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="FOY-fm-0O0" userLabel="Rightpane tab">
                                         <rect key="frame" x="0.0" y="621" width="75" height="82"/>
@@ -345,7 +344,6 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="8g6-ew-FQJ">
-                            <color key="tintColor" red="0.57124841213226318" green="0.67889440059661865" blue="0.31615442037582397" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="doneButtonPressed:" destination="8PX-6O-j31" id="TBM-Da-aXw"/>
                             </connections>

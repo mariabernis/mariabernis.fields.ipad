@@ -9,6 +9,8 @@
 @property (weak, nonatomic) IBOutlet UIView *actionDuplicateView;
 @property (weak, nonatomic) IBOutlet UIView *actionDeleteView;
 
+@property (nonatomic) BOOL activeOptions;
+
 - (void)addDelegateForInputs:(id<UITextFieldDelegate, UITextViewDelegate>)inputsDelegate;
 
 @end

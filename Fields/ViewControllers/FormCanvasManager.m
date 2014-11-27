@@ -16,18 +16,21 @@
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) MBCoreDataFetchControllerHelper *fetchControllerHelper;
 @property (nonatomic, strong) FormCanvasInteractor *fci;
+//@property (nonatomic, strong) FormField *activeField;
+@property (nonatomic, strong) NSIndexPath *activeFieldIndex;
 @end
 
 
 @implementation FormCanvasManager
 @synthesize fetchedResultsController = _fetchedResultsController;
 
-- (instancetype)initWithTableView:(UITableView *)aTableView andForm:(Form *)aForm
+- (instancetype)initWithTableView:(UITableView *)aTableView form:(Form *)aForm  delegate:(id<FormCanvasManagerDelegate>)delegate
 {
     self = [super init];
     if (self) {
         self.tableView = aTableView;
         _form = aForm;
+        _delegate = delegate;
         _items = [NSMutableArray array];
         _fetchControllerHelper = [[MBCoreDataFetchControllerHelper alloc] initWithTableView:_tableView usingUpdateCellsBlock:nil];
     }
@@ -80,13 +83,15 @@
 }
 
 
-- (void)addItemsFromArray:(NSArray *)items
-{
-    [self.items addObjectsFromArray:[items copy]];
-    [self.tableView reloadData];
+- (void)addNewFieldOfType:(FieldType *)type {
 }
 
-- (void)addNewFieldOfType:(FieldType *)type {
+- (BOOL)someFieldSelected {
+    NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
+    if (selected) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -161,7 +166,9 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    self.activeFieldIndex = indexPath;
+    FormField *item = (FormField *)[self objectAtIndexPath:indexPath];
+    [self.delegate formManager:self didActivateField:item];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,6 +188,34 @@
     }
     
     return result;
+}
+
+
+#pragma mark - Form properties UUITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    // Apply form changes to canvas controller.
+    if (![self someFieldSelected]) {
+        return;
+    }
+    
+    FormField *activeField = (FormField *)[self objectAtIndexPath:self.activeFieldIndex];
+    activeField.fieldTitle = textField.text;
+    
+//    [self.tableView selectRowAtIndexPath:self.activeFieldIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+#pragma mark - Form properties UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    // Apply form changes to canvas controller.
+    if (![self someFieldSelected]) {
+        return;
+    }
+    
+    FormField *activeField = (FormField *)[self objectAtIndexPath:self.activeFieldIndex];
+    activeField.fieldDescription = textView.text;
+    
+//    [self.tableView selectRowAtIndexPath:self.activeFieldIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
 }
 
 

@@ -8,7 +8,40 @@
 
 #import "FieldPropsTabView.h"
 
+@interface FieldPropsTabView ()
+
+@property (weak, nonatomic) IBOutlet UIView *inactiveView;
+@end
+
+
 @implementation FieldPropsTabView
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonSetup];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonSetup];
+    }
+    return self;
+}
+
+- (void)commonSetup {
+    self.activeOptions = NO;
+}
+
+- (void)setActiveOptions:(BOOL)activeOptions {
+    _activeOptions = activeOptions;
+    self.inactiveView.hidden = activeOptions;
+}
 
 - (void)addDelegateForInputs:(id<UITextFieldDelegate, UITextViewDelegate>)inputsDelegate {
     

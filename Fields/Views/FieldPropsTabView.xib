@@ -89,7 +89,7 @@
                             <gestureRecognizers/>
                         </view>
                         <view contentMode="scaleToFill" id="H0u-yv-dtG" userLabel="action delete">
-                            <rect key="frame" x="0.0" y="95" width="222.00000023746671" height="47"/>
+                            <rect key="frame" x="0.0" y="95" width="222.00000023746668" height="47"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete field" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mhn-sc-DsT">
@@ -110,6 +110,20 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
+                <view contentMode="scaleToFill" id="k6x-LW-Yzj" userLabel="Inactive view">
+                    <rect key="frame" x="0.0" y="0.0" width="222" height="659"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a field to see its properties. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wg-4m-S8l">
+                            <rect key="frame" x="26" y="43" width="170" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.15059581398963928" green="0.21334007382392883" blue="0.27511560916900635" alpha="0.57999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93466836214065552" green="0.93187814950942993" blue="0.90327221155166626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -117,6 +131,7 @@
             <connections>
                 <outlet property="actionDeleteView" destination="H0u-yv-dtG" id="owm-2X-jVB"/>
                 <outlet property="actionDuplicateView" destination="HNu-43-PeU" id="NqF-0q-sKK"/>
+                <outlet property="inactiveView" destination="k6x-LW-Yzj" id="6VI-Lg-gsC"/>
                 <outlet property="inputDescription" destination="vsQ-EX-yMa" id="gwA-iA-NEv"/>
                 <outlet property="inputTitle" destination="YPo-Ys-as6" id="gqk-xL-Dac"/>
             </connections>

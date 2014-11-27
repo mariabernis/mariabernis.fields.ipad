@@ -27,7 +27,7 @@ typedef enum {
     LateralPaneRIGHT
 } LateralPane;
 
-@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate, FieldTypesListControllerDelegate, UITextInputDelegate, UITextViewDelegate>
+@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate, FieldTypesListControllerDelegate, FormCanvasManagerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 // Properties
 @property (nonatomic, strong) FormInteractor *fi;
@@ -138,7 +138,7 @@ typedef enum {
     self.fieldTypesTableView.dataSource = self.fieldsTypesListController;
     self.fieldTypesTableView.delegate = self.fieldsTypesListController;
     
-    self.formCanvasManager = [[FormCanvasManager alloc] initWithTableView:self.formCanvasTableView andForm:self.form];
+    self.formCanvasManager = [[FormCanvasManager alloc] initWithTableView:self.formCanvasTableView form:self.form delegate:self];
     
     // At load time both panes ARE open.
     self.lPaneOpened = YES;
@@ -389,16 +389,27 @@ typedef enum {
     }];
 }
 
+#pragma mark - FormCanvasManagerDelegate
+- (void)formManager:(FormCanvasManager *)formManager didActivateField:(FormField *)field {
+    self.fieldPropsTabView.activeOptions = YES;
+    
+    // Props drawing logic, depending on field selected.
+    self.fieldPropsTabView.inputTitle.text = field.fieldTitle;
+    self.fieldPropsTabView.inputDescription.text = field.fieldDescription;
+    
+    self.propsTab.selectedSegmentIndex = PROPS_TAB_FIELD;
+    [self selectPropertiesTab:PROPS_TAB_FIELD];
+    if (!self.rPaneOpened) {
+        [self openLateralPane:LateralPaneRIGHT];
+    }
+}
 
-#pragma mark - Form properties UITextInputDelegate
-- (void)selectionWillChange:(id <UITextInput>)textInput{}
-- (void)selectionDidChange:(id <UITextInput>)textInput{}
-- (void)textWillChange:(id <UITextInput>)textInput{}
 
-- (void)textDidChange:(id <UITextInput>)textInput{
+#pragma mark - Form properties UUITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     // Apply form changes to canvas controller.
-    if (textInput == self.formPropsTabView.inputTitle) {
-        self.form.formTitle = ((UITextField *)textInput).text;
+    if (textField == self.formPropsTabView.inputTitle) {
+        self.form.formTitle = textField.text;
     }
 }
 
