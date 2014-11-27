@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MBCoreDataStack setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"FieldsModel"];
+    
+    [self.window setTintColor:[UIColor colorWithRed:0.529 green:0.705 blue:0.301 alpha:1]];
     return YES;
 }
 

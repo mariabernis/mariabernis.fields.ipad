@@ -12,6 +12,7 @@ const struct FormAttributes FormAttributes = {
 };
 
 const struct FormRelationships FormRelationships = {
+	.fields = @"fields",
 	.project = @"project",
 };
 
@@ -76,6 +77,17 @@ const struct FormRelationships FormRelationships = {
 
 - (void)setPrimitiveIsTemplateValue:(BOOL)value_ {
 	[self setPrimitiveIsTemplate:@(value_)];
+}
+
+@dynamic fields;
+
+- (NSMutableSet*)fieldsSet {
+	[self willAccessValueForKey:@"fields"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"fields"];
+
+	[self didAccessValueForKey:@"fields"];
+	return result;
 }
 
 @dynamic project;

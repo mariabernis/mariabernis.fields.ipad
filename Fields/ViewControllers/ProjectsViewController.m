@@ -42,7 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.alwaysBounceVertical = YES;
     self.navigationItem.title = @"My Projects";
-    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:0.933 green:0.933 blue:0.902 alpha:1];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openAddNewProjectView:)];
     

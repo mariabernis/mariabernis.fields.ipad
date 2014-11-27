@@ -6,7 +6,19 @@
         <attribute name="formDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="formTitle" attributeType="String" defaultValueString="Form title" syncable="YES"/>
         <attribute name="isTemplate" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FormField" inverseName="form" inverseEntity="FormField" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="forms" inverseEntity="Project" syncable="YES"/>
+    </entity>
+    <entity name="FormField" representedClassName="FormField" isAbstract="YES" syncable="YES">
+        <attribute name="fieldDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fieldStoreIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fieldTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="indexPathRow" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="indexPathSection" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="form" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Form" inverseName="fields" inverseEntity="Form" syncable="YES"/>
+    </entity>
+    <entity name="ImageField" representedClassName="ImageField" parentEntity="FormField" syncable="YES">
+        <attribute name="capturedImage" optional="YES" attributeType="Transformable" valueTransformerName="ImageToDataTransformer" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="Project" syncable="YES">
         <attribute name="dateCreated" attributeType="Date" syncable="YES"/>
@@ -16,8 +28,14 @@
         <attribute name="templatesContainer" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="forms" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Form" inverseName="project" inverseEntity="Form" syncable="YES"/>
     </entity>
+    <entity name="TextField" representedClassName="TextField" parentEntity="FormField" syncable="YES">
+        <attribute name="capturedText" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Form" positionX="-63" positionY="9" width="128" height="133"/>
+        <element name="Form" positionX="-63" positionY="9" width="128" height="148"/>
         <element name="Project" positionX="-288" positionY="9" width="128" height="133"/>
+        <element name="FormField" positionX="144" positionY="9" width="128" height="133"/>
+        <element name="TextField" positionX="27" positionY="216" width="128" height="58"/>
+        <element name="ImageField" positionX="196" positionY="216" width="128" height="58"/>
     </elements>
 </model>

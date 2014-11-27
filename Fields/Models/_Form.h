@@ -12,9 +12,11 @@ extern const struct FormAttributes {
 } FormAttributes;
 
 extern const struct FormRelationships {
+	__unsafe_unretained NSString *fields;
 	__unsafe_unretained NSString *project;
 } FormRelationships;
 
+@class FormField;
 @class Project;
 
 @interface FormID : NSManagedObjectID {}
@@ -50,9 +52,21 @@ extern const struct FormRelationships {
 
 //- (BOOL)validateIsTemplate:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSSet *fields;
+
+- (NSMutableSet*)fieldsSet;
+
 @property (nonatomic, strong) Project *project;
 
 //- (BOOL)validateProject:(id*)value_ error:(NSError**)error_;
+
+@end
+
+@interface _Form (FieldsCoreDataGeneratedAccessors)
+- (void)addFields:(NSSet*)value_;
+- (void)removeFields:(NSSet*)value_;
+- (void)addFieldsObject:(FormField*)value_;
+- (void)removeFieldsObject:(FormField*)value_;
 
 @end
 
@@ -75,6 +89,9 @@ extern const struct FormRelationships {
 
 - (BOOL)primitiveIsTemplateValue;
 - (void)setPrimitiveIsTemplateValue:(BOOL)value_;
+
+- (NSMutableSet*)primitiveFields;
+- (void)setPrimitiveFields:(NSMutableSet*)value;
 
 - (Project*)primitiveProject;
 - (void)setPrimitiveProject:(Project*)value;

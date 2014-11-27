@@ -50,7 +50,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)commonInit {
-    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:0.933 green:0.933 blue:0.902 alpha:1];
 }
 
 - (ListFormsInteractor *)lfi {

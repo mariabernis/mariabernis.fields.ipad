@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FormPropsTabView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Field Props Tab View" customClass="FieldPropsTabView">
             <rect key="frame" x="0.0" y="0.0" width="222" height="659"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -55,32 +55,6 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7KO-Ci-fVf">
-                            <rect key="frame" x="8" y="220" width="207" height="16"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" id="cnd-0q-TyS" userLabel="proj chooser view">
-                            <rect key="frame" x="0.0" y="243" width="223" height="47"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gIw-xm-vNv">
-                                    <rect key="frame" x="195" y="12" width="20" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FT6-jQ-IHe">
-                                    <rect key="frame" x="8" y="13" width="181" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <gestureRecognizers/>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
@@ -99,7 +73,7 @@
                             <rect key="frame" x="0.0" y="48" width="222" height="47"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duplicate form" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xef-Rp-Lij">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duplicate field" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xef-Rp-Lij">
                                     <rect key="frame" x="50" y="13" width="164" height="21"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -115,10 +89,10 @@
                             <gestureRecognizers/>
                         </view>
                         <view contentMode="scaleToFill" id="H0u-yv-dtG" userLabel="action delete">
-                            <rect key="frame" x="0.0" y="95" width="222.00000024505007" height="47"/>
+                            <rect key="frame" x="0.0" y="95" width="222.00000023746668" height="47"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete form" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mhn-sc-DsT">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete field" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mhn-sc-DsT">
                                     <rect key="frame" x="50" y="13" width="162" height="21"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -136,17 +110,30 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
+                <view contentMode="scaleToFill" id="k6x-LW-Yzj" userLabel="Inactive view">
+                    <rect key="frame" x="0.0" y="0.0" width="222" height="659"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a field to see its properties. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wg-4m-S8l">
+                            <rect key="frame" x="26" y="43" width="170" height="43"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.15059581398963928" green="0.21334007382392883" blue="0.27511560916900635" alpha="0.57999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93466836214065552" green="0.93187814950942993" blue="0.90327221155166626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="actionDeleteView" destination="H0u-yv-dtG" id="rxE-Hq-m6T"/>
-                <outlet property="actionDuplicateView" destination="HNu-43-PeU" id="OyW-Av-Kq5"/>
-                <outlet property="inputDescription" destination="vsQ-EX-yMa" id="mJG-Gw-57P"/>
-                <outlet property="inputTitle" destination="YPo-Ys-as6" id="7Xb-tV-ZQq"/>
-                <outlet property="projChooserLabel" destination="FT6-jQ-IHe" id="gz1-tb-P7D"/>
-                <outlet property="projChooserView" destination="cnd-0q-TyS" id="T9X-nM-w2V"/>
+                <outlet property="actionDeleteView" destination="H0u-yv-dtG" id="owm-2X-jVB"/>
+                <outlet property="actionDuplicateView" destination="HNu-43-PeU" id="NqF-0q-sKK"/>
+                <outlet property="inactiveView" destination="k6x-LW-Yzj" id="6VI-Lg-gsC"/>
+                <outlet property="inputDescription" destination="vsQ-EX-yMa" id="gwA-iA-NEv"/>
+                <outlet property="inputTitle" destination="YPo-Ys-as6" id="gqk-xL-Dac"/>
             </connections>
             <point key="canvasLocation" x="347" y="392.5"/>
         </view>
