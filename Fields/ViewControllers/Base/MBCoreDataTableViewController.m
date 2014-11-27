@@ -1,13 +1,13 @@
 
-#import "MBCoreDataCollectionViewController.h"
+#import "MBCoreDataTableViewController.h"
 #import "MBCoreDataFetchControllerHelper.h"
 
-@interface MBCoreDataCollectionViewController ()
+@interface MBCoreDataTableViewController ()
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) MBCoreDataFetchControllerHelper *fetchControllerHelper;
 @end
 
-@implementation MBCoreDataCollectionViewController
+@implementation MBCoreDataTableViewController
 @synthesize fetchedResultsController = _fetchedResultsController;
 
 // Lazy getter
@@ -30,7 +30,7 @@
     
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
-        NSLog(@"😱💾 Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -42,38 +42,38 @@
     [super viewDidLoad];
     
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    self.fetchControllerHelper = [[MBCoreDataFetchControllerHelper alloc] initWithCollectionView:self.collectionView];
+    self.fetchControllerHelper =
+    [[MBCoreDataFetchControllerHelper alloc] initWithTableView:self.tableView
+                                         usingUpdateCellsBlock:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - Actions
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+
+#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.fetchedResultsController sections] count];
 }
 
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return [self countItemsInSection:section];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellReusableIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellReusableIdentifier forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
-
+    
     return cell;
 }
 
 #pragma mark Datasource helpers
-
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (NSInteger)countItemsInFirstSection {
@@ -96,37 +96,31 @@
 }
 
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - Table view delegate
 /*
- // Uncomment this method to specify if the specified item should be highlighted during tracking
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
- }
- 
- 
- // Uncomment this method to specify if the specified item should be selected
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
- return YES;
- }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSAssert(self.defaultCellHeight != 0, @"🙉 Pass in a height for row");
+    
+    return self.defaultCellHeight;
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        
+        NSError *error = nil;
+        if (![self.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
  */
-
-/*
- // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
- }
- 
- - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
- }
- 
- - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
- }
- */
-
-
-
-
 
 @end

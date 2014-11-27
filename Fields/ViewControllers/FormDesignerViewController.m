@@ -554,7 +554,7 @@ typedef enum {
     // Maths
     CGFloat paneNewCenterX = initialXCenter + offsetMultiplier * (CGRectGetWidth(view.frame) - TAB_MARGIN);
     CGFloat canvasNewX = 0;
-    UIView *paneContentView = view.subviews[0];
+    UIView *paneContentView = view.subviews[1];
     switch (side) {
         case LateralPaneLEFT: {
             if (isOpen) {

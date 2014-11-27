@@ -81,6 +81,7 @@
 		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
 		837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */; };
 		837FE4201A2561010011233E /* FieldsRepo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FE41F1A2561010011233E /* FieldsRepo.plist */; };
+		83A2A98F1A27509600E1E324 /* MBCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2A98E1A27509600E1E324 /* MBCoreDataTableViewController.m */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
@@ -205,6 +206,8 @@
 		837FDE921A237B5800D2EE0B /* FormInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractor.m; sourceTree = "<group>"; };
 		837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo_future.plist; sourceTree = "<group>"; };
 		837FE41F1A2561010011233E /* FieldsRepo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo.plist; sourceTree = "<group>"; };
+		83A2A98D1A27509600E1E324 /* MBCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataTableViewController.h; sourceTree = "<group>"; };
+		83A2A98E1A27509600E1E324 /* MBCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataTableViewController.m; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				834327811A2138930051F525 /* MBCModalVCAnimator.m */,
 				834327841A2138930051F525 /* MBCoreDataFetchControllerHelper.h */,
 				834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */,
+				83A2A98D1A27509600E1E324 /* MBCoreDataTableViewController.h */,
+				83A2A98E1A27509600E1E324 /* MBCoreDataTableViewController.m */,
 				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
 				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 			);
@@ -679,6 +684,7 @@
 				834327981A2138930051F525 /* MBCoreDataCollectionViewController.m in Sources */,
 				830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */,
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
+				83A2A98F1A27509600E1E324 /* MBCoreDataTableViewController.m in Sources */,
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
 				8375519D1A25F4840089CC41 /* FieldTypesListController.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
