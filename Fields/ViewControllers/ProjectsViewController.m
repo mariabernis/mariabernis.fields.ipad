@@ -7,17 +7,15 @@
 //
 
 #import "ProjectsViewController.h"
-#import "MocksProvider.h"
+#import "UIColor+FlatColors.h"
 #import "ProjectCell.h"
-#import "ProjectMock.h"
-#import "Project.h"
-#import "MBCoreDataStack.h"
-#import "ProjectAddNewViewController.h"
+#import "ListProjectsInteractor.h"
+#import "ProjectDetailViewController.h"
 #import "MBCModalVCAnimator.h"
 #import "FormsViewController.h"
 
 @interface ProjectsViewController () <UIViewControllerTransitioningDelegate>
-
+@property (nonatomic, strong) ListProjectsInteractor *lpI;
 @end
 
 
@@ -25,19 +23,26 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+- (ListProjectsInteractor *)lpI {
+    if (!_lpI) {
+        _lpI = [[ListProjectsInteractor alloc] init];
+    }
+    return _lpI;
+}
 
-
+#pragma mark - VC Life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     if (!self.fetchRequest) {
-        self.fetchRequest = [Project MR_requestAllSortedBy:ProjectAttributes.projectTitle ascending:YES inContext:[NSManagedObjectContext MR_defaultContext]];
-        self.managedObjectContext = [NSManagedObjectContext MR_defaultContext];
+        self.fetchRequest = [self.lpI requestAllDefault];
+        self.managedObjectContext = self.lpI.defaultMOC;
         self.cellReusableIdentifier = reuseIdentifier;
     }
     
     self.collectionView.alwaysBounceVertical = YES;
     self.navigationItem.title = @"My Projects";
+    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openAddNewProjectView:)];
     
@@ -47,7 +52,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - Actions
 - (void)openAddNewProjectView:(id)sender {
     
-    UIViewController *addProjectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"addProjectIdentifier"];
+    UIViewController *addProjectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"detailProjectIdentifier"];
     addProjectVC.transitioningDelegate = self;
     addProjectVC.modalPresentationStyle = UIModalPresentationCustom; // OJO, PRESENTATION STYLE, no TRANSITION STYLE. FFFFF
     [self presentViewController:addProjectVC animated:YES completion:nil];
@@ -77,9 +82,8 @@ static NSString * const reuseIdentifier = @"Cell";
     if ([[self objectAtIndexPath:indexPath] isKindOfClass:[Project class]]) {
         // Push to forms view
         Project *p = (Project *)[self objectAtIndexPath:indexPath];
-        FormsViewController *formsController = [[FormsViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]]; // collectionLayout
-        formsController.collection = [MocksProvider allFormsWithProjectId:@"someIdentifier"];
-        formsController.projectTitle = p.projectTitle;
+        FormsViewController *formsController = [[FormsViewController alloc] initWithProject:p]; // collectionLayout
+
         [self.navigationController pushViewController:formsController animated:YES];
     }
 }

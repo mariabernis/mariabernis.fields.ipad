@@ -9,41 +9,89 @@
 #import "FormsViewController.h"
 #import "ProjectCell.h"
 #import "UIColor+FlatColors.h"
+#import "ProjectDetailViewController.h"
+#import "ListFormsInteractor.h"
+#import "FormInteractor.h"
+#import "Project.h"
+#import "FormDesignerViewController.h"
 
-@interface FormsViewController ()
-
+@interface FormsViewController ()<ProjectDetailVCDelegate>
+@property (nonatomic, strong) ListFormsInteractor *lfi;
+@property (nonatomic, strong) FormInteractor *fi;
 @end
 
 @implementation FormsViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
-- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
-{
-    self = [super initWithCollectionViewLayout:layout];
+/* Designated initializer */
+- (instancetype)initWithProject:(Project *)project {
+    
+    self = [super initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     if (self) {
-        self.collectionView.backgroundColor = [UIColor flatCloudsColor];
+        _parentProject = project;
+        [self commonInit];
     }
     return self;
 }
 
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
+{
+    return [self initWithProject:nil];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
+}
+
+- (ListFormsInteractor *)lfi {
+    if (!_lfi) {
+        _lfi = [[ListFormsInteractor alloc] init];
+    }
+    return _lfi;
+}
+
+- (FormInteractor *)fi {
+    if (!_fi) {
+        _fi = [[FormInteractor alloc] init];
+    }
+    return _fi;
+}
 
 #pragma mark - VC life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.fetchRequest = [self.lfi requestAllForProject:self.parentProject];
+    self.managedObjectContext = self.lfi.defaultMOC;
+    self.cellReusableIdentifier = reuseIdentifier;
+    
+    self.collectionView.alwaysBounceVertical = YES;
     // Register cell classes
     UINib *cellNib = [UINib nibWithNibName:@"FormCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.collectionView.alwaysBounceVertical = YES;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newFormForCurrentProject)];
+    
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
+    
+    self.navigationItem.rightBarButtonItems = @[addButton, settingsButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.projectTitle) {
-        self.navigationItem.title = self.projectTitle;
+    if (self.parentProject) {
+        self.navigationItem.title = self.parentProject.projectTitle;
     }
 }
 
@@ -51,24 +99,71 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
 }
 
-
-#pragma mark <UICollectionViewDataSource>
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+#pragma mark - Actions
+- (void)projectSettingsPressed:(id)sender {
     
-    return self.collection.count;
+    ProjectDetailViewController *editProjVC = (ProjectDetailViewController *)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"detailProjectIdentifier"];
+    editProjVC.project = self.parentProject;
+    editProjVC.delegate = self;
+    editProjVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:editProjVC animated:YES completion:nil];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ProjectCell *cell = (ProjectCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    [cell updateCellContentsWithItem:[self.collection objectAtIndex:indexPath.row]];
-    cell.backgroundColor = [UIColor whiteColor];
-    return cell;
+- (void)newFormForCurrentProject {
+    // Create form and pass it to the form builder.
+    [self.fi saveNewFormWithTitle:nil
+                      description:nil
+                          project:self.parentProject
+                       completion:^(Form *newForm, NSError *error) {
+                           
+        [self openFormDesignerWithForm:newForm isNewForm:YES];
+    }];
+}
+
+- (void)openFormDesignerWithForm:(Form *)form {
+    [self openFormDesignerWithForm:form isNewForm:NO];
+}
+
+- (void)openFormDesignerWithForm:(Form *)form isNewForm:(BOOL)isNew {
+    
+    UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
+    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    FormDesignerViewController *formVC = navVC.viewControllers[0];
+    formVC.form = form;
+    formVC.isNewForm = isNew;
+    [self presentViewController:navVC animated:YES completion:^{
+        
+    }];
+}
+
+#pragma mark - Helpers
+- (UIStoryboard *)mainStoryboard {
+    UIStoryboard *mainStory = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] storyboard];
+    if (!mainStory) {
+        mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    }
+    return mainStory;
+}
+
+
+#pragma mark - ProjectDetailVCDelegate
+- (void)projectDetailVCDidUpdateTitle:(NSString *)newTitle {
+    self.navigationItem.title = newTitle;
+}
+
+- (void)projectDetailVCDidDeleteProject {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark Overrides
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    [super configureCell:cell atIndexPath:indexPath];
+    
+    ProjectCell *projCell = (ProjectCell *)cell;
+    
+    [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -76,17 +171,8 @@ static NSString * const reuseIdentifier = @"Cell";
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // TEMP. Open form designer.
-    UIStoryboard *mainStory = [[[[[UIApplication sharedApplication] delegate] window] rootViewController] storyboard];
-    if (!mainStory) {
-        mainStory = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    }
-    
-    UINavigationController *navVC = [mainStory instantiateViewControllerWithIdentifier:@"formDesignerNavID"];
-    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:navVC animated:YES completion:^{
-        
-    }];
+    Form *f = (Form *)[self objectAtIndexPath:indexPath];
+    [self openFormDesignerWithForm:f];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

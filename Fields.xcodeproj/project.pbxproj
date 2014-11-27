@@ -6,9 +6,25 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		83623B741A22593700857720 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 83623B751A22593700857720 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				83623B781A22593F00857720 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1E6E8370812B060507D988A3 /* libPods-Fields.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C2EA33E876B61FAF8E784E /* libPods-Fields.a */; };
 		5C27147B38418195524E992E /* libPods-FieldsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */; };
+		830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */; };
+		830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */; };
 		834327471A2138370051F525 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327461A2138370051F525 /* AppDelegate.m */; };
 		8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327691A2138930051F525 /* ProjectInteractor.m */; };
 		8343278F1A2138930051F525 /* FormMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343276C1A2138930051F525 /* FormMock.m */; };
@@ -24,7 +40,7 @@
 		834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */; };
 		8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327871A2138930051F525 /* FormDesignerViewController.m */; };
 		8343279B1A2138930051F525 /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327891A2138930051F525 /* FormsViewController.m */; };
-		8343279C1A2138930051F525 /* ProjectAddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278B1A2138930051F525 /* ProjectAddNewViewController.m */; };
+		8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278B1A2138930051F525 /* ProjectDetailViewController.m */; };
 		8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8343278D1A2138930051F525 /* ProjectsViewController.m */; };
 		834327A71A2138C50051F525 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8343279E1A2138C50051F525 /* Images.xcassets */; };
 		834327A81A2138C50051F525 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834327A01A2138C50051F525 /* LaunchScreen.xib */; };
@@ -34,6 +50,19 @@
 		834327AF1A21394F0051F525 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 834327AD1A21394F0051F525 /* Info.plist */; };
 		834327B01A21394F0051F525 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327AE1A21394F0051F525 /* main.m */; };
 		834327B21A21398A0051F525 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327B11A21398A0051F525 /* ProjectTests.m */; };
+		835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */; };
+		83623B731A22588500857720 /* ListFormsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B721A22588500857720 /* ListFormsInteractor.m */; };
+		83623B7D1A225F0100857720 /* _Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7A1A225F0100857720 /* _Form.m */; };
+		83623B7E1A225F0100857720 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7C1A225F0100857720 /* Form.m */; };
+		83623B801A22771D00857720 /* FormInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83623B7F1A22771D00857720 /* FormInteractorTests.m */; };
+		836811F11A24A15F00341B6D /* MBCBaseOptionsChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */; };
+		837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */; };
+		837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */; };
+		837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 837FDE921A237B5800D2EE0B /* FormInteractor.m */; };
+		837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */; };
+		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
+		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
+		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +80,9 @@
 		1D2F3CF78F86B750C928D2E9 /* libPods-FieldsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FieldsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		582B384B7E96EE42CC322516 /* Pods-Fields.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.release.xcconfig"; sourceTree = "<group>"; };
 		735451AE4814D256E83FC1BF /* Pods-FieldsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListProjectsInteractor.h; sourceTree = "<group>"; };
+		830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsInteractor.m; sourceTree = "<group>"; };
+		830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListProjectsTests.m; sourceTree = "<group>"; };
 		8343273E1A2138370051F525 /* Fields.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fields.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		834327451A2138370051F525 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		834327461A2138370051F525 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -83,8 +115,8 @@
 		834327871A2138930051F525 /* FormDesignerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormDesignerViewController.m; sourceTree = "<group>"; };
 		834327881A2138930051F525 /* FormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormsViewController.h; sourceTree = "<group>"; };
 		834327891A2138930051F525 /* FormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormsViewController.m; sourceTree = "<group>"; };
-		8343278A1A2138930051F525 /* ProjectAddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectAddNewViewController.h; sourceTree = "<group>"; };
-		8343278B1A2138930051F525 /* ProjectAddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectAddNewViewController.m; sourceTree = "<group>"; };
+		8343278A1A2138930051F525 /* ProjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDetailViewController.h; sourceTree = "<group>"; };
+		8343278B1A2138930051F525 /* ProjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDetailViewController.m; sourceTree = "<group>"; };
 		8343278C1A2138930051F525 /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		8343278D1A2138930051F525 /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		8343279E1A2138C50051F525 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -96,6 +128,28 @@
 		834327AD1A21394F0051F525 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		834327AE1A21394F0051F525 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		834327B11A21398A0051F525 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
+		835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInteractorTests.m; sourceTree = "<group>"; };
+		83623B711A22588500857720 /* ListFormsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListFormsInteractor.h; sourceTree = "<group>"; };
+		83623B721A22588500857720 /* ListFormsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListFormsInteractor.m; sourceTree = "<group>"; };
+		83623B791A225F0100857720 /* _Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Form.h; sourceTree = "<group>"; };
+		83623B7A1A225F0100857720 /* _Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Form.m; sourceTree = "<group>"; };
+		83623B7B1A225F0100857720 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
+		83623B7C1A225F0100857720 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
+		83623B7F1A22771D00857720 /* FormInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractorTests.m; sourceTree = "<group>"; };
+		836811EF1A24A15F00341B6D /* MBCBaseOptionsChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCBaseOptionsChooser.h; sourceTree = "<group>"; };
+		836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCBaseOptionsChooser.m; sourceTree = "<group>"; };
+		837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPropsTabView.xib; sourceTree = "<group>"; };
+		837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormPropsTabView.h; sourceTree = "<group>"; };
+		837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormPropsTabView.m; sourceTree = "<group>"; };
+		837FDE911A237B5800D2EE0B /* FormInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormInteractor.h; sourceTree = "<group>"; };
+		837FDE921A237B5800D2EE0B /* FormInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormInteractor.m; sourceTree = "<group>"; };
+		837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo_future.plist; sourceTree = "<group>"; };
+		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
+		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
+		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
+		83C742271A2160AC00F189F2 /* MBCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCheck.m; sourceTree = "<group>"; };
+		83C742291A21610C00F189F2 /* NSString+MBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MBExtensions.h"; sourceTree = "<group>"; };
+		83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MBExtensions.m"; sourceTree = "<group>"; };
 		B6D6B29054DCBEC82017844B /* Pods-Fields.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.debug.xcconfig"; sourceTree = "<group>"; };
 		C66CC624971DF55DF96F8F06 /* Pods-FieldsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +200,7 @@
 				834327451A2138370051F525 /* AppDelegate.h */,
 				834327461A2138370051F525 /* AppDelegate.m */,
 				8343279E1A2138C50051F525 /* Images.xcassets */,
+				83C742251A2160AC00F189F2 /* Utils */,
 				8343277B1A2138930051F525 /* Services */,
 				834327671A2138930051F525 /* Interactors */,
 				8343276A1A2138930051F525 /* Mocks */,
@@ -162,6 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				834327B11A21398A0051F525 /* ProjectTests.m */,
+				835A00E81A21F27F003BDFE4 /* ProjectInteractorTests.m */,
+				830037AE1A221EA800CAA5D8 /* ListProjectsTests.m */,
+				83623B7F1A22771D00857720 /* FormInteractorTests.m */,
 				8343275B1A2138370051F525 /* Supporting Files */,
 			);
 			path = FieldsTests;
@@ -178,8 +236,16 @@
 		834327671A2138930051F525 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				83C742221A21470D00F189F2 /* BaseInteractor.h */,
+				83C742231A21470D00F189F2 /* BaseInteractor.m */,
 				834327681A2138930051F525 /* ProjectInteractor.h */,
 				834327691A2138930051F525 /* ProjectInteractor.m */,
+				830037AB1A221C0C00CAA5D8 /* ListProjectsInteractor.h */,
+				830037AC1A221C0C00CAA5D8 /* ListProjectsInteractor.m */,
+				83623B711A22588500857720 /* ListFormsInteractor.h */,
+				83623B721A22588500857720 /* ListFormsInteractor.m */,
+				837FDE911A237B5800D2EE0B /* FormInteractor.h */,
+				837FDE921A237B5800D2EE0B /* FormInteractor.m */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -202,11 +268,15 @@
 		834327731A2138930051F525 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				834327761A2138930051F525 /* FieldsModel.xcdatamodeld */,
+				83623B791A225F0100857720 /* _Form.h */,
+				83623B7A1A225F0100857720 /* _Form.m */,
+				83623B7B1A225F0100857720 /* Form.h */,
+				83623B7C1A225F0100857720 /* Form.m */,
 				834327741A2138930051F525 /* _Project.h */,
 				834327751A2138930051F525 /* _Project.m */,
 				834327781A2138930051F525 /* Project.h */,
 				834327791A2138930051F525 /* Project.m */,
+				834327761A2138930051F525 /* FieldsModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +284,7 @@
 		8343277A1A2138930051F525 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -231,14 +302,14 @@
 			isa = PBXGroup;
 			children = (
 				8343277F1A2138930051F525 /* Base */,
-				834327861A2138930051F525 /* FormDesignerViewController.h */,
-				834327871A2138930051F525 /* FormDesignerViewController.m */,
-				834327881A2138930051F525 /* FormsViewController.h */,
-				834327891A2138930051F525 /* FormsViewController.m */,
-				8343278A1A2138930051F525 /* ProjectAddNewViewController.h */,
-				8343278B1A2138930051F525 /* ProjectAddNewViewController.m */,
 				8343278C1A2138930051F525 /* ProjectsViewController.h */,
 				8343278D1A2138930051F525 /* ProjectsViewController.m */,
+				8343278A1A2138930051F525 /* ProjectDetailViewController.h */,
+				8343278B1A2138930051F525 /* ProjectDetailViewController.m */,
+				834327881A2138930051F525 /* FormsViewController.h */,
+				834327891A2138930051F525 /* FormsViewController.m */,
+				834327861A2138930051F525 /* FormDesignerViewController.h */,
+				834327871A2138930051F525 /* FormDesignerViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -246,12 +317,14 @@
 		8343277F1A2138930051F525 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				836811EF1A24A15F00341B6D /* MBCBaseOptionsChooser.h */,
+				836811F01A24A15F00341B6D /* MBCBaseOptionsChooser.m */,
 				834327801A2138930051F525 /* MBCModalVCAnimator.h */,
 				834327811A2138930051F525 /* MBCModalVCAnimator.m */,
-				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
-				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 				834327841A2138930051F525 /* MBCoreDataFetchControllerHelper.h */,
 				834327851A2138930051F525 /* MBCoreDataFetchControllerHelper.m */,
+				834327821A2138930051F525 /* MBCoreDataCollectionViewController.h */,
+				834327831A2138930051F525 /* MBCoreDataCollectionViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -259,9 +332,12 @@
 		8343279F1A2138C50051F525 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				834327A01A2138C50051F525 /* LaunchScreen.xib */,
 				834327A21A2138C50051F525 /* Main.storyboard */,
+				837FDE8C1A23516100D2EE0B /* FormPropsTabView.xib */,
+				834327A01A2138C50051F525 /* LaunchScreen.xib */,
 				834327A41A2138C50051F525 /* FormCell.xib */,
+				837FDE8E1A2354B400D2EE0B /* FormPropsTabView.h */,
+				837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */,
 				834327A51A2138C50051F525 /* ProjectCell.h */,
 				834327A61A2138C50051F525 /* ProjectCell.m */,
 			);
@@ -275,6 +351,17 @@
 				834327AE1A21394F0051F525 /* main.m */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83C742251A2160AC00F189F2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				83C742261A2160AC00F189F2 /* MBCheck.h */,
+				83C742271A2160AC00F189F2 /* MBCheck.m */,
+				83C742291A21610C00F189F2 /* NSString+MBExtensions.h */,
+				83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		D77E571D587ECE85355E0F2A /* Pods */ = {
@@ -355,6 +442,9 @@
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 8343273D1A2138370051F525;
 					};
+					83623B741A22593700857720 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 				};
 			};
 			buildConfigurationList = 834327391A2138370051F525 /* Build configuration list for PBXProject "Fields" */;
@@ -372,6 +462,7 @@
 			targets = (
 				8343273D1A2138370051F525 /* Fields */,
 				834327561A2138370051F525 /* FieldsTests */,
+				83623B741A22593700857720 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -386,6 +477,8 @@
 				834327A81A2138C50051F525 /* LaunchScreen.xib in Resources */,
 				834327AF1A21394F0051F525 /* Info.plist in Resources */,
 				834327A71A2138C50051F525 /* Images.xcassets in Resources */,
+				837FDE8D1A23516100D2EE0B /* FormPropsTabView.xib in Resources */,
+				837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +522,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fields/Pods-Fields-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		83623B781A22593F00857720 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/local/bin/mogenerator --v2 -O Fields/Models/  --model Fields/Models/FieldsModel.xcdatamodeld/\n\necho 🐼";
+		};
 		ECEBF1B5E7CE014DCFB2B995 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -468,18 +574,28 @@
 			files = (
 				834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				834327981A2138930051F525 /* MBCoreDataCollectionViewController.m in Sources */,
+				830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */,
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
 				8343278E1A2138930051F525 /* ProjectInteractor.m in Sources */,
 				8343279D1A2138930051F525 /* ProjectsViewController.m in Sources */,
+				83623B731A22588500857720 /* ListFormsInteractor.m in Sources */,
 				834327971A2138930051F525 /* MBCModalVCAnimator.m in Sources */,
 				8343279A1A2138930051F525 /* FormDesignerViewController.m in Sources */,
+				836811F11A24A15F00341B6D /* MBCBaseOptionsChooser.m in Sources */,
 				8343279B1A2138930051F525 /* FormsViewController.m in Sources */,
+				83C742281A2160AC00F189F2 /* MBCheck.m in Sources */,
+				837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */,
 				834327B01A21394F0051F525 /* main.m in Sources */,
+				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
+				83623B7E1A225F0100857720 /* Form.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
-				8343279C1A2138930051F525 /* ProjectAddNewViewController.m in Sources */,
+				8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */,
+				83623B7D1A225F0100857720 /* _Form.m in Sources */,
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
 				834327951A2138930051F525 /* Project.m in Sources */,
+				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,
 				834327AB1A2138C50051F525 /* ProjectCell.m in Sources */,
+				837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */,
 				834327931A2138930051F525 /* _Project.m in Sources */,
 				834327941A2138930051F525 /* FieldsModel.xcdatamodeld in Sources */,
 				834327471A2138370051F525 /* AppDelegate.m in Sources */,
@@ -492,7 +608,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				835A00E91A21F27F003BDFE4 /* ProjectInteractorTests.m in Sources */,
 				834327B21A21398A0051F525 /* ProjectTests.m in Sources */,
+				83623B801A22771D00857720 /* FormInteractorTests.m in Sources */,
+				830037AF1A221EA800CAA5D8 /* ListProjectsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +679,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -597,7 +716,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -610,6 +729,7 @@
 			baseConfigurationReference = B6D6B29054DCBEC82017844B /* Pods-Fields.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Fields/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -621,7 +741,7 @@
 			baseConfigurationReference = 582B384B7E96EE42CC322516 /* Pods-Fields.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Maria Bernis (393JTM9U95)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Maria Bernis (393JTM9U95)";
 				INFOPLIST_FILE = "Fields/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -665,6 +785,20 @@
 			};
 			name = Release;
 		};
+		83623B761A22593700857720 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		83623B771A22593700857720 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -691,6 +825,15 @@
 			buildConfigurations = (
 				834327651A2138370051F525 /* Debug */,
 				834327661A2138370051F525 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83623B751A22593700857720 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83623B761A22593700857720 /* Debug */,
+				83623B771A22593700857720 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

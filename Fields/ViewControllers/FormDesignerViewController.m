@@ -7,6 +7,10 @@
 //
 
 #import "FormDesignerViewController.h"
+#import "FormPropsTabView.h"
+#import "FormInteractor.h"
+#import "ListProjectsInteractor.h"
+#import "MBCBaseOptionsChooser.h"
 
 #define TAB_MARGIN 30.0
 
@@ -15,9 +19,16 @@ typedef enum {
     LateralPaneRIGHT
 } LateralPane;
 
-@interface FormDesignerViewController ()
+@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate>
 
 // Properties
+@property (nonatomic, strong) FormInteractor *fi;
+@property (nonatomic, strong) Project *selectedProject;
+@property (nonatomic, strong) ListProjectsInteractor *lpi;
+@property (nonatomic, strong) NSArray *listProjects;
+@property (nonatomic, strong) MBCBaseOptionsChooser *projectChooserVC;
+@property (nonatomic, strong) UIPopoverController *projectChooserPopover;
+
 @property (nonatomic, getter=isLPaneOpened) BOOL lPaneOpened;
 @property (nonatomic, getter=isLPaneAnimating) BOOL lPaneAnimating;
 @property (nonatomic, assign) CGFloat lPaneCenterXOpen;
@@ -28,14 +39,50 @@ typedef enum {
 // Outlets
 @property (weak, nonatomic) IBOutlet UIView *leftPaneView;
 @property (weak, nonatomic) IBOutlet UIView *rightPaneView;
+@property (weak, nonatomic) IBOutlet UIView *leftPaneContent;
+@property (weak, nonatomic) IBOutlet UIView *rightPaneContent;
 @property (weak, nonatomic) IBOutlet UIView *canvasView;
+@property (weak, nonatomic) IBOutlet FormPropsTabView *formPropsTabView;
 
 @end
 
 @implementation FormDesignerViewController
 
+- (FormInteractor *)fi {
+    if (!_fi) {
+        _fi = [[FormInteractor alloc] initWithForm:self.form];
+    }
+    return _fi;
+}
+
+- (ListProjectsInteractor *)lpi {
+    if (!_lpi) {
+        _lpi = [[ListProjectsInteractor alloc] init];
+    }
+    return _lpi;
+}
+
+- (NSArray *)listProjects {
+    if (!_listProjects) {
+        _listProjects = [self.lpi allProjectsDefaultSort];
+    }
+    return _listProjects;
+}
+
+- (void)setSelectedProject:(Project *)selectedProject {
+    _selectedProject = selectedProject;
+    if (self.formPropsTabView.subviews.count) {
+        self.formPropsTabView.projChooserLabel.text = selectedProject.projectTitle;
+    }
+}
+
+#pragma mark - VC life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Backg. notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResigneActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
+    
     // At load time both panes MUST be opened.
     self.lPaneOpened = YES;
     self.lPaneAnimating = NO;
@@ -43,15 +90,158 @@ typedef enum {
     self.rPaneAnimating = NO;
     self.lPaneCenterXOpen = self.leftPaneView.center.x;
     self.rPaneCenterXOpen = self.rightPaneView.center.x;
+    
+    // Load panes content views
+    CGRect formTabRect = self.formPropsTabView.frame;
+    [self.formPropsTabView removeFromSuperview];
+    FormPropsTabView *realFormTab = (FormPropsTabView *)[[[NSBundle mainBundle] loadNibNamed:@"FormPropsTabView" owner:self options:nil] lastObject];
+    [realFormTab setFrame:formTabRect];
+    
+    [self.rightPaneContent addSubview:realFormTab];
+    self.formPropsTabView = realFormTab;
+    
+    // Configure touches
+    UITapGestureRecognizer *tapChooserGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnProjectsChooser:)];
+    [self.formPropsTabView.projChooserView addGestureRecognizer:tapChooserGesture];
+    
+    UITapGestureRecognizer *tapDuplicateGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnDuplicateForm:)];
+    [self.formPropsTabView.actionDuplicateView addGestureRecognizer:tapDuplicateGesture];
+    
+    UITapGestureRecognizer *tapDeleteGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteFormAction:)];
+    [self.formPropsTabView.actionDeleteView addGestureRecognizer:tapDeleteGesture];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateUIWithFormData];
+}
+
 #pragma mark - Actions
-- (IBAction)closeButtonPressed:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+- (void)updateUIWithFormData {
+    self.selectedProject = self.form.project;
+    // Update UI to form data
+    self.navigationItem.title = self.form.formTitle;
+    self.formPropsTabView.inputTitle.text = self.form.formTitle;
+    self.formPropsTabView.inputDescription.text = self.form.formDescription ? : @"";
+}
+
+- (void)appWillResigneActiveNotification:(NSNotification *)notification {
+    [self saveChanges:nil];
+}
+
+- (void)saveChanges:(void(^)(NSError *error))completion {
+    
+    [self.fi updateFormWithTitle:self.formPropsTabView.inputTitle.text
+                     description:self.formPropsTabView.inputDescription.text
+                         project:self.selectedProject
+                      completion:^(BOOL success, NSError *error) {
+                          
+                          if (completion) {
+                              completion(error);
+                          }
+                      }];
+}
+
+#pragma mark - Form actions
+- (void)tappedOnProjectsChooser:(UITapGestureRecognizer *)gesture {
+    MBCBaseOptionsChooser *projectChooserVC = [[MBCBaseOptionsChooser alloc] initWithStyle:UITableViewStylePlain];
+    projectChooserVC.delegate = self;
+    projectChooserVC.options = self.listProjects;
+    projectChooserVC.selected = self.selectedProject;
+    
+    if (self.projectChooserPopover == nil) {
+        //The color picker popover is not showing. Show it.
+        self.projectChooserPopover = [[UIPopoverController alloc] initWithContentViewController:projectChooserVC];
+        [self.projectChooserPopover presentPopoverFromRect:self.formPropsTabView.projChooserView.bounds
+                                                    inView:self.formPropsTabView.projChooserView
+                                  permittedArrowDirections:UIPopoverArrowDirectionRight
+                                                  animated:YES];
+    } else {
+        //The popover is showing. Hide it.
+        [self.projectChooserPopover dismissPopoverAnimated:YES];
+        self.projectChooserPopover = nil;
+    }
+    
+}
+
+- (void)tappedOnDuplicateForm:(UITapGestureRecognizer *)gesture {
+}
+
+#pragma mark MBCBaseOptionsChooserDelegate
+- (void)chooserControllerConfigureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    Project *p = (Project *) [self.listProjects objectAtIndex:indexPath.row];
+    cell.textLabel.text = p.projectTitle;
+}
+
+- (void)chooserController:(MBCBaseOptionsChooser *)controller didSelectItem:(id)item {
+    
+    if ([item isMemberOfClass:[Project class]]) {
+        self.selectedProject = item;
+        self.form.project = item;
+    }
+    [self.projectChooserPopover dismissPopoverAnimated:YES];
+    self.projectChooserPopover = nil;
+}
+
+
+- (IBAction)discardButtonPressed:(id)sender {
+
+    [self deleteFormAction:sender];
+    
+    //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)doneButtonPressed:(id)sender {
+    [self saveChanges:^(NSError *error) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+
+- (void)deleteFormAction:(id)sender {
+    
+    UIAlertController *alertController;
+    UIAlertAction *destroyAction;
+//    UIAlertAction *otherAction;
+    
+    alertController = [UIAlertController alertControllerWithTitle:nil
+                                                          message:nil
+                                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    destroyAction = [UIAlertAction actionWithTitle:@"Delete form"
+                                             style:UIAlertActionStyleDestructive
+                                           handler:^(UIAlertAction *action) {
+                                               // do destructive stuff here
+                                               
+                                               [self.fi deleteForm:^(BOOL success, NSError *error) {
+                                                   [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                                               }];
+                                               
+                                           }];
+    
+    // note: you can control the order buttons are shown, unlike UIActionSheet
+    [alertController addAction:destroyAction];
+    [alertController setModalPresentationStyle:UIModalPresentationPopover];
+    
+    UIPopoverPresentationController *popPresenter = [alertController
+                                                     popoverPresentationController];
+    
+    if ([sender isKindOfClass:[UIView class]]) {
+        popPresenter.sourceView = (UIView *)sender;
+        popPresenter.sourceRect = ((UIView *)sender).bounds;
+        
+    } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        popPresenter.barButtonItem = sender;
+    }
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 
@@ -77,7 +267,6 @@ typedef enum {
     
     [self animateLateralPane:LateralPaneRIGHT];
 }
-
 
 /*
 - (void)lateralPaneWillStartShowing:(LateralPane)side {

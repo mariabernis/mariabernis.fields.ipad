@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Form;
 @interface FormDesignerViewController : UIViewController
-
+@property (nonatomic, strong) Form *form;
+@property (nonatomic, assign) BOOL isNewForm;
 @end
