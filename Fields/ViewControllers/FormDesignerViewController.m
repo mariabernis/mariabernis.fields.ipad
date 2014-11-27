@@ -8,6 +8,7 @@
 
 #import "FormDesignerViewController.h"
 #import "FormPropsTabView.h"
+#import "FieldPropsTabView.h"
 #import "FormInteractor.h"
 #import "ListProjectsInteractor.h"
 #import "MBCBaseOptionsChooser.h"
@@ -17,14 +18,16 @@
 #import "FormCanvasManager.h"
 #import "FormFieldInteractor.h"
 
-#define TAB_MARGIN 30.0
+#define TAB_MARGIN      30.0
+#define PROPS_TAB_FIELD 0
+#define PROPS_TAB_FORM  1
 
 typedef enum {
     LateralPaneLEFT,
     LateralPaneRIGHT
 } LateralPane;
 
-@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate, FieldTypesListControllerDelegate>
+@interface FormDesignerViewController ()<MBCBaseOptionsChooserDelegate, FieldTypesListControllerDelegate, UITextInputDelegate, UITextViewDelegate>
 
 // Properties
 @property (nonatomic, strong) FormInteractor *fi;
@@ -51,7 +54,9 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UIView *leftPaneContent;
 @property (weak, nonatomic) IBOutlet UIView *rightPaneContent;
 @property (weak, nonatomic) IBOutlet UIView *canvasView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *propsTab;
 @property (weak, nonatomic) IBOutlet FormPropsTabView *formPropsTabView;
+@property (weak, nonatomic) IBOutlet FieldPropsTabView *fieldPropsTabView;
 @property (weak, nonatomic) IBOutlet UITableView *fieldTypesTableView;
 @property (weak, nonatomic) IBOutlet UITableView *formCanvasTableView;
 @property (weak, nonatomic) IBOutlet UILabel *formCanvasTitleLabel;
@@ -60,7 +65,9 @@ typedef enum {
 
 @end
 
-@implementation FormDesignerViewController
+@implementation FormDesignerViewController {
+    BOOL _loading;
+}
 
 - (FormInteractor *)fi {
     if (!_fi) {
@@ -116,6 +123,7 @@ typedef enum {
 #pragma mark - VC life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _loading = YES;
     
     // Backg. notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResigneActiveNotification:) name:UIApplicationWillResignActiveNotification object:nil];
@@ -132,7 +140,7 @@ typedef enum {
     
     self.formCanvasManager = [[FormCanvasManager alloc] initWithTableView:self.formCanvasTableView andForm:self.form];
     
-    // At load time both panes MUST be opened.
+    // At load time both panes ARE open.
     self.lPaneOpened = YES;
     self.lPaneAnimating = NO;
     self.rPaneOpened = YES;
@@ -141,6 +149,16 @@ typedef enum {
     self.rPaneCenterXOpen = self.rightPaneView.center.x;
     
     // Load panes content views
+    CGRect fieldTabRect = self.fieldPropsTabView.frame;
+    [self.fieldPropsTabView removeFromSuperview];
+    FieldPropsTabView *realFieldTab = (FieldPropsTabView *)[[[NSBundle mainBundle] loadNibNamed:@"FieldPropsTabView" owner:self options:nil] lastObject];
+    [realFieldTab setFrame:fieldTabRect];
+    
+    [self.rightPaneContent addSubview:realFieldTab];
+    self.fieldPropsTabView = realFieldTab;
+    [self.fieldPropsTabView addDelegateForInputs:self.formCanvasManager];
+    
+    
     CGRect formTabRect = self.formPropsTabView.frame;
     [self.formPropsTabView removeFromSuperview];
     FormPropsTabView *realFormTab = (FormPropsTabView *)[[[NSBundle mainBundle] loadNibNamed:@"FormPropsTabView" owner:self options:nil] lastObject];
@@ -148,6 +166,7 @@ typedef enum {
     
     [self.rightPaneContent addSubview:realFormTab];
     self.formPropsTabView = realFormTab;
+    [self.formPropsTabView addDelegateForInputs:self];
     
     // Configure touches
     UITapGestureRecognizer *tapChooserGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnProjectsChooser:)];
@@ -173,6 +192,15 @@ typedef enum {
     [self updateUIWithFormData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // Finally
+    if (_loading) {
+        _loading = NO;
+    }
+}
+
 #pragma mark - Actions
 - (void)updateUIWithFormData {
     self.selectedProject = self.form.project;
@@ -180,6 +208,22 @@ typedef enum {
 //    self.navigationItem.title = self.form.formTitle;
     self.formPropsTabView.inputTitle.text = self.form.formTitle;
     self.formPropsTabView.inputDescription.text = self.form.formDescription ? : @"";
+    
+    if (_loading) {
+        
+        if (self.isNewForm) {
+            [self.propsTab setSelectedSegmentIndex:PROPS_TAB_FORM];
+            [self selectPropertiesTab:PROPS_TAB_FORM];
+            
+        } else {
+            [self.propsTab setSelectedSegmentIndex:PROPS_TAB_FIELD];
+            [self selectPropertiesTab:PROPS_TAB_FIELD];
+            
+            if (self.rPaneOpened) {
+                [self closeLateralPane:LateralPaneRIGHT];
+            }
+        }
+    }
 }
 
 - (void)appWillResigneActiveNotification:(NSNotification *)notification {
@@ -199,17 +243,17 @@ typedef enum {
                       }];
 }
 
+- (IBAction)doneButtonPressed:(id)sender {
+    [self saveChanges:^(NSError *error) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }];
+}
+
 - (IBAction)discardButtonPressed:(id)sender {
     
     [self deleteFormAction:sender];
     
     //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)doneButtonPressed:(id)sender {
-    [self saveChanges:^(NSError *error) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }];
 }
 
 - (void)deleteFormAction:(id)sender {
@@ -250,6 +294,29 @@ typedef enum {
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
+
+- (IBAction)propsTabChanged:(UISegmentedControl *)sender {
+    
+    [self selectPropertiesTab:sender.selectedSegmentIndex];
+}
+
+- (void)selectPropertiesTab:(NSInteger)tab {
+    switch (tab) {
+        case PROPS_TAB_FIELD:
+            self.fieldPropsTabView.hidden = NO;
+            self.formPropsTabView.hidden = YES;
+            break;
+            
+        case PROPS_TAB_FORM:
+            self.fieldPropsTabView.hidden = YES;
+            self.formPropsTabView.hidden = NO;
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 
 #pragma mark - Form actions
@@ -323,7 +390,62 @@ typedef enum {
 }
 
 
+#pragma mark - Form properties UITextInputDelegate
+- (void)selectionWillChange:(id <UITextInput>)textInput{}
+- (void)selectionDidChange:(id <UITextInput>)textInput{}
+- (void)textWillChange:(id <UITextInput>)textInput{}
+
+- (void)textDidChange:(id <UITextInput>)textInput{
+    // Apply form changes to canvas controller.
+    if (textInput == self.formPropsTabView.inputTitle) {
+        self.form.formTitle = ((UITextField *)textInput).text;
+    }
+}
+
+#pragma mark - Form properties UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    // Apply form changes to canvas controller.
+    if (textView == self.formPropsTabView.inputDescription) {
+        self.form.formDescription = textView.text;
+    }
+}
+
 #pragma mark - Panes
+
+- (void)openLateralPane:(LateralPane)side {
+    BOOL alreadyOpened = YES;
+    switch (side) {
+        case LateralPaneLEFT:
+            alreadyOpened = self.lPaneOpened;
+            break;
+            
+        case LateralPaneRIGHT:
+            alreadyOpened = self.rPaneOpened;
+            break;
+    }
+    
+    if (!alreadyOpened) {
+        [self animateLateralPane:side];
+    }
+}
+
+- (void)closeLateralPane:(LateralPane)side {
+    
+    BOOL alreadyClosed = YES;
+    switch (side) {
+        case LateralPaneLEFT:
+            alreadyClosed = !self.lPaneOpened;
+            break;
+            
+        case LateralPaneRIGHT:
+            alreadyClosed = !self.rPaneOpened;
+            break;
+    }
+    
+    if (!alreadyClosed) {
+        [self animateLateralPane:side];
+    }
+}
 
 - (IBAction)leftPaneTabDragged:(UIPanGestureRecognizer *)recognizer {
     
@@ -347,29 +469,6 @@ typedef enum {
     
     [self animateLateralPane:LateralPaneRIGHT];
 }
-
-/*
-- (void)lateralPaneWillStartShowing:(LateralPane)side {
-    switch (side) {
-        case LateralPaneLEFT:
-            break;
-            
-        case LateralPaneRIGHT:
-            break;
-    }
-}
-
-- (void)lateralPaneWillStartHiding:(LateralPane)side {
-    switch (side) {
-        case LateralPaneLEFT:
-            self.leftPaneAnimating = YES;
-            break;
-            
-        case LateralPaneRIGHT:
-            break;
-    }
-}
-*/
 
 - (void)lateralPane:(LateralPane)side setAnimating:(BOOL)animating {
     switch (side) {

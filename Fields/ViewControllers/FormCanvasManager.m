@@ -3,7 +3,11 @@
 #import "MBCoreDataFetchControllerHelper.h"
 #import "FormCanvasInteractor.h"
 #import "FieldType.h"
-#import "FormField.h"
+//#import "FormField.h"
+#import "TextField.h"
+#import "ImageField.h"
+#import "TextFieldCell.h"
+#import "ImageFieldCell.h"
 
 @interface FormCanvasManager ()
 @property (nonatomic, strong) NSMutableArray *items;
@@ -40,7 +44,6 @@
     _tableView = tableView;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.allowsSelection = NO;
 }
 
 - (FormCanvasInteractor *)fci {
@@ -100,23 +103,38 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    id item = self.items[indexPath.row];
+
+    FormField *item = (FormField *)[self objectAtIndexPath:indexPath];
     
-//    NSString *cellIdentifier = NSStringFromClass([item class]);
-    NSString *cellIdentifier = @"Cell";
+    NSString *cellIdentifier = NSStringFromClass([item class]);
+//    NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    // TEST with cell snapshot
-//    [cell addSubview:(UIView *)item];
-    FormField *item = (FormField *)[self objectAtIndexPath:indexPath];
-    cell.textLabel.text = item.fieldTitle;
+    if ([item isKindOfClass:[TextField class]]) {
+        
+        TextField *field = (TextField *)item;
+        TextFieldCell *cellT = (TextFieldCell *)cell;
+        cellT.fieldTitle.text = field.fieldTitle;
+        cellT.fieldDescription.text = field.fieldDescription;
+        cellT.textField.text = field.capturedText;
+        
+        
+    } else if ([item isKindOfClass:[ImageField class]]) {
+        
+        ImageField *field = (ImageField *)item;
+        ImageFieldCell *cellI = (ImageFieldCell *)cell;
+        cellI.fieldTitle.text = field.fieldTitle;
+        cellI.fieldDescription.text = field.fieldDescription;
+        cellI.imageThumbnailView.image = field.capturedImage;
+    }
+    
     
     return cell;
 }
 
 #pragma mark Datasource helpers
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableView *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     
 }
@@ -146,11 +164,24 @@
 
 }
 
-/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 72;
+    CGFloat result = tableView.rowHeight;
+    
+    FormField *item = (FormField *)[self objectAtIndexPath:indexPath];
+    
+    if ([item isKindOfClass:[TextField class]]) {
+        
+        result = [TextFieldCell preferredHeight];
+        
+        
+    } else if ([item isKindOfClass:[ImageField class]]) {
+        
+        result = [ImageFieldCell preferredHeight];
+    }
+    
+    return result;
 }
-*/
+
 
 @end

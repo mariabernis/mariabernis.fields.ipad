@@ -1,21 +1,14 @@
+//
+//  FieldPropsTabView.m
+//  Fields
+//
+//  Created by Maria Bernis on 27/11/14.
+//  Copyright (c) 2014 mariabernis. All rights reserved.
+//
 
-#import "FormPropsTabView.h"
+#import "FieldPropsTabView.h"
 
-@interface FormPropsTabView ()
-
-@end
-
-
-@implementation FormPropsTabView
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        
-    }
-    return self;
-}
+@implementation FieldPropsTabView
 
 - (void)addDelegateForInputs:(id<UITextFieldDelegate, UITextViewDelegate>)inputsDelegate {
     
