@@ -41,7 +41,8 @@
     
     FormField *field = (FormField *)[NSEntityDescription insertNewObjectForEntityForName:type.typeIdentifier inManagedObjectContext:context];
     field.form = form;
-    field.fieldTitle = @"Some title";
+    field.fieldTitle = @"Field title";
+    field.fieldDescription = @"Description";
     NSUInteger count = form.fields.count;
     field.indexPathRow = @(count);
     

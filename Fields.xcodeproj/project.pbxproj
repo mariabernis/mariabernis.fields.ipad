@@ -88,6 +88,8 @@
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
 		83DAA45C1A27F22A0095EBF9 /* UIColor+Fields.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DAA45B1A27F22A0095EBF9 /* UIColor+Fields.m */; };
+		83FD2DA01A281F8000BB42CB /* UIButton+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD2D9F1A281F8000BB42CB /* UIButton+Block.m */; };
+		83FD2DA31A28293500BB42CB /* FormCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FD2DA21A28293500BB42CB /* FormCaptureViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +225,10 @@
 		83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MBExtensions.m"; sourceTree = "<group>"; };
 		83DAA45A1A27F22A0095EBF9 /* UIColor+Fields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Fields.h"; sourceTree = "<group>"; };
 		83DAA45B1A27F22A0095EBF9 /* UIColor+Fields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Fields.m"; sourceTree = "<group>"; };
+		83FD2D9E1A281F8000BB42CB /* UIButton+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Block.h"; sourceTree = "<group>"; };
+		83FD2D9F1A281F8000BB42CB /* UIButton+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Block.m"; sourceTree = "<group>"; };
+		83FD2DA11A28293500BB42CB /* FormCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCaptureViewController.h; sourceTree = "<group>"; };
+		83FD2DA21A28293500BB42CB /* FormCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCaptureViewController.m; sourceTree = "<group>"; };
 		B6D6B29054DCBEC82017844B /* Pods-Fields.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.debug.xcconfig"; sourceTree = "<group>"; };
 		C66CC624971DF55DF96F8F06 /* Pods-FieldsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -410,6 +416,8 @@
 				8375519C1A25F4840089CC41 /* FieldTypesListController.m */,
 				8375519E1A2628A50089CC41 /* FormCanvasManager.h */,
 				8375519F1A2628A50089CC41 /* FormCanvasManager.m */,
+				83FD2DA11A28293500BB42CB /* FormCaptureViewController.h */,
+				83FD2DA21A28293500BB42CB /* FormCaptureViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -481,6 +489,8 @@
 				83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */,
 				83DAA45A1A27F22A0095EBF9 /* UIColor+Fields.h */,
 				83DAA45B1A27F22A0095EBF9 /* UIColor+Fields.m */,
+				83FD2D9E1A281F8000BB42CB /* UIButton+Block.h */,
+				83FD2D9F1A281F8000BB42CB /* UIButton+Block.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -697,6 +707,7 @@
 			files = (
 				834327991A2138930051F525 /* MBCoreDataFetchControllerHelper.m in Sources */,
 				834327981A2138930051F525 /* MBCoreDataCollectionViewController.m in Sources */,
+				83FD2DA01A281F8000BB42CB /* UIButton+Block.m in Sources */,
 				830037AD1A221C0C00CAA5D8 /* ListProjectsInteractor.m in Sources */,
 				834327921A2138930051F525 /* ReportMock.m in Sources */,
 				83A2A98F1A27509600E1E324 /* MBCoreDataTableViewController.m in Sources */,
@@ -729,6 +740,7 @@
 				837551A61A2639EF0089CC41 /* FormField.m in Sources */,
 				8343279C1A2138930051F525 /* ProjectDetailViewController.m in Sources */,
 				83623B7D1A225F0100857720 /* _Form.m in Sources */,
+				83FD2DA31A28293500BB42CB /* FormCaptureViewController.m in Sources */,
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
 				834327951A2138930051F525 /* Project.m in Sources */,
 				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,

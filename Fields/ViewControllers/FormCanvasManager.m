@@ -8,6 +8,9 @@
 #import "ImageField.h"
 #import "TextFieldCell.h"
 #import "ImageFieldCell.h"
+#import "Form.h"
+#import "Project.h"
+#import "UIButton+Block.h"
 
 @interface FormCanvasManager ()
 @property (nonatomic, strong) NSMutableArray *items;
@@ -16,22 +19,27 @@
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) MBCoreDataFetchControllerHelper *fetchControllerHelper;
 @property (nonatomic, strong) FormCanvasInteractor *fci;
-//@property (nonatomic, strong) FormField *activeField;
 @property (nonatomic, strong) NSIndexPath *activeFieldIndex;
+@property (nonatomic, weak) UILabel *formTitleLabel;
+@property (nonatomic, weak) UILabel *formDescLabel;
+@property (nonatomic, weak) UILabel *formProjectLabel;
+
 @end
 
 
 @implementation FormCanvasManager
 @synthesize fetchedResultsController = _fetchedResultsController;
 
-- (instancetype)initWithTableView:(UITableView *)aTableView form:(Form *)aForm  delegate:(id<FormCanvasManagerDelegate>)delegate
+- (instancetype)initWithTableView:(UITableView *)aTableView form:(Form *)aForm editingMode:(FormEditingMode)mode delegate:(id<FormCanvasManagerDelegate>)delegate
 {
     self = [super init];
     if (self) {
-        self.tableView = aTableView;
         _form = aForm;
         _delegate = delegate;
+        _editingMode = mode;
         _items = [NSMutableArray array];
+        self.tableView = aTableView;
+        
         _fetchControllerHelper = [[MBCoreDataFetchControllerHelper alloc] initWithTableView:_tableView usingUpdateCellsBlock:nil];
     }
     return self;
@@ -47,6 +55,18 @@
     _tableView = tableView;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    switch (self.editingMode) {
+        case FormEditingModePreview:
+        case FormEditingModeCapturingData:
+            _tableView.allowsSelection = NO;
+            break;
+            
+        default:
+            _tableView.allowsSelection = YES;
+            break;
+    }
+    
+    [self setupHeaderView];
 }
 
 - (FormCanvasInteractor *)fci {
@@ -82,10 +102,27 @@
     return _fetchedResultsController;
 }
 
+- (void)setupHeaderView {
+    UIView *headerView = self.tableView.tableHeaderView;
+    if (!headerView) {
+        // Create it
+    }
+    self.formTitleLabel = headerView.subviews[0];
+    self.formDescLabel = headerView.subviews[1];
+    self.formProjectLabel = headerView.subviews[2];
+    [self updateFormHeader];
+}
+
+- (void)updateFormHeader {
+    self.formTitleLabel.text = self.form.formTitle;
+    self.formDescLabel.text = self.form.formDescription;
+    self.formProjectLabel.text = self.form.project.projectTitle;
+}
 
 - (void)addNewFieldOfType:(FieldType *)type {
 }
 
+#pragma mark - EditingModeDesigning
 - (BOOL)someFieldSelected {
     NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
     if (selected) {
@@ -94,20 +131,20 @@
     return NO;
 }
 
+
+
+
 #pragma mark - UITableViewDataSource methods
 // Default is 1. No need to override.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[self.fetchedResultsController sections] count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self countItemsInSection:section];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     FormField *item = (FormField *)[self objectAtIndexPath:indexPath];
     
@@ -122,7 +159,12 @@
         cellT.fieldTitle.text = field.fieldTitle;
         cellT.fieldDescription.text = field.fieldDescription;
         cellT.textField.text = field.capturedText;
-        
+        if (self.editingMode == FormEditingModeDesigning ||
+            self.editingMode == FormEditingModePreview) {
+            cellT.textField.userInteractionEnabled = NO;
+        } else {
+            cellT.textField.userInteractionEnabled = YES;
+        }
         
     } else if ([item isKindOfClass:[ImageField class]]) {
         
@@ -131,16 +173,39 @@
         cellI.fieldTitle.text = field.fieldTitle;
         cellI.fieldDescription.text = field.fieldDescription;
         cellI.imageThumbnailView.image = field.capturedImage;
+        if (self.editingMode == FormEditingModeDesigning ||
+            self.editingMode == FormEditingModePreview) {
+            
+            [cellI.imageAddButton setActionBlock:^{
+                // Don't do anything;
+            }];
+        } else {
+            __weak typeof(self) weakSelf = self;
+            [cellI.imageAddButton setActionBlock:^{
+                // Capture photo
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(addPhotoButtonPressed:forField:)]) {
+                    [weakSelf.delegate addPhotoButtonPressed:cellI.imageAddButton forField:item];
+                }
+            }];
+            
+            //    __weak typeof(self) weakSelf = self;
+            // OR
+//            __weak typeof(self) weakSelf = self;
+//            self.btnBlock.actionBlock = ^void (void) {
+//                NSString *newText = [NSString stringWithFormat:@"Liked %@!", weakSelf.titleLabel.text];
+//                weakSelf.titleLabel.text = newText;
+//            };
+        }
     }
-    
     
     return cell;
 }
 
+
+
 #pragma mark Datasource helpers
 
-- (void)configureCell:(UITableView *)cell atIndexPath:(NSIndexPath *)indexPath
-{
+- (void)configureCell:(UITableView *)cell atIndexPath:(NSIndexPath *)indexPath {
     
 }
 
@@ -181,7 +246,6 @@
         
         result = [TextFieldCell preferredHeight];
         
-        
     } else if ([item isKindOfClass:[ImageField class]]) {
         
         result = [ImageFieldCell preferredHeight];
@@ -191,7 +255,7 @@
 }
 
 
-#pragma mark - Form properties UUITextFieldDelegate
+#pragma mark - Field properties UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     // Apply form changes to canvas controller.
     if (![self someFieldSelected]) {
@@ -204,7 +268,7 @@
 //    [self.tableView selectRowAtIndexPath:self.activeFieldIndex animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
-#pragma mark - Form properties UITextViewDelegate
+#pragma mark - Field properties UITextViewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView {
     // Apply form changes to canvas controller.
     if (![self someFieldSelected]) {

@@ -16,6 +16,8 @@
 #import "FormDesignerViewController.h"
 #import "UIColor+Fields.h"
 #import "MBCModalVCAnimator.h"
+#import "UIButton+Block.h"
+
 
 @interface FormsViewController ()<ProjectDetailVCDelegate, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) ListFormsInteractor *lfi;
@@ -99,7 +101,7 @@ static NSString * const reuseIdentifier = @"Cell";
     projectInfoButton.frame = CGRectMake(0, 0, 150, 30);
     [projectInfoButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
     [projectInfoButton setTitleColor:[UIColor fieldsGreen] forState:UIControlStateNormal];
-    [projectInfoButton setImage:[UIImage imageNamed:@"basic_info2_g"] forState:UIControlStateNormal];
+    [projectInfoButton setImage:[UIImage imageNamed:@"basic_info"] forState:UIControlStateNormal];
     [projectInfoButton setTitle:@"  Project info" forState:UIControlStateNormal];
     [projectInfoButton addTarget:self action:@selector(projectSettingsPressed:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -180,11 +182,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark Overrides
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    
     [super configureCell:cell atIndexPath:indexPath];
     
     ProjectCell *projCell = (ProjectCell *)cell;
-    
     [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
 }
 

@@ -138,7 +138,7 @@ typedef enum {
     self.fieldTypesTableView.dataSource = self.fieldsTypesListController;
     self.fieldTypesTableView.delegate = self.fieldsTypesListController;
     
-    self.formCanvasManager = [[FormCanvasManager alloc] initWithTableView:self.formCanvasTableView form:self.form delegate:self];
+    self.formCanvasManager = [[FormCanvasManager alloc] initWithTableView:self.formCanvasTableView form:self.form editingMode:FormEditingModeDesigning delegate:self];
     
     // At load time both panes ARE open.
     self.lPaneOpened = YES;
@@ -177,6 +177,7 @@ typedef enum {
     
     UITapGestureRecognizer *tapDeleteGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteFormAction:)];
     [self.formPropsTabView.actionDeleteView addGestureRecognizer:tapDeleteGesture];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -287,6 +288,11 @@ typedef enum {
         popPresenter.sourceView = (UIView *)sender;
         popPresenter.sourceRect = ((UIView *)sender).bounds;
         
+    } else if ([sender isKindOfClass:[UIGestureRecognizer class]]) {
+        UIGestureRecognizer *gesture = (UIGestureRecognizer *)sender;
+        popPresenter.sourceView = gesture.view;
+        popPresenter.sourceRect = gesture.view.bounds;
+        
     } else if ([sender isKindOfClass:[UIBarButtonItem class]]) {
         popPresenter.barButtonItem = sender;
     }
@@ -355,6 +361,7 @@ typedef enum {
     if ([item isMemberOfClass:[Project class]]) {
         self.selectedProject = item;
         self.form.project = item;
+        [self.formCanvasManager updateFormHeader];
     }
     [self.projectChooserPopover dismissPopoverAnimated:YES];
     self.projectChooserPopover = nil;
@@ -405,11 +412,12 @@ typedef enum {
 }
 
 
-#pragma mark - Form properties UUITextFieldDelegate
+#pragma mark - Form properties UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     // Apply form changes to canvas controller.
     if (textField == self.formPropsTabView.inputTitle) {
         self.form.formTitle = textField.text;
+        [self.formCanvasManager updateFormHeader];
     }
 }
 
@@ -418,6 +426,7 @@ typedef enum {
     // Apply form changes to canvas controller.
     if (textView == self.formPropsTabView.inputDescription) {
         self.form.formDescription = textView.text;
+        [self.formCanvasManager updateFormHeader];
     }
 }
 
