@@ -8,7 +8,7 @@
 
 #import "ProjectsViewController.h"
 #import "UIColor+FlatColors.h"
-#import "ProjectCell.h"
+#import "FormCell.h"
 #import "ListProjectsInteractor.h"
 #import "ProjectDetailViewController.h"
 #import "MBCModalVCAnimator.h"
@@ -66,7 +66,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     [super configureCell:cell atIndexPath:indexPath];
     
-    ProjectCell *projCell = (ProjectCell *)cell;
+    FormCell *projCell = (FormCell *)cell;
     
     [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
 }

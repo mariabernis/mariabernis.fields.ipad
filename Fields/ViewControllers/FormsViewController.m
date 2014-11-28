@@ -7,7 +7,7 @@
 //
 
 #import "FormsViewController.h"
-#import "ProjectCell.h"
+#import "FormCell.h"
 #import "UIColor+FlatColors.h"
 #import "ProjectDetailViewController.h"
 #import "ListFormsInteractor.h"
@@ -17,6 +17,7 @@
 #import "UIColor+Fields.h"
 #import "MBCModalVCAnimator.h"
 #import "UIButton+Block.h"
+#import "FormCaptureViewController.h"
 
 
 @interface FormsViewController ()<ProjectDetailVCDelegate, UIViewControllerTransitioningDelegate>
@@ -184,16 +185,30 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     [super configureCell:cell atIndexPath:indexPath];
     
-    ProjectCell *projCell = (ProjectCell *)cell;
-    [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
+    FormCell *formCell = (FormCell *)cell;
+    [formCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
+    
+    __weak typeof(self) weakSelf = self;
+    [formCell.quickActionButton setActionBlock:^{
+        Form *f = (Form *)[weakSelf objectAtIndexPath:indexPath];
+        [weakSelf openFormDesignerWithForm:f];
+    }];
 }
 
 #pragma mark <UICollectionViewDelegate>
 - (void)  collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TEMP. Open form designer.
+//    [self openFormDesignerWithForm:f];
     Form *f = (Form *)[self objectAtIndexPath:indexPath];
-    [self openFormDesignerWithForm:f];
+    UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formCapturerNavID"];
+    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    FormCaptureViewController *formVC = navVC.viewControllers[0];
+    formVC.form = f;
+    
+    [self presentViewController:navVC animated:YES completion:nil];
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView

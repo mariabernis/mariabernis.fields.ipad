@@ -11,6 +11,7 @@
 #import "Form.h"
 #import "Project.h"
 #import "UIButton+Block.h"
+#import "FormFieldInteractor.h"
 
 @interface FormCanvasManager ()
 @property (nonatomic, strong) NSMutableArray *items;
@@ -19,10 +20,12 @@
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) MBCoreDataFetchControllerHelper *fetchControllerHelper;
 @property (nonatomic, strong) FormCanvasInteractor *fci;
+@property (nonatomic, strong) FormFieldInteractor *ffi;
 @property (nonatomic, strong) NSIndexPath *activeFieldIndex;
 @property (nonatomic, weak) UILabel *formTitleLabel;
-@property (nonatomic, weak) UILabel *formDescLabel;
 @property (nonatomic, weak) UILabel *formProjectLabel;
+@property (nonatomic, weak) UILabel *formDescLabel;
+
 
 @end
 
@@ -76,6 +79,13 @@
     return _fci;
 }
 
+- (FormFieldInteractor *)ffi {
+    if (_ffi) {
+        _ffi = [[FormFieldInteractor alloc] init];
+    }
+    return _ffi;
+}
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {
@@ -108,15 +118,15 @@
         // Create it
     }
     self.formTitleLabel = headerView.subviews[0];
-    self.formDescLabel = headerView.subviews[1];
-    self.formProjectLabel = headerView.subviews[2];
+    self.formProjectLabel = headerView.subviews[1];
+    self.formDescLabel = headerView.subviews[2];
     [self updateFormHeader];
 }
 
 - (void)updateFormHeader {
     self.formTitleLabel.text = self.form.formTitle;
     self.formDescLabel.text = self.form.formDescription;
-    self.formProjectLabel.text = self.form.project.projectTitle;
+    self.formProjectLabel.text = [NSString stringWithFormat:@"Project: %@", self.form.project.projectTitle];
 }
 
 - (void)addNewFieldOfType:(FieldType *)type {
@@ -131,6 +141,27 @@
     return NO;
 }
 
+- (void)deleteCurrentField {
+    if ([self someFieldSelected]) {
+        NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
+        FormField *field = [self objectAtIndexPath:selected];
+        [self.ffi deleteField:field completion:^(NSError *error) {
+            if (error) {
+                NSLog(@"💾 error %@", error);
+            }
+        }];
+    }
+}
+
+#pragma mark - EditingMode Capturing Data
+- (void)updateFieldAtIndex:(NSIndexPath *)indexPath withImage:(UIImage *)image {
+    FormField *field = [self objectAtIndexPath:indexPath];
+    if ([field isKindOfClass:[ImageField class]]) {
+//        ((ImageField *)field).capturedImage = image;
+        ImageFieldCell *imageCell = (ImageFieldCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        imageCell.imageThumbnailView.image = image;
+    }
+}
 
 
 
@@ -150,7 +181,8 @@
     
     NSString *cellIdentifier = NSStringFromClass([item class]);
 //    NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    BaseFieldCell *cell = (BaseFieldCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.editingMode = self.editingMode;
     
     if ([item isKindOfClass:[TextField class]]) {
         
@@ -183,8 +215,8 @@
             __weak typeof(self) weakSelf = self;
             [cellI.imageAddButton setActionBlock:^{
                 // Capture photo
-                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(addPhotoButtonPressed:forField:)]) {
-                    [weakSelf.delegate addPhotoButtonPressed:cellI.imageAddButton forField:item];
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(addPhotoButtonPressed:forFieldIndexPath:)]) {
+                    [weakSelf.delegate addPhotoButtonPressed:cellI.imageAddButton forFieldIndexPath:indexPath];
                 }
             }];
             
@@ -239,16 +271,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat result = tableView.rowHeight;
-    
     FormField *item = (FormField *)[self objectAtIndexPath:indexPath];
-    
+
     if ([item isKindOfClass:[TextField class]]) {
         
-        result = [TextFieldCell preferredHeight];
+        result = 120.0;
         
     } else if ([item isKindOfClass:[ImageField class]]) {
         
-        result = [ImageFieldCell preferredHeight];
+        if (self.editingMode == FormEditingModeCapturingData) {
+            result = 200.0;
+        } else {
+            result = 138.0;
+        }
     }
     
     return result;

@@ -59,7 +59,7 @@
     }
 }
 
-+ (CGFloat)preferredHeight {
+- (CGFloat)preferredHeight {
     return 120.0;
 }
 

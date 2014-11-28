@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 mariabernis. All rights reserved.
 //
 
-#import "ProjectCell.h"
+#import "FormCell.h"
 #import "FormMock.h"
 #import "Project.h"
 #import "Form.h"
@@ -14,7 +14,7 @@
 #import "UIColor+Fields.h"
 
 
-@implementation ProjectCell
+@implementation FormCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -110,7 +110,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" id="k6x-LW-Yzj" userLabel="Inactive view">
+                <view contentMode="scaleToFill" id="k6x-LW-Yzj" userLabel="Inactive view">
                     <rect key="frame" x="0.0" y="0.0" width="222" height="659"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>

@@ -25,7 +25,10 @@
     // Configure the view for the selected state
 }
 
-+ (CGFloat)preferredHeight {
+- (CGFloat)preferredHeight {
+    if (self.editingMode == FormEditingModeCapturingData) {
+        return 170.0;
+    }
     return 138.0;
 }
 

@@ -59,9 +59,6 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet FieldPropsTabView *fieldPropsTabView;
 @property (weak, nonatomic) IBOutlet UITableView *fieldTypesTableView;
 @property (weak, nonatomic) IBOutlet UITableView *formCanvasTableView;
-@property (weak, nonatomic) IBOutlet UILabel *formCanvasTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *formCanvasProjectLabel;
-@property (weak, nonatomic) IBOutlet UILabel *formCanvasDescLabel;
 
 @end
 
@@ -121,6 +118,7 @@ typedef enum {
 
 
 #pragma mark - VC life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _loading = YES;
@@ -168,16 +166,8 @@ typedef enum {
     self.formPropsTabView = realFormTab;
     [self.formPropsTabView addDelegateForInputs:self];
     
-    // Configure touches
-    UITapGestureRecognizer *tapChooserGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnProjectsChooser:)];
-    [self.formPropsTabView.projChooserView addGestureRecognizer:tapChooserGesture];
-    
-    UITapGestureRecognizer *tapDuplicateGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnDuplicateForm:)];
-    [self.formPropsTabView.actionDuplicateView addGestureRecognizer:tapDuplicateGesture];
-    
-    UITapGestureRecognizer *tapDeleteGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteFormAction:)];
-    [self.formPropsTabView.actionDeleteView addGestureRecognizer:tapDeleteGesture];
-    
+    [self addTapsForFormPropertiesPane];
+    [self addTapsForFieldPropertiesPane];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -225,6 +215,26 @@ typedef enum {
             }
         }
     }
+}
+
+- (void)addTapsForFormPropertiesPane {
+    // Configure touches
+    UITapGestureRecognizer *tapChooserGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnProjectsChooser:)];
+    [self.formPropsTabView.projChooserView addGestureRecognizer:tapChooserGesture];
+    
+    UITapGestureRecognizer *tapDuplicateGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnDuplicateForm:)];
+    [self.formPropsTabView.actionDuplicateView addGestureRecognizer:tapDuplicateGesture];
+    
+    UITapGestureRecognizer *tapDeleteGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteFormAction:)];
+    [self.formPropsTabView.actionDeleteView addGestureRecognizer:tapDeleteGesture];
+}
+
+- (void)addTapsForFieldPropertiesPane {
+    UITapGestureRecognizer *tapDuplicateGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnDuplicateField:)];
+    [self.fieldPropsTabView.actionDuplicateView addGestureRecognizer:tapDuplicateGesture];
+    
+    UITapGestureRecognizer *tapDeleteGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnDeleteField:)];
+    [self.fieldPropsTabView.actionDeleteView addGestureRecognizer:tapDeleteGesture];
 }
 
 - (void)appWillResigneActiveNotification:(NSNotification *)notification {
@@ -323,6 +333,13 @@ typedef enum {
     }
 }
 
+#pragma mark - Field actions
+- (void)tappedOnDuplicateField:(id)sender {
+}
+
+- (void)tappedOnDeleteField:(id)sender {
+    [self.formCanvasManager deleteCurrentField];
+}
 
 
 #pragma mark - Form actions

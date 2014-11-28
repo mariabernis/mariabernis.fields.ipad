@@ -15,7 +15,7 @@ typedef enum {
 @required
 @optional
 - (void)formManager:(FormCanvasManager *)formManager didActivateField:(FormField *)field;
-- (void)addPhotoButtonPressed:(id)sender forField:(FormField *)field;
+- (void)addPhotoButtonPressed:(id)sender forFieldIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface FormCanvasManager : NSObject <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
@@ -26,5 +26,8 @@ typedef enum {
 - (instancetype)initWithTableView:(UITableView *)aTableView form:(Form *)aForm editingMode:(FormEditingMode)mode delegate:(id<FormCanvasManagerDelegate>)delegate;
 
 - (void)updateFormHeader;
+- (void)updateFieldAtIndex:(NSIndexPath *)indexPath withImage:(UIImage *)image;
+- (void)duplicateCurrentField;
+- (void)deleteCurrentField;
 
 @end

@@ -9,10 +9,12 @@
 #import "FormCaptureViewController.h"
 #import "FormCanvasManager.h"
 #import "FormInteractor.h"
+#import "UIColor+Fields.h"
 
-@interface FormCaptureViewController ()<FormCanvasManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface FormCaptureViewController ()<FormCanvasManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 @property (nonatomic, strong) FormCanvasManager *formManager;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSIndexPath *fieldIndexWaitingForPhoto;
 @end
 
 @implementation FormCaptureViewController
@@ -20,6 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.formManager = [[FormCanvasManager alloc] initWithTableView:self.tableView form:self.form editingMode:FormEditingModeCapturingData delegate:self];
+    self.view.backgroundColor = [UIColor fieldsLightOcre];
+    
+    UIBarButtonItem *closeBarBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closeButtonPressed:)];
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)];
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButtonPressed:)];
+    self.navigationItem.leftBarButtonItems = @[closeBarBtn];
+    self.navigationItem.rightBarButtonItems = @[doneBtn, shareBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,34 +36,49 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Actions
+- (void)closeButtonPressed:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)doneButtonPressed:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)shareButtonPressed:(id)sender {
+}
+
 #pragma mark - EditingModeCapturingData
-- (void)addPhotoButtonPressed:(id)sender forField:(FormField *)field {
+- (void)addPhotoButtonPressed:(id)sender forFieldIndexPath:(NSIndexPath *)indexPath {
     
     // USE weakself!
     UIAlertController *alertController;
     UIAlertAction *cameraAction;
     UIAlertAction *galleryAction;
+    UIView *senderV = (UIView *)sender;
     
     alertController = [UIAlertController alertControllerWithTitle:nil
                                                           message:nil
                                                    preferredStyle:UIAlertControllerStyleActionSheet];
-    cameraAction = [UIAlertAction actionWithTitle:@"Capture from camera"
+
+    cameraAction = [UIAlertAction actionWithTitle:@"Add photo using camera"
                                             style:UIAlertActionStyleDefault
                                           handler:^(UIAlertAction *action) {
-                                              [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
+                                              self.fieldIndexWaitingForPhoto = indexPath;
+                                              [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera fromView:senderV];
                                               
                                           }];
     
-    galleryAction = [UIAlertAction actionWithTitle:@"Select existent"
+    galleryAction = [UIAlertAction actionWithTitle:@"Add photo selecting existent"
                                              style:UIAlertActionStyleDefault
                                            handler:^(UIAlertAction *action) {
-                                               
-                                               [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                                               self.fieldIndexWaitingForPhoto = indexPath;
+                                               [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary fromView:senderV];
                                                
                                            }];
     
-    // note: you can control the order buttons are shown, unlike UIActionSheet
     [alertController addAction:cameraAction];
+    [alertController addAction:galleryAction];
     [alertController setModalPresentationStyle:UIModalPresentationPopover];
     
     UIPopoverPresentationController *popPresenter = [alertController
@@ -76,7 +100,7 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType {
+- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType fromView:(UIView *)view {
     
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.navigationBar.translucent=NO;
@@ -84,7 +108,11 @@
     imagePickerController.sourceType = sourceType;
     imagePickerController.delegate = self;
     
-    [self presentViewController:imagePickerController animated:YES completion:nil];
+    UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
+    popoverController.delegate = self;
+    [popoverController presentPopoverFromRect:view.bounds inView:view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+//    [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
 #pragma mark UIImagePickerControllerDelegate methods
@@ -102,13 +130,20 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
                 // ...Guardamos la foto en el album
                 UIImageWriteToSavedPhotosAlbum(selectedImage, nil, nil, nil);
             }
+            [self.formManager updateFieldAtIndex:self.fieldIndexWaitingForPhoto withImage:selectedImage];
+            self.fieldIndexWaitingForPhoto = nil;
         }
         
     }];
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.fieldIndexWaitingForPhoto = nil;
+}
+
+#pragma mark - Popover controller delegate
+- (BOOL) popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+    return NO;
 }
 
 @end

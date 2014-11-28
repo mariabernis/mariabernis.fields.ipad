@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FormCanvasManager.h"
 
 @interface BaseFieldCell : UITableViewCell
-+ (CGFloat)preferredHeight;
+
+@property (nonatomic) FormEditingMode editingMode;
+
+- (CGFloat)preferredHeight;
 @end

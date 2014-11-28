@@ -46,7 +46,7 @@
 		834327A81A2138C50051F525 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834327A01A2138C50051F525 /* LaunchScreen.xib */; };
 		834327A91A2138C50051F525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 834327A21A2138C50051F525 /* Main.storyboard */; };
 		834327AA1A2138C50051F525 /* FormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 834327A41A2138C50051F525 /* FormCell.xib */; };
-		834327AB1A2138C50051F525 /* ProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327A61A2138C50051F525 /* ProjectCell.m */; };
+		834327AB1A2138C50051F525 /* FormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327A61A2138C50051F525 /* FormCell.m */; };
 		834327AF1A21394F0051F525 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 834327AD1A21394F0051F525 /* Info.plist */; };
 		834327B01A21394F0051F525 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327AE1A21394F0051F525 /* main.m */; };
 		834327B21A21398A0051F525 /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 834327B11A21398A0051F525 /* ProjectTests.m */; };
@@ -150,8 +150,8 @@
 		834327A11A2138C50051F525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		834327A31A2138C50051F525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		834327A41A2138C50051F525 /* FormCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormCell.xib; sourceTree = "<group>"; };
-		834327A51A2138C50051F525 /* ProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCell.h; sourceTree = "<group>"; };
-		834327A61A2138C50051F525 /* ProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectCell.m; sourceTree = "<group>"; };
+		834327A51A2138C50051F525 /* FormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormCell.h; sourceTree = "<group>"; };
+		834327A61A2138C50051F525 /* FormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormCell.m; sourceTree = "<group>"; };
 		834327AD1A21394F0051F525 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		834327AE1A21394F0051F525 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		834327B11A21398A0051F525 /* ProjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTests.m; sourceTree = "<group>"; };
@@ -451,8 +451,8 @@
 				837FDE8F1A2354B400D2EE0B /* FormPropsTabView.m */,
 				837551C71A26A3A20089CC41 /* FieldPropsTabView.h */,
 				837551C81A26A3A20089CC41 /* FieldPropsTabView.m */,
-				834327A51A2138C50051F525 /* ProjectCell.h */,
-				834327A61A2138C50051F525 /* ProjectCell.m */,
+				834327A51A2138C50051F525 /* FormCell.h */,
+				834327A61A2138C50051F525 /* FormCell.m */,
 				83A2A9931A27597F00E1E324 /* ProjectTCell.h */,
 				83A2A9941A27597F00E1E324 /* ProjectTCell.m */,
 				837551921A25ECA00089CC41 /* FieldTypeCell.h */,
@@ -744,7 +744,7 @@
 				834327961A2138930051F525 /* MBCoreDataStack.m in Sources */,
 				834327951A2138930051F525 /* Project.m in Sources */,
 				83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */,
-				834327AB1A2138C50051F525 /* ProjectCell.m in Sources */,
+				834327AB1A2138C50051F525 /* FormCell.m in Sources */,
 				837FDE931A237B5800D2EE0B /* FormInteractor.m in Sources */,
 				837551C91A26A3A20089CC41 /* FieldPropsTabView.m in Sources */,
 				834327931A2138930051F525 /* _Project.m in Sources */,
