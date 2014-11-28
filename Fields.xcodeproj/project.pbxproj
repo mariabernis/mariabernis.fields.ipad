@@ -82,9 +82,12 @@
 		837FDE951A23AC7A00D2EE0B /* FieldsRepo_future.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FDE941A23AC7A00D2EE0B /* FieldsRepo_future.plist */; };
 		837FE4201A2561010011233E /* FieldsRepo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837FE41F1A2561010011233E /* FieldsRepo.plist */; };
 		83A2A98F1A27509600E1E324 /* MBCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2A98E1A27509600E1E324 /* MBCoreDataTableViewController.m */; };
+		83A2A9921A27538A00E1E324 /* ProjectsMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2A9911A27538A00E1E324 /* ProjectsMasterViewController.m */; };
+		83A2A9951A27597F00E1E324 /* ProjectTCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A2A9941A27597F00E1E324 /* ProjectTCell.m */; };
 		83C742241A21470D00F189F2 /* BaseInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742231A21470D00F189F2 /* BaseInteractor.m */; };
 		83C742281A2160AC00F189F2 /* MBCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C742271A2160AC00F189F2 /* MBCheck.m */; };
 		83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */; };
+		83DAA45C1A27F22A0095EBF9 /* UIColor+Fields.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DAA45B1A27F22A0095EBF9 /* UIColor+Fields.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,12 +211,18 @@
 		837FE41F1A2561010011233E /* FieldsRepo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FieldsRepo.plist; sourceTree = "<group>"; };
 		83A2A98D1A27509600E1E324 /* MBCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCoreDataTableViewController.h; sourceTree = "<group>"; };
 		83A2A98E1A27509600E1E324 /* MBCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCoreDataTableViewController.m; sourceTree = "<group>"; };
+		83A2A9901A27538A00E1E324 /* ProjectsMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsMasterViewController.h; sourceTree = "<group>"; };
+		83A2A9911A27538A00E1E324 /* ProjectsMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsMasterViewController.m; sourceTree = "<group>"; };
+		83A2A9931A27597F00E1E324 /* ProjectTCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTCell.h; sourceTree = "<group>"; };
+		83A2A9941A27597F00E1E324 /* ProjectTCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTCell.m; sourceTree = "<group>"; };
 		83C742221A21470D00F189F2 /* BaseInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInteractor.h; sourceTree = "<group>"; };
 		83C742231A21470D00F189F2 /* BaseInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseInteractor.m; sourceTree = "<group>"; };
 		83C742261A2160AC00F189F2 /* MBCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCheck.h; sourceTree = "<group>"; };
 		83C742271A2160AC00F189F2 /* MBCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCheck.m; sourceTree = "<group>"; };
 		83C742291A21610C00F189F2 /* NSString+MBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MBExtensions.h"; sourceTree = "<group>"; };
 		83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MBExtensions.m"; sourceTree = "<group>"; };
+		83DAA45A1A27F22A0095EBF9 /* UIColor+Fields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Fields.h"; sourceTree = "<group>"; };
+		83DAA45B1A27F22A0095EBF9 /* UIColor+Fields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Fields.m"; sourceTree = "<group>"; };
 		B6D6B29054DCBEC82017844B /* Pods-Fields.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fields.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fields/Pods-Fields.debug.xcconfig"; sourceTree = "<group>"; };
 		C66CC624971DF55DF96F8F06 /* Pods-FieldsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FieldsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FieldsTests/Pods-FieldsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -389,6 +398,8 @@
 				8343277F1A2138930051F525 /* Base */,
 				8343278C1A2138930051F525 /* ProjectsViewController.h */,
 				8343278D1A2138930051F525 /* ProjectsViewController.m */,
+				83A2A9901A27538A00E1E324 /* ProjectsMasterViewController.h */,
+				83A2A9911A27538A00E1E324 /* ProjectsMasterViewController.m */,
 				8343278A1A2138930051F525 /* ProjectDetailViewController.h */,
 				8343278B1A2138930051F525 /* ProjectDetailViewController.m */,
 				834327881A2138930051F525 /* FormsViewController.h */,
@@ -434,6 +445,8 @@
 				837551C81A26A3A20089CC41 /* FieldPropsTabView.m */,
 				834327A51A2138C50051F525 /* ProjectCell.h */,
 				834327A61A2138C50051F525 /* ProjectCell.m */,
+				83A2A9931A27597F00E1E324 /* ProjectTCell.h */,
+				83A2A9941A27597F00E1E324 /* ProjectTCell.m */,
 				837551921A25ECA00089CC41 /* FieldTypeCell.h */,
 				837551931A25ECA10089CC41 /* FieldTypeCell.m */,
 				837551CA1A26A7E20089CC41 /* BaseFieldCell.h */,
@@ -466,6 +479,8 @@
 				83C742271A2160AC00F189F2 /* MBCheck.m */,
 				83C742291A21610C00F189F2 /* NSString+MBExtensions.h */,
 				83C7422A1A21610C00F189F2 /* NSString+MBExtensions.m */,
+				83DAA45A1A27F22A0095EBF9 /* UIColor+Fields.h */,
+				83DAA45B1A27F22A0095EBF9 /* UIColor+Fields.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -702,10 +717,12 @@
 				83C742281A2160AC00F189F2 /* MBCheck.m in Sources */,
 				837FDE901A2354B400D2EE0B /* FormPropsTabView.m in Sources */,
 				834327B01A21394F0051F525 /* main.m in Sources */,
+				83DAA45C1A27F22A0095EBF9 /* UIColor+Fields.m in Sources */,
 				83C7422B1A21610C00F189F2 /* NSString+MBExtensions.m in Sources */,
 				83623B7E1A225F0100857720 /* Form.m in Sources */,
 				837551B71A263F3F0089CC41 /* ImageField.m in Sources */,
 				837551A01A2628A50089CC41 /* FormCanvasManager.m in Sources */,
+				83A2A9951A27597F00E1E324 /* ProjectTCell.m in Sources */,
 				837551CC1A26A7E20089CC41 /* BaseFieldCell.m in Sources */,
 				834327901A2138930051F525 /* MocksProvider.m in Sources */,
 				8375519A1A25F02C0089CC41 /* FieldTypesProvider.m in Sources */,
@@ -724,6 +741,7 @@
 				837551BB1A2641770089CC41 /* FormFieldInteractor.m in Sources */,
 				834327941A2138930051F525 /* FieldsModel.xcdatamodeld in Sources */,
 				837551B81A263F3F0089CC41 /* TextField.m in Sources */,
+				83A2A9921A27538A00E1E324 /* ProjectsMasterViewController.m in Sources */,
 				837551AB1A263CEB0089CC41 /* DictionaryToDataTransformer.m in Sources */,
 				837551BE1A264A5D0089CC41 /* FormCanvasInteractor.m in Sources */,
 				834327471A2138370051F525 /* AppDelegate.m in Sources */,
