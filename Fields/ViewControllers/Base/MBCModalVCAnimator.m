@@ -22,22 +22,24 @@
     if (self.isPresenting) {
         // We need to "paint" everything we need in the context
         [transitionContext.containerView addSubview:fromVC.view];
+        UIView *dimView = [[UIView alloc] initWithFrame:fromVC.view.window.frame];
+        dimView.backgroundColor = [UIColor colorWithHue:0 saturation:0 brightness:0 alpha:0.4];
+        [transitionContext.containerView addSubview:dimView];
         [transitionContext.containerView addSubview:toVC.view];
         
         fromVC.view.userInteractionEnabled = NO;
         
-        CGFloat xOffset = 300;
+        dimView.alpha = 0.0;
+        CGFloat xOffset = 80;
+        // Falls from the top
         CGFloat yOffset = 80;
         toVC.view.frame = CGRectMake(0, 0, 600, 400);
-        toVC.view.center = CGPointMake(CGRectGetWidth(fromVC.view.frame) + xOffset,
-                                       CGRectGetHeight(fromVC.view.frame)/2 - yOffset);
+        toVC.view.center = CGPointMake(fromVC.view.center.x - xOffset,
+                                       -1*CGRectGetHeight(toVC.view.frame)/2 - 100);
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                              delay:0
-             usingSpringWithDamping:0.5
-              initialSpringVelocity:3
-                            options:0
                          animations:^{
+                             dimView.alpha = 1.0;
                              fromVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
                          }
                          completion:^(BOOL finished) {
@@ -47,7 +49,7 @@
         CGPoint snapPoint = CGPointMake(fromVC.view.center.x, fromVC.view.center.y - yOffset);
         UISnapBehavior *snap = [[UISnapBehavior alloc] initWithItem:toVC.view
                                                         snapToPoint:snapPoint];
-        snap.damping = 0.5;
+        snap.damping = 0.6;
         [self.dynamics addBehavior:snap];
         
         [self performSelector:@selector(completeTransitionWithContext:)
@@ -57,14 +59,21 @@
     } else {
         // We need to "paint" everything we need in the context
         [transitionContext.containerView addSubview:toVC.view];
+        
+        UIView *dimView = [[UIView alloc] initWithFrame:fromVC.view.window.frame];
+        dimView.backgroundColor = [UIColor colorWithHue:0 saturation:0 brightness:0 alpha:0.4];
+        [transitionContext.containerView addSubview:dimView];
+        
         [transitionContext.containerView addSubview:fromVC.view];
         
         // now our fromVC var is the ToViewController
         // now our toVC var is the FromViewController
         
+        dimView.alpha = 1.0;
         // We'll do this gravity
         [UIView animateWithDuration:[self transitionDuration:transitionContext]
                          animations:^{
+                             dimView.alpha = 0;
                              toVC.view.transform = CGAffineTransformIdentity;
                              toVC.view.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
         } completion:^(BOOL finished) {

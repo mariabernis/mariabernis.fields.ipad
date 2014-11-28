@@ -15,8 +15,9 @@
 #import "Project.h"
 #import "FormDesignerViewController.h"
 #import "UIColor+Fields.h"
+#import "MBCModalVCAnimator.h"
 
-@interface FormsViewController ()<ProjectDetailVCDelegate>
+@interface FormsViewController ()<ProjectDetailVCDelegate, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) ListFormsInteractor *lfi;
 @property (nonatomic, strong) FormInteractor *fi;
 @end
@@ -125,7 +126,8 @@ static NSString * const reuseIdentifier = @"Cell";
     ProjectDetailViewController *editProjVC = (ProjectDetailViewController *)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"detailProjectIdentifier"];
     editProjVC.project = self.parentProject;
     editProjVC.delegate = self;
-    editProjVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    editProjVC.transitioningDelegate = self;
+    editProjVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:editProjVC animated:YES completion:nil];
 }
 
@@ -200,33 +202,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(200, 90);
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
 
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+#pragma mark - UIViewControllerTransitioningDelegate protocol methods
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    MBCModalVCAnimator *animator = [MBCModalVCAnimator new];
+    animator.presenting = YES;
+    return animator;
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    MBCModalVCAnimator *animator = [MBCModalVCAnimator new];
+    animator.presenting = NO;
+    return animator;
 }
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end
