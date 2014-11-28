@@ -7,6 +7,7 @@
 //
 
 #import "BaseFieldCell.h"
+#import "UIColor+Fields.h"
 
 @implementation BaseFieldCell
 
@@ -52,7 +53,7 @@
     if (selected) {
         
         contentLayer.borderWidth = 3.0;
-        contentLayer.borderColor = [UIColor colorWithHue:0.58 saturation:0.492 brightness:0.278 alpha:1].CGColor;
+        contentLayer.borderColor = [UIColor fieldsBlue].CGColor;
     } else {
         contentLayer.borderWidth = 0;
     }

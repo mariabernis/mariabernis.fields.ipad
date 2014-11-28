@@ -1,20 +1,16 @@
 //
-//  ProjectCell.m
+//  ProjectTCell.m
 //  Fields
 //
-//  Created by Maria Bernis on 19/11/14.
+//  Created by Maria Bernis on 27/11/14.
 //  Copyright (c) 2014 mariabernis. All rights reserved.
 //
 
-#import "ProjectCell.h"
-#import "FormMock.h"
+#import "ProjectTCell.h"
 #import "Project.h"
-#import "Form.h"
-#import "UIColor+Fields.h"
 #import "UIColor+Fields.h"
 
-
-@implementation ProjectCell
+@implementation ProjectTCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -36,16 +32,19 @@
 
 - (void)commonInit {
     self.backgroundColor = [UIColor whiteColor];
-//    UIView * selectedBGView = [[UIView alloc] initWithFrame:self.bounds];
-//    selectedBGView.backgroundColor = [UIColor fieldsGreen];
-//    self.selectedBackgroundView = selectedBGView;
-
+    UIView * selectedBGView = [[UIView alloc] initWithFrame:self.bounds];
+    selectedBGView.backgroundColor = [UIColor fieldsGreen];
+    self.selectedBackgroundView = selectedBGView;
+    
 }
 
-- (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-    
-    
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        self.mainTitleLabel.textColor = [UIColor whiteColor];
+    } else {
+        self.mainTitleLabel.textColor = [UIColor fieldsGreen];
+    }
 }
 
 - (void)updateCellContentsWithItem:(id)item
@@ -57,17 +56,10 @@
         self.itemsInfoLabel.text = [NSString stringWithFormat:@"%lu forms", (unsigned long)project.forms.count];
         
         if (project.isTemplateContainer) {
-            self.backgroundColor = [UIColor fieldsLightGreen];
+            self.mainTitleLabel.textColor = [UIColor blueColor];
         } else {
-            self.backgroundColor = [UIColor whiteColor];
+            self.mainTitleLabel.textColor = [UIColor fieldsGreen];
         }
-        
-    } else if ([item isKindOfClass:[Form class]]) {
-        Form *form = (Form *)item;
-        self.mainTitleLabel.text = form.formTitle;
-        self.descriptionLabel.text = form.formDescription;
-        
-        
     }
 }
 

@@ -14,6 +14,7 @@
 #import "FormInteractor.h"
 #import "Project.h"
 #import "FormDesignerViewController.h"
+#import "UIColor+Fields.h"
 
 @interface FormsViewController ()<ProjectDetailVCDelegate>
 @property (nonatomic, strong) ListFormsInteractor *lfi;
@@ -50,7 +51,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)commonInit {
-    self.collectionView.backgroundColor = [UIColor colorWithRed:0.933 green:0.933 blue:0.902 alpha:1];
 }
 
 - (ListFormsInteractor *)lfi {
@@ -75,17 +75,37 @@ static NSString * const reuseIdentifier = @"Cell";
     self.managedObjectContext = self.lfi.defaultMOC;
     self.cellReusableIdentifier = reuseIdentifier;
     
+    self.collectionView.backgroundColor = [UIColor fieldsLightOcre];
     self.collectionView.alwaysBounceVertical = YES;
+    UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+    flow.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     // Register cell classes
     UINib *cellNib = [UINib nibWithNibName:@"FormCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newFormForCurrentProject)];
+    UIButton *fieldsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    fieldsButton.frame = CGRectMake(0, 0, 40, 30);
+    [fieldsButton setImage:[UIImage imageNamed:@"rastrillo_xsmall"] forState:UIControlStateNormal];
+    fieldsButton.backgroundColor = [UIColor fieldsGreen];
+    fieldsButton.layer.cornerRadius = 3;
+    [fieldsButton addTarget:self action:@selector(newFormForCurrentProject) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
+    UIBarButtonItem *fieldsBarButton = [[UIBarButtonItem alloc] initWithCustomView:fieldsButton];
+
     
-    self.navigationItem.rightBarButtonItems = @[addButton, settingsButton];
+    UIButton *projectInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    projectInfoButton.frame = CGRectMake(0, 0, 150, 30);
+    [projectInfoButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
+    [projectInfoButton setTitleColor:[UIColor fieldsGreen] forState:UIControlStateNormal];
+    [projectInfoButton setImage:[UIImage imageNamed:@"basic_info2_g"] forState:UIControlStateNormal];
+    [projectInfoButton setTitle:@"  Project info" forState:UIControlStateNormal];
+    [projectInfoButton addTarget:self action:@selector(projectSettingsPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *projectInfoBarBtn = [[UIBarButtonItem alloc] initWithCustomView:projectInfoButton];
+//    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
+    
+    self.navigationItem.rightBarButtonItems = @[fieldsBarButton, projectInfoBarBtn];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -168,8 +188,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDelegate>
 - (void)  collectionView:(UICollectionView *)collectionView
-didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TEMP. Open form designer.
     Form *f = (Form *)[self objectAtIndexPath:indexPath];
     [self openFormDesignerWithForm:f];
@@ -177,9 +196,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return CGSizeMake(260, 110);
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(200, 90);
 }
 
 /*
