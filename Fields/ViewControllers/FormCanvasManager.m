@@ -80,7 +80,7 @@
 }
 
 - (FormFieldInteractor *)ffi {
-    if (_ffi) {
+    if (!_ffi) {
         _ffi = [[FormFieldInteractor alloc] init];
     }
     return _ffi;
@@ -140,6 +140,8 @@
     }
     return NO;
 }
+
+- (void)duplicateCurrentField {}
 
 - (void)deleteCurrentField {
     if ([self someFieldSelected]) {
