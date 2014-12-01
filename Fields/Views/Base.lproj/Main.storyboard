@@ -436,7 +436,7 @@
                                 <action selector="discardButtonPressed:" destination="8PX-6O-j31" id="GPF-Ms-Lgk"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="8g6-ew-FQJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="8g6-ew-FQJ">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="8PX-6O-j31" id="TBM-Da-aXw"/>
                             </connections>
