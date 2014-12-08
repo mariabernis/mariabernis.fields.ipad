@@ -86,29 +86,6 @@
 
 - (void)dealloc{}
 
-#pragma mark - Table view delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-    if (self.selectedIndex != NSNotFound)
-	{
-        // Deselect previous selected cell
-		UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]];
-        
-        previousCell.accessoryType = UITableViewCellAccessoryNone;
-	}
-    
-    id selected = [self.options objectAtIndex:indexPath.row];
-    
-    self.selectedIndex = indexPath.row;
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-
-    [self.delegate chooserController:self didSelectItem:selected];
-}
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -143,6 +120,29 @@
     [self.delegate chooserControllerConfigureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+    if (self.selectedIndex != NSNotFound)
+	{
+        // Deselect previous selected cell
+		UITableViewCell *previousCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]];
+        
+        previousCell.accessoryType = UITableViewCellAccessoryNone;
+	}
+    
+    id selected = [self.options objectAtIndex:indexPath.row];
+    
+    self.selectedIndex = indexPath.row;
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+    [self.delegate chooserController:self didSelectItem:selected];
 }
 
 @end

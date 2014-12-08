@@ -9,4 +9,7 @@
 @property (weak, nonatomic) IBOutlet UIView *projChooserView;
 @property (weak, nonatomic) IBOutlet UIView *actionDuplicateView;
 @property (weak, nonatomic) IBOutlet UIView *actionDeleteView;
+
+- (void)addDelegateForInputs:(id<UITextFieldDelegate, UITextViewDelegate>)inputsDelegate;
+
 @end

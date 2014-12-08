@@ -7,15 +7,20 @@
 //
 
 #import "FormsViewController.h"
-#import "ProjectCell.h"
+#import "FormCell.h"
 #import "UIColor+FlatColors.h"
 #import "ProjectDetailViewController.h"
 #import "ListFormsInteractor.h"
 #import "FormInteractor.h"
 #import "Project.h"
 #import "FormDesignerViewController.h"
+#import "UIColor+Fields.h"
+#import "MBCModalVCAnimator.h"
+#import "UIButton+Block.h"
+#import "FormCaptureViewController.h"
 
-@interface FormsViewController ()<ProjectDetailVCDelegate>
+
+@interface FormsViewController ()<ProjectDetailVCDelegate, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) ListFormsInteractor *lfi;
 @property (nonatomic, strong) FormInteractor *fi;
 @end
@@ -50,7 +55,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)commonInit {
-    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
 }
 
 - (ListFormsInteractor *)lfi {
@@ -75,17 +79,37 @@ static NSString * const reuseIdentifier = @"Cell";
     self.managedObjectContext = self.lfi.defaultMOC;
     self.cellReusableIdentifier = reuseIdentifier;
     
+    self.collectionView.backgroundColor = [UIColor fieldsLightOcre];
     self.collectionView.alwaysBounceVertical = YES;
+    UICollectionViewFlowLayout *flow = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+    flow.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
     // Register cell classes
     UINib *cellNib = [UINib nibWithNibName:@"FormCell" bundle:nil];
     [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:reuseIdentifier];
 //    [self.collectionView registerClass:[ProjectCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(newFormForCurrentProject)];
+    UIButton *fieldsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    fieldsButton.frame = CGRectMake(0, 0, 40, 30);
+    [fieldsButton setImage:[UIImage imageNamed:@"rastrillo_xsmall"] forState:UIControlStateNormal];
+    fieldsButton.backgroundColor = [UIColor fieldsGreen];
+    fieldsButton.layer.cornerRadius = 3;
+    [fieldsButton addTarget:self action:@selector(newFormForCurrentProject) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
+    UIBarButtonItem *fieldsBarButton = [[UIBarButtonItem alloc] initWithCustomView:fieldsButton];
+
     
-    self.navigationItem.rightBarButtonItems = @[addButton, settingsButton];
+    UIButton *projectInfoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    projectInfoButton.frame = CGRectMake(0, 0, 150, 30);
+    [projectInfoButton.titleLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
+    [projectInfoButton setTitleColor:[UIColor fieldsGreen] forState:UIControlStateNormal];
+    [projectInfoButton setImage:[UIImage imageNamed:@"basic_info"] forState:UIControlStateNormal];
+    [projectInfoButton setTitle:@"  Project info" forState:UIControlStateNormal];
+    [projectInfoButton addTarget:self action:@selector(projectSettingsPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *projectInfoBarBtn = [[UIBarButtonItem alloc] initWithCustomView:projectInfoButton];
+//    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(projectSettingsPressed:)];
+    
+    self.navigationItem.rightBarButtonItems = @[fieldsBarButton, projectInfoBarBtn];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,7 +129,8 @@ static NSString * const reuseIdentifier = @"Cell";
     ProjectDetailViewController *editProjVC = (ProjectDetailViewController *)[[self mainStoryboard] instantiateViewControllerWithIdentifier:@"detailProjectIdentifier"];
     editProjVC.project = self.parentProject;
     editProjVC.delegate = self;
-    editProjVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    editProjVC.transitioningDelegate = self;
+    editProjVC.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:editProjVC animated:YES completion:nil];
 }
 
@@ -158,57 +183,56 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark Overrides
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    
     [super configureCell:cell atIndexPath:indexPath];
     
-    ProjectCell *projCell = (ProjectCell *)cell;
+    FormCell *formCell = (FormCell *)cell;
+    [formCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
     
-    [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
+    __weak typeof(self) weakSelf = self;
+    [formCell.quickActionButton setActionBlock:^{
+        Form *f = (Form *)[weakSelf objectAtIndexPath:indexPath];
+        [weakSelf openFormDesignerWithForm:f];
+    }];
 }
 
 #pragma mark <UICollectionViewDelegate>
 - (void)  collectionView:(UICollectionView *)collectionView
-didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // TEMP. Open form designer.
+//    [self openFormDesignerWithForm:f];
     Form *f = (Form *)[self objectAtIndexPath:indexPath];
-    [self openFormDesignerWithForm:f];
+    UINavigationController *navVC = [[self mainStoryboard] instantiateViewControllerWithIdentifier:@"formCapturerNavID"];
+    navVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    //    navVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    FormCaptureViewController *formVC = navVC.viewControllers[0];
+    formVC.form = f;
+    
+    [self presentViewController:navVC animated:YES completion:nil];
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(200, 90);
+}
+
+
+#pragma mark - UIViewControllerTransitioningDelegate protocol methods
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
 {
-    return CGSizeMake(260, 110);
+    MBCModalVCAnimator *animator = [MBCModalVCAnimator new];
+    animator.presenting = YES;
+    return animator;
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    MBCModalVCAnimator *animator = [MBCModalVCAnimator new];
+    animator.presenting = NO;
+    return animator;
 }
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

@@ -52,7 +52,7 @@
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [[self.fetchedResultsController sections] count];;
+    return [[self.fetchedResultsController sections] count];
 }
 
 
@@ -73,9 +73,7 @@
 
 #pragma mark Datasource helpers
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (NSInteger)countItemsInFirstSection {

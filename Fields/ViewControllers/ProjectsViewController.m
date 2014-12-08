@@ -8,11 +8,12 @@
 
 #import "ProjectsViewController.h"
 #import "UIColor+FlatColors.h"
-#import "ProjectCell.h"
+#import "FormCell.h"
 #import "ListProjectsInteractor.h"
 #import "ProjectDetailViewController.h"
 #import "MBCModalVCAnimator.h"
 #import "FormsViewController.h"
+#import "UIColor+Fields.h"
 
 @interface ProjectsViewController () <UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) ListProjectsInteractor *lpI;
@@ -42,7 +43,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     self.collectionView.alwaysBounceVertical = YES;
     self.navigationItem.title = @"My Projects";
-    self.collectionView.backgroundColor = [UIColor flatCloudsColor];
+    self.collectionView.backgroundColor = [UIColor fieldsLightOcre];
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(openAddNewProjectView:)];
     
@@ -65,13 +66,9 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     [super configureCell:cell atIndexPath:indexPath];
     
-    ProjectCell *projCell = (ProjectCell *)cell;
+    FormCell *projCell = (FormCell *)cell;
     
     [projCell updateCellContentsWithItem:[self objectAtIndexPath:indexPath]];
-//    projCell.backgroundColor = [UIColor whiteColor];
-//    UIView * selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
-//    selectedBGView.backgroundColor = [UIColor lightGrayColor];
-//    projCell.selectedBackgroundView = selectedBGView;
 }
 
 

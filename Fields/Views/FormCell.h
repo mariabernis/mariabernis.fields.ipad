@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProjectCell : UICollectionViewCell
+@interface FormCell : UICollectionViewCell
 @property (nonatomic, strong) IBOutlet UILabel *mainTitleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *itemsInfoLabel;
+@property (weak, nonatomic) IBOutlet UIButton *quickActionButton;
 
 - (void)updateCellContentsWithItem:(id)item;
 

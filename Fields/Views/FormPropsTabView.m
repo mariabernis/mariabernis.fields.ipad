@@ -17,12 +17,22 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)addDelegateForInputs:(id<UITextFieldDelegate, UITextViewDelegate>)inputsDelegate {
+    
+    if (!inputsDelegate) {
+        return;
+    }
+    
+    if (self.inputTitle.delegate) {
+        [self.inputTitle setDelegate:nil];
+    }
+    
+    if (self.inputDescription.delegate) {
+        [self.inputDescription setDelegate:nil];
+    }
+    
+    self.inputTitle.delegate = inputsDelegate;
+    self.inputDescription.delegate = inputsDelegate;
 }
-*/
 
 @end
